@@ -1,0 +1,444 @@
+Battle between Earthworm and BKC started!
+
+Tier: DP OU
+Mode: Singles
+Rule: Unrated
+Rule: Sleep Clause
+Rule: Species Clause
+
+Earthworm sent out Dragonite!
+BKC sent out Stengah! (Gliscor)
+BKC: good luck
+
+Start of turn 1!
+Stengah used U-turn!
+It's not very effective...
+Earthworm's Dragonite lost 7% of its health!
+D4RR3N is watching the battle.
+BKC called Stengah back!
+BKC sent out Transfixion! (Heatran)
+
+Earthworm's Dragonite used Fire Blast!
+Transfixion's Flash Fire raised the power of its Fire-type moves!
+
+Start of turn 2!
+BKC called Transfixion back!
+BKC sent out Stengah! (Gliscor)
+
+Earthworm's Dragonite used Superpower!
+It's not very effective...
+Stengah lost 78 HP! (22% of its health)
+Earthworm's Dragonite's Attack fell!
+Earthworm's Dragonite's Defense fell!
+
+Stengah restored a little HP using its Leftovers!
+
+Start of turn 3!
+Stengah used U-turn!
+It's not very effective...
+Earthworm's Dragonite lost 13% of its health!
+BKC called Stengah back!
+BKC sent out Transfixion! (Heatran)
+
+Earthworm's Dragonite used Superpower!
+It's super effective!
+Transfixion lost 246 HP! (63% of its health)
+Earthworm's Dragonite's Attack fell!
+Earthworm's Dragonite's Defense fell!
+
+Transfixion restored a little HP using its Leftovers!
+
+Start of turn 4!
+Transfixion used Protect!
+Transfixion protected itself!
+
+Earthworm's Dragonite used Superpower!
+Transfixion protected itself!
+
+Transfixion restored a little HP using its Leftovers!
+
+Start of turn 5!
+Transfixion used Stealth Rock!
+Pointed stones float in the air around Earthworm's team!
+
+Earthworm's Dragonite used Superpower!
+It's super effective!
+Transfixion lost 166 HP! (43% of its health)
+Earthworm's Dragonite's Attack fell!
+Earthworm's Dragonite's Defense fell!
+
+Transfixion restored a little HP using its Leftovers!
+
+Start of turn 6!
+Earthworm called Dragonite back!
+Earthworm sent out Swampert!
+Pointed stones dug into Earthworm's Swampert!
+
+Transfixion used Protect!
+But if failed!
+
+Transfixion restored a little HP using its Leftovers!
+Earthworm's Swampert restored a little HP using its Leftovers!
+
+Start of turn 7!
+BKC called Transfixion back!
+BKC sent out Bleed! (Skarmory)
+
+Earthworm's Swampert used Stealth Rock!
+Pointed stones float in the air around BKC's team!
+
+Start of turn 8!
+Earthworm called Swampert back!
+Earthworm sent out Dragonite!
+Pointed stones dug into Earthworm's Dragonite!
+
+Bleed used Spikes!
+Spikes were scattered all around the feet of Earthworm's team!
+
+Start of turn 9!
+BKC called Bleed back!
+BKC sent out Transfixion! (Heatran)
+Pointed stones dug into Transfixion!
+
+Earthworm's Dragonite used Fire Blast!
+Transfixion's Flash Fire raised the power of its Fire-type moves!
+
+Transfixion restored a little HP using its Leftovers!
+
+Start of turn 10!
+Earthworm's Dragonite used ExtremeSpeed!
+It's not very effective...
+Transfixion lost 45 HP! (11% of its health)
+Transfixion fainted!
+
+BKC sent out Neurotica! (Starmie)
+Pointed stones dug into Neurotica!
+
+Start of turn 11!
+Neurotica used Surf!
+It's not very effective...
+Earthworm's Dragonite lost 14% of its health!
+Earthworm's Dragonite fainted!
+
+Neurotica restored a little HP using its Leftovers!
+Earthworm sent out Scizor!
+Pointed stones dug into Earthworm's Scizor!
+Earthworm's Scizor is hurt by spikes!
+
+Start of turn 12!
+Neurotica is being sent back!
+Earthworm's Scizor used Pursuit!
+It's super effective!
+Neurotica lost 286 HP! (89% of its health)
+
+BKC called Neurotica back!
+BKC sent out Bleed! (Skarmory)
+Pointed stones dug into Bleed!
+
+Bleed restored a little HP using its Leftovers!
+
+Start of turn 13!
+BKC called Bleed back!
+BKC sent out Neurotica! (Starmie)
+Pointed stones dug into Neurotica!
+Neurotica fainted!
+
+Earthworm called Scizor back!
+Earthworm sent out Gengar!
+Pointed stones dug into Earthworm's Gengar!
+
+BKC sent out I! (Tyranitar)
+Pointed stones dug into I!
+
+I's Sand Stream whipped up a sandstorm!
+
+Start of turn 14!
+I used Crunch!
+It's super effective!
+Earthworm's Gengar lost 87% of its health!
+Earthworm's Gengar fainted!
+
+The sandstorm rages!
+Earthworm sent out Scizor!
+Pointed stones dug into Earthworm's Scizor!
+Earthworm's Scizor is hurt by spikes!
+
+Start of turn 15!
+I is being sent back!
+Earthworm's Scizor used Pursuit!
+It's not very effective...
+I lost 82 HP! (24% of its health)
+
+BKC called I back!
+BKC sent out Stengah! (Gliscor)
+Pointed stones dug into Stengah!
+
+The sandstorm rages!
+Stengah restored a little HP using its Leftovers!
+
+Start of turn 16!
+Earthworm called Scizor back!
+Earthworm sent out Swampert!
+Pointed stones dug into Earthworm's Swampert!
+Earthworm's Swampert is hurt by spikes!
+
+Stengah used Roost!
+Stengah landed on the ground!
+Stengah regained health!
+
+The sandstorm rages!
+Earthworm's Swampert restored a little HP using its Leftovers!
+
+Start of turn 17!
+Stengah used U-turn!
+Earthworm's Swampert lost 9% of its health!
+BKC called Stengah back!
+BKC sent out Bleed! (Skarmory)
+Pointed stones dug into Bleed!
+
+Earthworm's Swampert used Roar!
+Pointed stones dug into Electric Red!
+Electric Red was dragged out!
+
+The sandstorm rages!
+Electric Red is buffeted by the sandstorm!
+Earthworm's Swampert restored a little HP using its Leftovers!
+
+Start of turn 18!
+Electric Red used Trick!
+Electric Red switched items with Earthworm's Swampert!
+Electric Red obtained one Leftovers!
+Earthworm's Swampert obtained one Choice Scarf!
+
+Earthworm's Swampert used Ice Beam!
+Electric Red lost 63 HP! (21% of its health)
+
+The sandstorm rages!
+Electric Red is buffeted by the sandstorm!
+Electric Red restored a little HP using its Leftovers!
+
+Start of turn 19!
+BKC called Electric Red back!
+BKC sent out Bleed! (Skarmory)
+Pointed stones dug into Bleed!
+
+Earthworm's Swampert used Ice Beam!
+Bleed lost 60 HP! (18% of its health)
+
+The sandstorm rages!
+Bleed restored a little HP using its Leftovers!
+
+Start of turn 20!
+Earthworm's Swampert used Ice Beam!
+Bleed lost 54 HP! (16% of its health)
+
+Bleed used Roost!
+Bleed landed on the ground!
+Bleed regained health!
+
+The sandstorm rages!
+Bleed restored a little HP using its Leftovers!
+
+Start of turn 21!
+Earthworm's Swampert used Ice Beam!
+Bleed lost 64 HP! (19% of its health)
+Bleed was frozen solid!
+
+Bleed is frozen solid!
+
+The sandstorm rages!
+Bleed restored a little HP using its Leftovers!
+
+Start of turn 22!
+Earthworm called Swampert back!
+Earthworm sent out Jirachi!
+Pointed stones dug into Earthworm's Jirachi!
+Earthworm's Jirachi is hurt by spikes!
+
+Bleed is frozen solid!
+
+The sandstorm rages!
+Bleed restored a little HP using its Leftovers!
+
+Start of turn 23!
+BKC called Bleed back!
+BKC sent out Electric Red! (Rotom-H)
+Pointed stones dug into Electric Red!
+
+Earthworm's Jirachi used Thunderbolt!
+It's not very effective...
+Electric Red lost 31 HP! (10% of its health)
+
+The sandstorm rages!
+Electric Red is buffeted by the sandstorm!
+Electric Red restored a little HP using its Leftovers!
+
+Start of turn 24!
+Earthworm called Jirachi back!
+Earthworm sent out Snorlax!
+Pointed stones dug into Earthworm's Snorlax!
+Earthworm's Snorlax is hurt by spikes!
+
+Electric Red used Thunderbolt!
+Earthworm's Snorlax lost 21% of its health!
+
+The sandstorm rages!
+Electric Red is buffeted by the sandstorm!
+Earthworm's Snorlax is buffeted by the sandstorm!
+Electric Red restored a little HP using its Leftovers!
+Earthworm's Snorlax restored a little HP using its Leftovers!
+
+Start of turn 25!
+Electric Red used Thunderbolt!
+Earthworm's Snorlax lost 21% of its health!
+
+Earthworm's Snorlax used Crunch!
+It's super effective!
+Electric Red lost 107 HP! (36% of its health)
+Electric Red fainted!
+
+The sandstorm rages!
+Earthworm's Snorlax is buffeted by the sandstorm!
+Earthworm's Snorlax restored a little HP using its Leftovers!
+BKC sent out I! (Tyranitar)
+Pointed stones dug into I!
+
+Start of turn 26!
+I used Crunch!
+Earthworm's Snorlax lost 31% of its health!
+Earthworm's Snorlax fainted!
+
+The sandstorm rages!
+Earthworm sent out Scizor!
+Pointed stones dug into Earthworm's Scizor!
+Earthworm's Scizor is hurt by spikes!
+
+Start of turn 27!
+BKC called I back!
+BKC sent out Bleed! (Skarmory)
+Pointed stones dug into Bleed!
+
+Earthworm's Scizor used U-turn!
+It's not very effective...
+Bleed lost 39 HP! (11% of its health)
+Earthworm called Scizor back!
+Earthworm sent out Jirachi!
+Pointed stones dug into Earthworm's Jirachi!
+Earthworm's Jirachi is hurt by spikes!
+
+The sandstorm rages!
+Bleed restored a little HP using its Leftovers!
+
+Start of turn 28!
+BKC called Bleed back!
+BKC sent out Stengah! (Gliscor)
+Pointed stones dug into Stengah!
+
+Earthworm's Jirachi used Thunderbolt!
+It had no effect!
+
+The sandstorm rages!
+Stengah restored a little HP using its Leftovers!
+
+Start of turn 29!
+Earthworm's Jirachi used Iron Head!
+Stengah lost 105 HP! (29% of its health)
+
+Stengah used Earthquake!
+It's super effective!
+Earthworm's Jirachi lost 63% of its health!
+Earthworm's Jirachi fainted!
+
+The sandstorm rages!
+Stengah restored a little HP using its Leftovers!
+Earthworm sent out Swampert!
+Pointed stones dug into Earthworm's Swampert!
+Earthworm's Swampert is hurt by spikes!
+
+Start of turn 30!
+Stengah used U-turn!
+Earthworm's Swampert lost 10% of its health!
+BKC called Stengah back!
+BKC sent out Bleed! (Skarmory)
+Pointed stones dug into Bleed!
+
+Earthworm's Swampert used Ice Beam!
+Bleed lost 60 HP! (18% of its health)
+
+The sandstorm rages!
+Bleed restored a little HP using its Leftovers!
+
+Start of turn 31!
+Earthworm's Swampert used Ice Beam!
+Bleed lost 55 HP! (16% of its health)
+
+Bleed is frozen solid!
+
+The sandstorm rages!
+Bleed restored a little HP using its Leftovers!
+
+Start of turn 32!
+Earthworm's Swampert used Ice Beam!
+Bleed lost 62 HP! (18% of its health)
+
+Bleed is frozen solid!
+
+The sandstorm rages!
+Bleed restored a little HP using its Leftovers!
+
+Start of turn 33!
+Earthworm's Swampert used Ice Beam!
+Bleed lost 56 HP! (16% of its health)
+
+Bleed is frozen solid!
+
+The sandstorm rages!
+Bleed restored a little HP using its Leftovers!
+
+Start of turn 34!
+Earthworm's Swampert used Ice Beam!
+Bleed lost 44 HP! (13% of its health)
+Bleed fainted!
+
+The sandstorm rages!
+BKC sent out I! (Tyranitar)
+Pointed stones dug into I!
+
+Start of turn 35!
+I used Crunch!
+Earthworm's Swampert lost 28% of its health!
+
+Earthworm's Swampert used Ice Beam!
+I lost 44 HP! (12% of its health)
+
+The sandstorm rages!
+
+Start of turn 36!
+I used Crunch!
+Earthworm's Swampert lost 27% of its health!
+Earthworm's Swampert fainted!
+
+The sandstorm rages!
+Earthworm sent out Scizor!
+Pointed stones dug into Earthworm's Scizor!
+Earthworm's Scizor is hurt by spikes!
+
+Start of turn 37!
+Earthworm's Scizor used Bullet Punch!
+It's super effective!
+I lost 89 HP! (26% of its health)
+I fainted!
+
+The sandstorm rages!
+BKC: gg
+BKC sent out Stengah! (Gliscor)
+Pointed stones dug into Stengah!
+
+Start of turn 38!
+Earthworm's Scizor used Bullet Punch!
+A critical hit!
+Stengah lost 204 HP! (57% of its health)
+Stengah fainted!
+
+Earthworm won the battle!
+Earthworm: gg
