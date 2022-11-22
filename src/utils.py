@@ -9,7 +9,7 @@ def get_gen(s):
     elif re.search("(gsc)|[^h](gs)|(gen 2)|(2nd gen)",
                    s, re.IGNORECASE) is not None:
         return 2
-    elif re.search("(adv)|(rse)|(rs)|(frlg)|(gen 3)|(3rd gen)",
+    elif re.search("(adv)|(rse)|[^e](rs)|(frlg)|(gen 3)|(3rd gen)",
                    s, re.IGNORECASE) is not None:
         return 3
     elif re.search("(dpp)|(dp)|(hgss)|(gen 4)|(4th gen)",
