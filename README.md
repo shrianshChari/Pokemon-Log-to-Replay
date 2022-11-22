@@ -3,8 +3,9 @@ Convert from logs from Pokemon Online and Shoddy to replays from Pokemon Showdow
 
 ### Resources:
 - [Showdown Replay Encoding](https://github.com/smogon/pokemon-showdown/blob/master/sim/SIM-PROTOCOL.md)
+- [Python RegEx Cheat Sheet](https://www.geeksforgeeks.org/python-regex-cheat-sheet/)
 
 ### Plans
 - [x] Turn a game into a replay by hand to explore how we would convert from log to replay
-- [ ] Choose a language to develop with (Python or TypeScript)
-- [ ] Start developing
+- [x] Choose a language to develop with (**Python** ~~or TypeScript~~)
+- [ ] Start developing (currently testing RegEx patterns)
