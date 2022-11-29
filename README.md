@@ -114,7 +114,7 @@ It's super effective!
 Orion lost 235 HP! (90% of its health)
 Orion fainted!
 ```
-> From [BKC vs Earthworm Redux](https://www.smogon.com/forums/threads/past-gen-battle-logs.3483431/#post-4818559); the only way that Starmie dies turn 1 is if it is holding a Life Orb, otherwise it doesn't die to 90% Crunch + 6% Sandstorm.
+> From [BKC vs Earthworm Redux](https://www.smogon.com/forums/threads/past-gen-battle-logs.3483431); the only way that Starmie dies turn 1 is if it is holding a Life Orb, otherwise it doesn't die to 90% Crunch + 6% Sandstorm.
 
 Wish Mechanics in Gen 5
 ```
