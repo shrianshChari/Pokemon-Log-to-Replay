@@ -60,6 +60,7 @@ class SimpleTrainer():
     def __init__(self, name):
         self.name = name
         self.mons = []
+        self.currentmon = None
 
     def has_pokemon(self, species, nick=""):
         nick = species if len(nick) == 0 else nick
@@ -68,6 +69,17 @@ class SimpleTrainer():
                 return True
         return False
 
+    def get_pokemon(self, species, nick=""):
+        nick = species if len(nick) == 0 else nick
+        for mon in self.mons:
+            if mon.species == species and mon.nick == nick:
+                return mon
+        return None
+
+    def add_pokemon(self, species, nick=""):
+        nick = species if len(nick) == 0 else nick
+        if (not self.has_pokemon(species, nick)):
+            self.mons.append(SimplePokemon(species, nick))
 
 
 
