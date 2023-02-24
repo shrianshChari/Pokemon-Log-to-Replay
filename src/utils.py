@@ -52,6 +52,7 @@ class SimplePokemon():
         self.nick = species if len(nick) == 0 else nick
         self.hp = 100
         self.status = Status.NONE
+        self.toxic_turns = 0
 
 
 class SimpleTrainer():
@@ -61,6 +62,12 @@ class SimpleTrainer():
         self.name = name
         self.mons = []
         self.currentmon = None
+
+        # Only need Spikes and T-Spikes bc they are the only ones
+        # whose damage output is dependent on the number of layers,
+        # which need to be tracked. SR is a fixed percentage.
+        self.spikes = 0
+        self.toxic_spikes = 0
 
     def has_pokemon(self, species, nick=""):
         nick = species if len(nick) == 0 else nick
@@ -81,5 +88,14 @@ class SimpleTrainer():
         if (not self.has_pokemon(species, nick)):
             self.mons.append(SimplePokemon(species, nick))
 
+    def add_spikes(self):
+        if (self.spikes < 3):
+            self.spikes += 1
 
+    def add_toxic_spikes(self):
+        if (self.toxic_spikes < 2):
+            self.toxic_spikes += 1
 
+    def remove_hazards(self):
+        self.spikes = 0
+        self.toxic_spikes = 0
