@@ -193,6 +193,9 @@ for line_num, line in enumerate(log_arr):
         converted = f"|c|{full_msg[0]}|{full_msg[1]}"
         output(converted)
 
+    # elif spikes_pat.match(line) is not None:
+        
+
     elif leftovers_pat.match(line) is not None:
         pokemon_healed = line.replace(" restored a little HP using its Leftovers!", "")
         trainer = -1
@@ -213,7 +216,7 @@ for line_num, line in enumerate(log_arr):
         currentmon = players[trainer].currentmon
         currentmon.heal(6.25)
         status = currentmon.space_status()
-        output(f"|-heal|p{trainer + 1}a|{currentmon.hp}/100{status}|[from] item: Leftovers")
+        output(f"|-heal|p{trainer + 1}a: {currentmon.nick}|{currentmon.hp}/100{status}|[from] item: Leftovers")
 
     elif win_battle_pat.match(line) is not None:
         converted = f"|win|{line.replace(' won the battle!', '')}"
