@@ -42,6 +42,7 @@ class Status(Enum):
     PARALYSIS = 3
     BURN = 4
     FREEZE = 5
+    FAINT = 6
 
 
 class SimplePokemon():
@@ -53,6 +54,39 @@ class SimplePokemon():
         self.hp = 100
         self.status = Status.NONE
         self.toxic_turns = 0
+
+    def damage(self, amt):
+        self.hp -= amt
+        if self.hp <= 0:
+            self.status = Status.FAINT
+            self.hp = 0
+
+    def heal(self, amt):
+        self.hp += amt
+        if self.hp >= 100:
+            self.hp = 100
+
+    def status_string(self):
+        if self.status == Status.NONE:
+            return ""
+        elif self.status == Status.POISON:
+            return "psn"
+        elif self.status == Status.TOXIC:
+            return "tox"
+        elif self.status == Status.PARALYSIS:
+            return "par"
+        elif self.status == Status.BURN:
+            return "brn"
+        elif self.status == Status.FREEZE:
+            return "frz"
+        elif self.status == Status.FAINT:
+            return "fnt"
+
+    def space_status(self):
+        if self.status == Status.NONE:
+            return ""
+        else:
+            return " " + self.status_string()
 
 
 class SimpleTrainer():
