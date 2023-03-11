@@ -23,7 +23,14 @@ move_used_pat = re.compile(r".* used .*!")
 is_watching_pat = re.compile(r".* is watching the battle.")
 stopped_watching_pat = re.compile(r".* stopped watching the battle.")
 chat_pat = re.compile(r".*: .*")
-win_battle = re.compile(r".* won the battle!")
+win_battle_pat = re.compile(r".* won the battle!")
+
+stealth_rock_pat = re.compile(r'Pointed stones dug into .*!')
+spikes_pat = re.compile(".* was hurt by spikes!")
+burn_pat = re.compile(".* was hurt by its burn!")
+poison_pat = re.compile(".* was hurt by poison!")
+sandstorm_pat = re.compile(".* was buffeted by the sandstorm!")
+leftovers_pat = re.compile(".* restored a little HP using its Leftovers!")
 
 move_used_lines = []
 
@@ -39,8 +46,8 @@ def output(str):
     print(str)
 
 
-for line_num in range(len(log_arr)):
-    line = log_arr[line_num]
+for line_num, line in enumerate(log_arr):
+    # line = log_arr[line_num]
     if battle_started_pat.search(line) is not None:
         battle_started_log = line.replace("Battle between ", "", 1)
         battle_started_log = battle_started_log.replace(" started!", "", 1)
@@ -108,7 +115,8 @@ for line_num in range(len(log_arr)):
             player.add_pokemon(sent_out_data[1], sent_out_data[2])
         mon = player.get_pokemon(sent_out_data[1], sent_out_data[2])
         player.currentmon = mon
-        output(f'|switch|p{playernum + 1}a: {mon.nick}|{mon.species}|{mon.hp}/100')
+        status = mon.space_status()
+        output(f'|switch|p{playernum + 1}a: {mon.nick}|{mon.species}{status}|{mon.hp}/100')
 
     elif move_used_pat.match(line) is not None:
         if (re.match('The foe\'s .* used .*!', line) is not None):
@@ -185,7 +193,29 @@ for line_num in range(len(log_arr)):
         converted = f"|c|{full_msg[0]}|{full_msg[1]}"
         output(converted)
 
-    elif win_battle.match(line) is not None:
+    elif leftovers_pat.match(line) is not None:
+        pokemon_healed = line.replace(" restored a little HP using its Leftovers!", "")
+        trainer = -1
+
+        if (re.match("The foe's ", pokemon_healed)):
+            # Need to know who "the foe" is
+            trainer = other_player
+        elif (re.search("'s", pokemon_healed) is not None):
+            # It'll say who is getting healed
+            if players[current_player].name == pokemon_healed.split("'s")[0]:
+                trainer = current_player
+            else:
+                trainer = other_player
+        else:
+            # Need to know who the "current player" is
+            trainer = current_player
+
+        currentmon = players[trainer].currentmon
+        currentmon.heal(6.25)
+        status = currentmon.space_status()
+        output(f"|-heal|p{trainer + 1}a|{currentmon.hp}/100{status}|[from] item: Leftovers")
+
+    elif win_battle_pat.match(line) is not None:
         converted = f"|win|{line.replace(' won the battle!', '')}"
         output(converted)
 
