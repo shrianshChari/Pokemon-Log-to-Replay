@@ -1,5 +1,6 @@
 from enum import Enum
 import re
+from typing import Union
 
 
 def get_gen(s: str) -> int:
@@ -113,7 +114,7 @@ class SimpleTrainer():
         return False
 
     def get_pokemon(self, species: str, nick: str = "") -> \
-            SimplePokemon:
+            Union[SimplePokemon, None]:
         nick = species if len(nick) == 0 else nick
         for mon in self.mons:
             if mon.species == species and mon.nick == nick:
