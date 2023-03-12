@@ -2,7 +2,7 @@ from enum import Enum
 import re
 
 
-def get_gen(s):
+def get_gen(s: str) -> int:
     if re.search("(rby)|(gen 1)|(1st gen)",
                  s, re.IGNORECASE) is not None:
         return 1
@@ -24,7 +24,7 @@ def get_gen(s):
         # I'll assume it was gen 6
 
 
-def get_tier(s):
+def get_tier(s: str) -> str:
     if (re.search("ou", s, re.IGNORECASE) is not None):
         return "OU"
     if (re.search("uu", s, re.IGNORECASE) is not None):
@@ -48,25 +48,25 @@ class Status(Enum):
 class SimplePokemon():
     '''Basic representation of Pokemon\'s HP and status'''
 
-    def __init__(self, species, nick=""):
+    def __init__(self, species: str, nick: str = ""):
         self.species = species
         self.nick = species if len(nick) == 0 else nick
         self.hp = 100
         self.status = Status.NONE
         self.toxic_turns = 0
 
-    def damage(self, amt):
+    def damage(self, amt: float) -> None:
         self.hp -= amt
         if self.hp <= 0:
             self.status = Status.FAINT
             self.hp = 0
 
-    def heal(self, amt):
+    def heal(self, amt: float) -> None:
         self.hp += amt
         if self.hp >= 100:
             self.hp = 100
 
-    def status_string(self):
+    def status_string(self) -> str:
         if self.status == Status.NONE:
             return ""
         elif self.status == Status.POISON:
@@ -82,7 +82,7 @@ class SimplePokemon():
         elif self.status == Status.FAINT:
             return "fnt"
 
-    def space_status(self):
+    def space_status(self) -> str:
         if self.status == Status.NONE:
             return ""
         else:
@@ -92,7 +92,7 @@ class SimplePokemon():
 class SimpleTrainer():
     '''Basic representation of each trainer and their Pokemon'''
 
-    def __init__(self, name):
+    def __init__(self, name: str):
         self.name = name
         self.mons = []
         self.currentmon = None
@@ -103,33 +103,34 @@ class SimpleTrainer():
         self.spikes = 0
         self.toxic_spikes = 0
 
-    def has_pokemon(self, species, nick=""):
+    def has_pokemon(self, species: str, nick: str = ""):
         nick = species if len(nick) == 0 else nick
         for mon in self.mons:
             if mon.species == species and mon.nick == nick:
                 return True
         return False
 
-    def get_pokemon(self, species, nick=""):
+    def get_pokemon(self, species: str, nick: str = "") -> \
+            SimplePokemon | None:
         nick = species if len(nick) == 0 else nick
         for mon in self.mons:
             if mon.species == species and mon.nick == nick:
                 return mon
         return None
 
-    def add_pokemon(self, species, nick=""):
+    def add_pokemon(self, species: str, nick: str = "") -> None:
         nick = species if len(nick) == 0 else nick
         if (not self.has_pokemon(species, nick)):
             self.mons.append(SimplePokemon(species, nick))
 
-    def add_spikes(self):
+    def add_spikes(self) -> None:
         if (self.spikes < 3):
             self.spikes += 1
 
-    def add_toxic_spikes(self):
+    def add_toxic_spikes(self) -> None:
         if (self.toxic_spikes < 2):
             self.toxic_spikes += 1
 
-    def remove_hazards(self):
+    def remove_hazards(self) -> None:
         self.spikes = 0
         self.toxic_spikes = 0
