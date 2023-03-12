@@ -3,21 +3,21 @@ import re
 
 
 def get_gen(s: str) -> int:
-    if re.search("(rby)|(gen 1)|(1st gen)",
+    if re.search("(bw)|(bw2)|(b2w2)|(gen 5)|(5th gen)|(Black)|(White)",
                  s, re.IGNORECASE) is not None:
-        return 1
-    elif re.search("(gsc)|[^h](gs)|(gen 2)|(2nd gen)",
-                   s, re.IGNORECASE) is not None:
-        return 2
-    elif re.search("(adv)|(rse)|[^e](rs)|(frlg)|(gen 3)|(3rd gen)",
-                   s, re.IGNORECASE) is not None:
-        return 3
-    elif re.search("(dpp)|(dp)|(hgss)|(gen 4)|(4th gen)",
+        return 5
+    elif re.search("(dpp)|(dp)|(hgss)|(gen 4)|(4th gen)|(Diamond)|(Pearl)|(Platinum)|(Heart[ ]?Gold)|(Soul[ ]?Silver)",
                    s, re.IGNORECASE) is not None:
         return 4
-    elif re.search("(bw)|(bw2)|(b2w2)|(gen 5)|(5th gen)",
+    elif re.search("(adv)|(rse)|[^e](rs)|(frlg)|(gen 3)|(3rd gen)|(Ruby)|(Sapphire)|(Emerald)|(Fire[ ]?Red)|(Leaf[ ]?Green)",
                    s, re.IGNORECASE) is not None:
-        return 5
+        return 3
+    elif re.search("(gsc)|[^h](gs)|(gen 2)|(2nd gen)|(Gold)|(Silver)|(Crystal)",
+                   s, re.IGNORECASE) is not None:
+        return 2
+    elif re.search("(rby)|(gen 1)|(1st gen)|(Red)|(Blue)|(Yellow)",
+                   s, re.IGNORECASE) is not None:
+        return 1
     else:
         return -1
         # I don't know when Smogon fully transitioned to PS.
@@ -33,6 +33,8 @@ def get_tier(s: str) -> str:
         return "NU"
     if (re.search("uber", s, re.IGNORECASE) is not None):
         return "Ubers"
+    # Matches none
+    return "AG"
 
 
 class Status(Enum):
@@ -111,7 +113,7 @@ class SimpleTrainer():
         return False
 
     def get_pokemon(self, species: str, nick: str = "") -> \
-            SimplePokemon | None:
+            SimplePokemon:
         nick = species if len(nick) == 0 else nick
         for mon in self.mons:
             if mon.species == species and mon.nick == nick:
