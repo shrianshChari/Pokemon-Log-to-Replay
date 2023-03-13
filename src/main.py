@@ -137,7 +137,12 @@ for line_num, line in enumerate(log_arr):
                     print('Error: indistinguishable who is who from the given information.', file = sys.stderr)
                     sys.exit(1)
             other_player = int(not current_player)
-            converted = f'|move|p{other_player + 1}a: {players[other_player].currentmon.nick}|{line_components[1]}|p{current_player + 1}a: {players[current_player].currentmon.nick}'
+            converted = (
+                f'|move|p{other_player + 1}a: '
+                f'{players[other_player].currentmon.nick}|{line_components[1]}|'
+                f'p{current_player + 1}a: '
+                f'{players[current_player].currentmon.nick}'
+            )
             output(converted)
         elif (re.match(f'{players[0].name}\'s .* used .*!', line,
                        re.IGNORECASE) is not None):
@@ -146,7 +151,10 @@ for line_num, line in enumerate(log_arr):
             line_components = line.split(' used ', 1)
             output(line_components)
             line_components[1] = line_components[1].replace("!", "")
-            converted = f'|move|p1a: {players[0].currentmon.nick}|{line_components[1]}|p2a: {players[1].currentmon.nick}'
+            converted = (
+                f'|move|p1a: {players[0].currentmon.nick}|'
+                f'{line_components[1]}|p2a: {players[1].currentmon.nick}'
+            )
             output(converted)
         elif (re.match(f'{players[0].name}\'s .* used .*!', line,
                        re.IGNORECASE) is not None):
@@ -155,7 +163,10 @@ for line_num, line in enumerate(log_arr):
             line_components = line.split(' used ', 1)
             line_components[1] = line_components[1].replace("!", "")
             output(line_components)
-            converted = f'|move|p2a: {players[1].currentmon.nick}|{line_components[1]}|p1a: {players[0].currentmon.nick}'
+            converted = (
+                f'|move|p2a: {players[1].currentmon.nick}|'
+                f'{line_components[1]}|p1a: {players[0].currentmon.nick}'
+            )
             output(converted)
         else:
             # Have to figure out who "the foe" isn't
@@ -172,7 +183,12 @@ for line_num, line in enumerate(log_arr):
                     # Player 1 is the current player
                     current_player = 1
             other_player = int(not current_player)
-            converted = f'|move|p{current_player + 1}a: {players[current_player].currentmon.nick}|{line_components[1]}|p{other_player + 1}a: {players[other_player].currentmon.nick}'
+            converted = (
+                f'|move|p{current_player + 1}a: '
+                f'{players[current_player].currentmon.nick}|'
+                f'{line_components[1]}|p{other_player + 1}a: '
+                f'{players[other_player].currentmon.nick}'
+            )
             output(converted)
         
         move_used_lines.append(line)
@@ -216,7 +232,11 @@ for line_num, line in enumerate(log_arr):
         currentmon = players[trainer].currentmon
         currentmon.heal(6.25)
         status = currentmon.space_status()
-        output(f"|-heal|p{trainer + 1}a: {currentmon.nick}|{currentmon.hp}/100{status}|[from] item: Leftovers")
+        converted = (
+            f'|-heal|p{trainer + 1}a: {currentmon.nick}|'
+            f'{currentmon.hp}/100{status}|[from] item: Leftovers'
+        )
+        output(converted)
 
     elif win_battle_pat.match(line) is not None:
         converted = f"|win|{line.replace(' won the battle!', '')}"
