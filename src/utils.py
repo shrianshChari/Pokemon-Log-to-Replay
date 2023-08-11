@@ -70,9 +70,7 @@ class SimplePokemon():
             self.hp = 100
 
     def status_string(self) -> str:
-        if self.status == Status.NONE:
-            return ""
-        elif self.status == Status.POISON:
+        if self.status == Status.POISON:
             return "psn"
         elif self.status == Status.TOXIC:
             return "tox"
@@ -84,6 +82,7 @@ class SimplePokemon():
             return "frz"
         elif self.status == Status.FAINT:
             return "fnt"
+        return ""
 
     def space_status(self) -> str:
         if self.status == Status.NONE:
@@ -98,7 +97,7 @@ class SimpleTrainer():
     def __init__(self, name: str):
         self.name = name
         self.mons = []
-        self.currentmon = None
+        self.currentmon: SimplePokemon | None = None
 
         # Only need Spikes and T-Spikes bc they are the only ones
         # whose damage output is dependent on the number of layers,
