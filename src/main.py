@@ -27,7 +27,7 @@ win_battle_pat = re.compile(r"(.*) won the battle!")
 fainted_pat = re.compile(r"(.*) fainted!")
 
 stealth_rock_dmg_pat = re.compile(r'Pointed stones dug into (.*)!')
-spikes_dmg_pat = re.compile("(.*) was hurt by spikes!")
+spikes_dmg_pat = re.compile("(.*) (was|is) hurt by spikes!")
 burn_pat = re.compile("(.*) was hurt by its burn!")
 poison_pat = re.compile("(.*) was hurt by poison!")
 sandstorm_pat = re.compile("(.*) was buffeted by the sandstorm!")
@@ -268,10 +268,10 @@ for line_num, line in enumerate(log_arr):
         if match:
             player = -1
             mon = None
-            if ('the foe\'s' in match.group(1)):
+            if ('The foe\'s' in match.group(1)):
                 # the Foe
                 if (current_player == -1):
-                    find_foe(match.group(1))
+                    find_foe(match.group(1).replace('The foe\'s ', ''))
                 mon = players[other_player].currentmon
                 player = other_player
 
