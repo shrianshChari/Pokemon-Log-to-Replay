@@ -107,8 +107,8 @@ for line_num, line in enumerate(log_arr):
             # Is it "Jeff and Bob" vs "Alice and Willy"?
             # idk and idc
             converted = (
-                f"|player|p1|{players[0].name}|ethan|\n"
-                f"|player|p2|{players[1].name}|ethan|"
+                f"|player|p1|{players[0].name}|red|\n"
+                f"|player|p2|{players[1].name}|blue|"
             )
 
         # Eventually we want to be able to change these avatars,
