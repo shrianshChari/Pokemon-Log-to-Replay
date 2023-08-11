@@ -19,7 +19,7 @@ tier_pat = re.compile(r"Tier: (\w*)", re.IGNORECASE)
 turn_start_pat = re.compile(r"Start of turn (\d*)!?", re.IGNORECASE)
 clause_pat = re.compile(r"Rule: (.*)", re.IGNORECASE)
 sent_out_pat = re.compile(r"(.*) sent out (.*)!( \(.*\))?")
-move_used_pat = re.compile(r".* used .*!")
+move_used_pat = re.compile(r"(.*) used (.*)!")
 is_watching_pat = re.compile(r"(.*) is watching the battle.")
 stopped_watching_pat = re.compile(r"(.*) stopped watching the battle.")
 chat_pat = re.compile(r"(.*): (.*)")
@@ -51,35 +51,44 @@ def output(str):
 def find_current(nick):
     global current_player
     global other_player
-    if (nick.lower() == players[0].currentmon.nick.lower()
-            and nick.lower() != players[1].currentmon.nick.lower()):
-        # Player 0 is the current player
-        current_player = 0
-    elif (nick.lower() == players[1].currentmon.nick.lower()
-            and nick.lower() != players[0].currentmon.nick.lower()):
-        # Player 1 is the current player
-        current_player = 1
-    else:
-        print('Error: indistinguishable who is who from the given information.', file = sys.stderr)
-        sys.exit(1)
-    other_player = int(not current_player)
+
+    p1_mon = players[0].currentmon
+    p2_mon = players[1].currentmon
+    if (p1_mon and p2_mon):
+        if (nick.lower() == p1_mon.nick.lower()
+                and nick.lower() != p2_mon.nick.lower()):
+            # Player 0 is the current player
+            current_player = 0
+        elif (p2_mon and nick.lower() == p2_mon.nick.lower()
+                and nick.lower() != p2_mon.nick.lower()):
+            # Player 1 is the current player
+            current_player = 1
+        else:
+            print('Error: indistinguishable who is who from the given information.', file = sys.stderr)
+            sys.exit(1)
+        other_player = int(not current_player)
 
 
 def find_foe(nick):
     global current_player
     global other_player
-    if (nick.lower() == players[0].currentmon.nick.lower()
-            and nick.lower() != players[1].currentmon.nick.lower()):
-        # Player 0 is the foe
-        other_player = 0
-    elif (nick.lower() == players[1].currentmon.nick.lower()
-            and nick.lower() != players[0].currentmon.nick.lower()):
-        # Player 1 is the foe
-        other_player = 1
-    else:
-        print('Error: indistinguishable who is who from the given information.', file = sys.stderr)
-        sys.exit(1)
-    current_player = int(not other_player)
+
+    p1_mon = players[0].currentmon
+    p2_mon = players[1].currentmon
+    if (p1_mon and p2_mon):
+        if (nick.lower() == p1_mon.nick.lower()
+                and nick.lower() != p2_mon.nick.lower()):
+            # Player 0 is the foe
+            other_player = 0
+        elif (nick.lower() == p1_mon.nick.lower()
+                and nick.lower() != p2_mon.nick.lower()):
+            # Player 1 is the foe
+            other_player = 1
+        else:
+            print('Error: indistinguishable who is who from the given information.', file = sys.stderr)
+            sys.exit(1)
+        current_player = int(not other_player)
+
 
 for line_num, line in enumerate(log_arr):
     converted = '|'
@@ -101,14 +110,14 @@ for line_num, line in enumerate(log_arr):
                 f"|player|p1|{players[0].name}|ethan|\n"
                 f"|player|p2|{players[1].name}|ethan|"
             )
-            
+
         # Eventually we want to be able to change these avatars,
         # will want to figure out an interface to do so
     if mode_pat.search(line):
         match = mode_pat.search(line)
         if match:
             converted = f"|gametype|{match.group(1).lower()}"
-                
+
     elif tier_pat.match(line):
         tier_log = line
         gen = utils.get_gen(tier_log)
@@ -117,12 +126,12 @@ for line_num, line in enumerate(log_arr):
             f"|gen|{gen}\n"
             f"|tier|[Gen {gen}] {tier}"
         )
-            
+
     elif clause_pat.match(line):
         match = clause_pat.search(line)
         if match:
             converted = f"|rule|{match.group(1)}"
-                
+
     elif turn_start_pat.match(line):
         match = turn_start_pat.search(line)
         if match:
@@ -130,7 +139,7 @@ for line_num, line in enumerate(log_arr):
                 print('Error: unable to determine leads.', file=sys.stderr)
                 sys.exit(1)
             converted = f"|turn|{match.group(1)}"
-            
+
     elif sent_out_pat.match(line):
         match = sent_out_pat.search(line)
         if match:
@@ -156,58 +165,52 @@ for line_num, line in enumerate(log_arr):
             if mon:
                 player.currentmon = mon
                 status = mon.space_status()
-                output(rf'|switch|p{playernum + 1}a: {mon.nick}|{mon.species}{status}|{mon.hp}\/100')
+                converted = rf'|switch|p{playernum + 1}a: {mon.nick}|{mon.species}{status}|{mon.hp}\/100'
 
     elif move_used_pat.match(line):
-        if (re.match('The foe\'s .* used .*!', line)):
-            # Have to figure out who "the foe" is
+        use_player = -1
+        target_player = -1
+        move = ''
+        if ('The foe\'s' in line):
+            # The Foe
             match = re.search('The foe\'s (.*) used (.*)!', line)
             if match:
                 if current_player == -1:
                     find_foe(match.group(1))
-                converted = (
-                    f'|move|p{other_player + 1}a: '
-                    f'{players[other_player].currentmon.nick}|{match.group(2)}|'
-                    f'p{current_player + 1}a: '
-                    f'{players[current_player].currentmon.nick}'
-                )
-                            
-        elif (re.match(f'{players[0].name}\'s .* used .*!', line,
-                       re.IGNORECASE)):
-            # Ok, p1 did it
-            line = re.sub(f'{players[0].name}\'s ', '', line)
-            line_components = line.split(' used ', 1)
-            output(line_components)
-            line_components[1] = line_components[1].replace("!", "")
-            converted = (
-                f'|move|p1a: {players[0].currentmon.nick}|'
-                f'{line_components[1]}|p2a: {players[1].currentmon.nick}'
-            )
-        elif (re.match(f'{players[0].name}\'s .* used .*!', line,
-                       re.IGNORECASE)):
-            # Ok, p2 did it
-            line = re.sub(f'{players[0].name}\'s ', '', line)
-            line_components = line.split(' used ', 1)
-            line_components[1] = line_components[1].replace("!", "")
-            output(line_components)
-            converted = (
-                f'|move|p2a: {players[1].currentmon.nick}|'
-                f'{line_components[1]}|p1a: {players[0].currentmon.nick}'
-            )
+                use_player = other_player
+                target_player = current_player
+                move = match.group(2)
+        elif (f'{players[0].name}\'s' in line):
+            # Player 1
+            match = re.search('.* used (.*)!', line)
+            if match:
+                use_player = 0
+                target_player = 1
+                move = match.group(1)
+        elif (f'{players[1].name}\'s' in line):
+            # Player 2
+            match = re.search('.* used (.*)!', line)
+            if match:
+                use_player = 1
+                target_player = 0
+                move = match.group(1)
         else:
-            # Have to figure out who "the foe" isn't
+            # Current player
             match = re.search('(.*) used (.*)!', line)
             if match:
                 if current_player == -1:
                     find_current(match.group(1))
-                converted = (
-                    f'|move|p{current_player + 1}a: '
-                    f'{players[current_player].currentmon.nick}|'
-                    f'{match.group(2)}|p{other_player + 1}a: '
-                    f'{players[other_player].currentmon.nick}'
-                )
-                        
-        move_used_lines.append(line)
+                use_player = current_player
+                target_player = other_player
+                move = match.group(2)
+        use_mon = players[use_player].currentmon
+        target_mon = players[target_player].currentmon
+        if use_mon and target_mon:
+            converted = (
+                f'|move|p{use_player + 1}a: {use_mon.nick}|{move}|'
+                f'p{target_player + 1}a: {target_mon.nick}'
+            )
+
         # TODO: Implement damage, secondary effects, etc. of moves
 
     elif fainted_pat.match(line):
@@ -217,33 +220,41 @@ for line_num, line in enumerate(log_arr):
             if (match):
                 if (current_player == -1):
                     find_foe(match.group(1))
-                converted = f'|faint|p{other_player + 1}a: {players[other_player].currentmon.nick}'
+                currentmon = players[other_player].currentmon
+                if currentmon:
+                    converted = f'|faint|p{other_player + 1}a: {currentmon.nick}'
         elif re.match(f'{players[0].name}\'s (.*) fainted!', line,
                       re.IGNORECASE):
             # Ok, p1's mon fainted
-            converted = f'|faint|p1a: {players[0].currentmon.nick}'
+            currentmon = players[0].currentmon
+            if currentmon:
+                converted = f'|faint|p1a: {currentmon.nick}'
         elif re.match(f'{players[1].name}\'s (.*) fainted!', line,
                       re.IGNORECASE):
             # Ok, p2's mon fainted
-            converted = f'|faint|p2a: {players[2].currentmon.nick}'
+            currentmon = players[1].currentmon
+            if currentmon:
+                converted = f'|faint|p2a: {currentmon.nick}'
         else:
             # "Our" Pokemon fainted
             match = fainted_pat.search(line)
             if match:
                 if (current_player == -1):
                     find_current(match.group(1))
-                converted = f'|faint|p{current_player + 1}a: {players[current_player].currentmon.nick}'
+                currentmon = players[current_player].currentmon
+                if currentmon:
+                    converted = f'|faint|p{current_player + 1}a: {currentmon.nick}'
 
     elif is_watching_pat.match(line):
         match = is_watching_pat.search(line)
         if match:
             converted = f"|j|{match.group(1)}"
-            
+
     elif stopped_watching_pat.match(line):
         match = stopped_watching_pat.search(line)
         if match:
             converted = f"|l|{match.group(1)}"
-            
+
     elif chat_pat.match(line):
         match = chat_pat.search(line)
         if match:
@@ -251,7 +262,7 @@ for line_num, line in enumerate(log_arr):
             if (full_msg[0] == players[0].name or full_msg[0] == players[1].name):
                 full_msg[0] = '☆' + full_msg[0]
             converted = f"|c|{full_msg[0]}|{full_msg[1]}"
-            
+
     elif spikes_dmg_pat.match(line):
         match = spikes_dmg_pat.search(line)
         if match:
@@ -263,7 +274,7 @@ for line_num, line in enumerate(log_arr):
                     find_foe(match.group(1))
                 mon = players[other_player].currentmon
                 player = other_player
-                
+
             elif (f'{players[0]}\'s' in match.group(1)):
                 # Player 1
                 mon = players[0].currentmon
@@ -302,7 +313,7 @@ for line_num, line in enumerate(log_arr):
                     find_foe(match.group(1))
                 mon = players[other_player].currentmon
                 player = other_player
-                
+
             elif (f'{players[0]}\'s' in match.group(1)):
                 # Player 1
                 mon = players[0].currentmon
@@ -339,18 +350,19 @@ for line_num, line in enumerate(log_arr):
             trainer = current_player
 
         currentmon = players[trainer].currentmon
-        currentmon.heal(6.25)
-        status = currentmon.space_status()
-        converted = (
-            f'|-heal|p{trainer + 1}a: {currentmon.nick}|'
-            rf'{currentmon.hp}\/100{status}|[from] item: Leftovers'
-        )
-        
+        if currentmon:
+            currentmon.heal(6.25)
+            status = currentmon.space_status()
+            converted = (
+                f'|-heal|p{trainer + 1}a: {currentmon.nick}|'
+                rf'{currentmon.hp}\/100{status}|[from] item: Leftovers'
+            )
+
     elif win_battle_pat.match(line):
         match = win_battle_pat.search(line)
         if match:
             converted = f"|win|{match.group(1)}"
-        
+
     output(converted)
 
 
