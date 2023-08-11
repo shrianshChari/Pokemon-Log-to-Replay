@@ -11,17 +11,6 @@ Convert from logs from Pokemon Online and Shoddy to replays from Pokemon Showdow
 - [ ] Start developing (currently testing RegEx patterns)
 
 ### Patterns to be implemented:
-##### Sending out Pokemon
-Sending out without nicknames
-```
-Earthworm sent out Dragonite!
-```
-Sending out with nicknames
-```
-BKC sent out Stengah! (Gliscor)
-```
-Also entails tracking nicknames with Pokemon
-
 ##### Using moves
 ```
 Stengah used U-turn!
