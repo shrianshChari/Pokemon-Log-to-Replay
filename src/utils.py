@@ -4,19 +4,19 @@ from typing import Union
 
 
 def get_gen(s: str) -> int:
-    if re.search("(bw)|(bw2)|(b2w2)|(gen 5)|(5th gen)|(Black)|(White)",
+    if re.search("(bw)|(bw2)|(b2w2)|(gen 5)|(5th gen)|(Black)|(White)|(5G)",
                  s, re.IGNORECASE) is not None:
         return 5
-    elif re.search("(dpp)|(dp)|(hgss)|(gen 4)|(4th gen)|(Diamond)|(Pearl)|(Platinum)|(Heart[ ]?Gold)|(Soul[ ]?Silver)",
+    elif re.search("(dpp)|(dp)|(hgss)|(gen 4)|(4th gen)|(Diamond)|(Pearl)|(Platinum)|(Heart[ ]?Gold)|(Soul[ ]?Silver)|(4G)",
                    s, re.IGNORECASE) is not None:
         return 4
-    elif re.search("(adv)|(rse)|[^e](rs)|(frlg)|(gen 3)|(3rd gen)|(Ruby)|(Sapphire)|(Emerald)|(Fire[ ]?Red)|(Leaf[ ]?Green)",
+    elif re.search("(adv)|(rse)|[^e](rs)|(frlg)|(gen 3)|(3rd gen)|(Ruby)|(Sapphire)|(Emerald)|(Fire[ ]?Red)|(Leaf[ ]?Green)|(3G)",
                    s, re.IGNORECASE) is not None:
         return 3
-    elif re.search("(gsc)|[^h](gs)|(gen 2)|(2nd gen)|(Gold)|(Silver)|(Crystal)",
+    elif re.search("(gsc)|[^h](gs)|(gen 2)|(2nd gen)|(Gold)|(Silver)|(Crystal)|(2G)",
                    s, re.IGNORECASE) is not None:
         return 2
-    elif re.search("(rby)|(gen 1)|(1st gen)|(Red)|(Blue)|(Yellow)",
+    elif re.search("(rby)|(gen 1)|(1st gen)|(Red)|(Blue)|(Yellow)|(1G)",
                    s, re.IGNORECASE) is not None:
         return 1
     else:
@@ -26,11 +26,11 @@ def get_gen(s: str) -> int:
 
 
 def get_tier(s: str) -> str:
-    if (re.search("ou", s, re.IGNORECASE) is not None):
+    if re.search("ou", s, re.IGNORECASE) is not None or re.search('overused', s, re.IGNORECASE):
         return "OU"
-    if (re.search("uu", s, re.IGNORECASE) is not None):
+    if re.search("uu", s, re.IGNORECASE) is not None or re.search('underused', s, re.IGNORECASE):
         return "UU"
-    if (re.search("nu", s, re.IGNORECASE) is not None):
+    if re.search("nu", s, re.IGNORECASE) is not None or re.search('neverused', s, re.IGNORECASE):
         return "NU"
     if (re.search("uber", s, re.IGNORECASE) is not None):
         return "Ubers"
