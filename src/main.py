@@ -28,6 +28,8 @@ win_battle_pat = re.compile(r"(.*) won the battle!")
 fainted_pat = re.compile(r"(.*) fainted!")
 
 sandstream_pat = re.compile('(.*) Sand Stream whipped up a sandstorm!')
+stealth_rock_set_pat = re.compile('Pointed stones float in the air around (.*)\'s team!')
+spikes_set_pat = re.compile('Spikes were scattered all around the feet of (.*)\'s team!')
 
 stealth_rock_dmg_pat = re.compile(r'Pointed stones dug into (.*)!')
 spikes_dmg_pat = re.compile("(.*) (was|is) hurt by spikes!")
@@ -409,6 +411,27 @@ for line_num, line in enumerate(log_arr):
                 f'|-heal|p{trainer + 1}a: {currentmon.nick}|'
                 rf'{currentmon.hp}\/100{status}|[from] item: Leftovers'
             )
+    elif stealth_rock_set_pat.match(line):
+        match = stealth_rock_set_pat.search(line)
+        if match:
+            player = -1
+            if players[0].name == match.group(1):
+                player = 0
+            else:
+                player = 1
+            if player > -1:
+                converted = f'|-sidestart|p{player + 1}: {players[player].name}|move: Stealth Rock'
+
+    elif spikes_set_pat.match(line):
+        match = spikes_set_pat.search(line)
+        if match:
+            player = -1
+            if players[0].name == match.group(1):
+                player = 0
+            else:
+                player = 1
+            if player > -1:
+                converted = f'|-sidestart|p{player + 1}: {players[player].name}|move: Spikes'
 
     elif win_battle_pat.match(line):
         match = win_battle_pat.search(line)
