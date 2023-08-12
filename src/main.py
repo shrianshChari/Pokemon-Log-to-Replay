@@ -12,7 +12,8 @@ log_data = log.read()
 log_arr = log_data.split('\n')
 
 # Compiling regex patterns for efficiency
-battle_started_pat = re.compile(r"Battle between (.*) and (.*) (started)|(is underway)!",
+
+battle_started_pat = re.compile("Battle between (.*) and (.*) (started|is underway)!",
                                 re.IGNORECASE)
 mode_pat = re.compile(r"Mode: (\w*)", re.IGNORECASE)
 tier_pat = re.compile(r"Tier: (\w*)", re.IGNORECASE)
@@ -34,8 +35,6 @@ burn_dmg_pat = re.compile("(.*) was hurt by its burn!")
 poison_dmg_pat = re.compile("(.*) was hurt by poison!")
 sandstorm_dmg_pat = re.compile("(.*) (was|is) buffeted by the sandstorm!")
 leftovers_pat = re.compile("(.*) restored a little HP using its Leftovers!")
-
-move_used_lines = []
 
 current_player = -1
 other_player = -1
@@ -94,8 +93,8 @@ def find_foe(nick):
 
 for line_num, line in enumerate(log_arr):
     converted = '|'
-    if battle_started_pat.search(line):
-        match = battle_started_pat.search(line)
+    if battle_started_pat.match(line):
+        match = battle_started_pat.match(line)
         if match:
             names = [match.group(1), match.group(2)]
             players = [utils.SimpleTrainer(name) for name in names]
