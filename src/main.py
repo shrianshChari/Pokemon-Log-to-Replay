@@ -183,14 +183,14 @@ for line_num, line in enumerate(log_arr):
                 use_player = other_player
                 target_player = current_player
                 move = match.group(2)
-        elif (f'{players[0].name}\'s' in line):
+        elif (f'{players[0].name.lower()}\'s' in line.lower()):
             # Player 1
             match = re.search('.* used (.*)!', line)
             if match:
                 use_player = 0
                 target_player = 1
                 move = match.group(1)
-        elif (f'{players[1].name}\'s' in line):
+        elif (f'{players[1].name.lower()}\'s' in line.lower()):
             # Player 2
             match = re.search('.* used (.*)!', line)
             if match:
@@ -317,11 +317,11 @@ for line_num, line in enumerate(log_arr):
                 mon = players[other_player].currentmon
                 player = other_player
 
-            elif (f'{players[0]}\'s' in match.group(1)):
+            elif (f'{players[0].name.lower()}\'s' in match.group(1).lower()):
                 # Player 1
                 mon = players[0].currentmon
                 player = 0
-            elif (f'{players[1]}\'s' in match.group(1)):
+            elif (f'{players[1].name.lower()}\'s' in match.group(1).lower()):
                 # Player 2
                 mon = players[1].currentmon
                 player = 1
@@ -345,11 +345,11 @@ for line_num, line in enumerate(log_arr):
                 mon = players[other_player].currentmon
                 player = other_player
 
-            elif (f'{players[0]}\'s' in match.group(1)):
+            elif (f'{players[0].name.lower()}\'s' in match.group(1).lower()):
                 # Player 1
                 mon = players[0].currentmon
                 player = 0
-            elif (f'{players[1]}\'s' in match.group(1)):
+            elif (f'{players[1].name.lower()}\'s' in match.group(1).lower()):
                 # Player 2
                 mon = players[1].currentmon
                 player = 1
@@ -369,11 +369,11 @@ for line_num, line in enumerate(log_arr):
             if ('The foe\'s' in match.group(1)):
                 player = other_player
                 mon = players[other_player].currentmon
-            elif (f'{players[0]}\'s' in match.group(1)):
+            elif (f'{players[0].name.lower()}\'s' in match.group(1).lower()):
                 # Player 1
                 mon = players[0].currentmon
                 player = 0
-            elif (f'{players[1]}\'s' in match.group(1)):
+            elif (f'{players[1].name.lower()}\'s' in match.group(1).lower()):
                 # Player 2
                 mon = players[1].currentmon
                 player = 1
@@ -387,30 +387,32 @@ for line_num, line in enumerate(log_arr):
         converted = '|-weather|Sandstorm|[upkeep]'
 
     elif leftovers_pat.match(line):
-        pokemon_healed = line.replace(" restored a little HP using its Leftovers!", "")
-        trainer = -1
-
-        if (re.match("The foe's ", pokemon_healed)):
-            # Need to know who "the foe" is
-            trainer = other_player
-        elif (re.search("'s", pokemon_healed)):
-            # It'll say who is getting healed
-            if players[current_player].name == pokemon_healed.split("'s")[0]:
-                trainer = current_player
+        match = leftovers_pat.match(line)
+        if match:
+            player = -1
+            mon = None
+            if ('The foe\'s' in match.group(1)):
+                player = other_player
+                mon = players[other_player].currentmon
+            elif (f'{players[0].name.lower()}\'s' in match.group(1).lower()):
+                # Player 1
+                mon = players[0].currentmon
+                player = 0
+            elif (f'{players[1].name.lower()}\'s' in match.group(1).lower()):
+                # Player 2
+                mon = players[1].currentmon
+                player = 1
             else:
-                trainer = other_player
-        else:
-            # Need to know who the "current player" is
-            trainer = current_player
+                mon = players[current_player].currentmon
+                player = current_player
+            if mon:
+                mon.heal(6.25)
+                status = mon.space_status()
+                converted = (
+                    f'|-heal|p{player + 1}a: {mon.nick}|'
+                    rf'{mon.hp}\/100{status}|[from] item: Leftovers'
+                )
 
-        currentmon = players[trainer].currentmon
-        if currentmon:
-            currentmon.heal(6.25)
-            status = currentmon.space_status()
-            converted = (
-                f'|-heal|p{trainer + 1}a: {currentmon.nick}|'
-                rf'{currentmon.hp}\/100{status}|[from] item: Leftovers'
-            )
     elif stealth_rock_set_pat.match(line):
         match = stealth_rock_set_pat.search(line)
         if match:
