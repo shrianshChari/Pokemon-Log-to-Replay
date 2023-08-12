@@ -26,6 +26,8 @@ chat_pat = re.compile(r"(.*): (.*)")
 win_battle_pat = re.compile(r"(.*) won the battle!")
 fainted_pat = re.compile(r"(.*) fainted!")
 
+sandstream_pat = re.compile('(.*) Sand Stream whipped up a sandstorm!')
+
 stealth_rock_dmg_pat = re.compile(r'Pointed stones dug into (.*)!')
 spikes_dmg_pat = re.compile("(.*) (was|is) hurt by spikes!")
 burn_dmg_pat = re.compile("(.*) was hurt by its burn!")
@@ -358,6 +360,30 @@ for line_num, line in enumerate(log_arr):
                 status = mon.space_status()
                 converted = rf'|-damage|p{player + 1}a: {mon.nick}|{mon.hp}\/100|[from] Sandstorm'
 
+    elif sandstream_pat.match(line):
+        match = sandstream_pat.search(line)
+        if match:
+            player = -1
+            mon = None
+            if ('The foe\'s' in match.group(1)):
+                player = other_player
+                mon = players[other_player].currentmon
+            elif (f'{players[0]}\'s' in match.group(1)):
+                # Player 1
+                mon = players[0].currentmon
+                player = 0
+            elif (f'{players[1]}\'s' in match.group(1)):
+                # Player 2
+                mon = players[1].currentmon
+                player = 1
+            else:
+                mon = players[current_player].currentmon
+                player = current_player
+            if mon:
+                converted = rf'|-weather|Sandstorm|[from] ability: Sand Stream|[of] p{player + 1}a: {mon.nick}'
+
+    elif line == 'The sandstorm rages.':
+        converted = '|-weather|Sandstorm|[upkeep]'
 
     elif leftovers_pat.match(line):
         pokemon_healed = line.replace(" restored a little HP using its Leftovers!", "")
