@@ -55,6 +55,18 @@ class SimplePokemon():
 
     def __init__(self, species: str, nick: str = ""):
         self.species = species
+        # Handling Rotom formes
+        match self.species:
+            case 'Rotom-W':
+                self.species = 'Rotom-Wash'
+            case 'Rotom-H':
+                self.species = 'Rotom-Heat'
+            case 'Rotom-C':
+                self.species = 'Rotom-Mow'
+            case 'Rotom-F':
+                self.species = 'Rotom-Frost'
+            case 'Rotom-S':
+                self.species = 'Rotom-Fan'
         self.nick = species if len(nick) == 0 else nick
         self.hp = 100
         self.status = Status.NONE
