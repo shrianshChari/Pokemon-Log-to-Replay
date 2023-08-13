@@ -13,8 +13,8 @@ log_arr = log_data.split('\n')
 
 # Compiling regex patterns for efficiency
 
-battle_started_pat = re.compile("Battle between (.*) and (.*) (started|is underway)!",
-                                re.IGNORECASE)
+battle_started_pat = re.compile(
+    "Battle between (.*) and (.*) (started|is underway)!", re.IGNORECASE)
 mode_pat = re.compile(r"Mode: (\w*)", re.IGNORECASE)
 tier_pat = re.compile(r"Tier: (\w*)", re.IGNORECASE)
 turn_start_pat = re.compile(r"Start of turn (\d*)!?", re.IGNORECASE)
@@ -30,8 +30,10 @@ fainted_pat = re.compile(r"(.*) fainted!")
 pursuit_pat = re.compile("(.*) is being sent back!")
 
 sandstream_pat = re.compile('(.*)\'s Sand Stream whipped up a sandstorm!')
-stealth_rock_set_pat = re.compile('Pointed stones float in the air around (.*)\'s team!')
-spikes_set_pat = re.compile('Spikes were scattered all around the feet of (.*)\'s team!')
+stealth_rock_set_pat = re.compile(
+    'Pointed stones float in the air around (.*)\'s team!')
+spikes_set_pat = re.compile(
+    'Spikes were scattered all around the feet of (.*)\'s team!')
 
 stealth_rock_dmg_pat = re.compile(r'Pointed stones dug into (.*)!')
 spikes_dmg_pat = re.compile("(.*) (was|is) hurt by spikes!")
@@ -69,7 +71,9 @@ def find_current(nick):
             # Player 1 is the current player
             current_player = 1
         else:
-            print('Error: indistinguishable who is who from the given information.', file = sys.stderr)
+            print(
+                'Error: indistinguishable who is who from the given information.',
+                file=sys.stderr)
             sys.exit(1)
         other_player = int(not current_player)
 
@@ -90,7 +94,9 @@ def find_foe(nick):
             # Player 1 is the foe
             other_player = 1
         else:
-            print('Error: indistinguishable who is who from the given information.', file = sys.stderr)
+            print(
+                'Error: indistinguishable who is who from the given information.',
+                file=sys.stderr)
             sys.exit(1)
         current_player = int(not other_player)
 
@@ -140,7 +146,8 @@ for line_num, line in enumerate(log_arr):
     elif turn_start_pat.match(line):
         match = turn_start_pat.search(line)
         if match:
-            if (players[0].currentmon is None or players[1].currentmon is None):
+            if (players[0].currentmon is None or
+                    players[1].currentmon is None):
                 print('Error: unable to determine leads.', file=sys.stderr)
                 sys.exit(1)
             converted = f"|turn|{match.group(1)}"
@@ -153,7 +160,8 @@ for line_num, line in enumerate(log_arr):
             sent_out_data = []
             if (match.group(3)):
                 sent_out_data = [match.group(1),
-                                 match.group(3).replace(' (', '').replace(')', ''),
+                                 match.group(3).replace(' (', '').replace(')',
+                                                                          ''),
                                  match.group(2)]
             else:
                 sent_out_data = [match.group(1),
@@ -170,7 +178,10 @@ for line_num, line in enumerate(log_arr):
             if mon:
                 player.currentmon = mon
                 status = mon.space_status()
-                converted = rf'|switch|p{playernum + 1}a: {mon.nick}|{mon.species}{status}|{mon.hp}\/100'
+                converted = (
+                    rf'|switch|p{playernum + 1}a: {mon.nick}|'
+                    rf'{mon.species}{status}|{mon.hp}\/100'
+                )
 
     elif move_used_pat.match(line):
         use_player = -1
@@ -227,7 +238,9 @@ for line_num, line in enumerate(log_arr):
                     find_foe(match.group(1))
                 currentmon = players[other_player].currentmon
                 if currentmon:
-                    converted = f'|faint|p{other_player + 1}a: {currentmon.nick}'
+                    converted = (
+                        f'|faint|p{other_player + 1}a: {currentmon.nick}'
+                    )
         elif re.match(f'{players[0].name}\'s (.*) fainted!', line,
                       re.IGNORECASE):
             # Ok, p1's mon fainted
@@ -248,7 +261,9 @@ for line_num, line in enumerate(log_arr):
                     find_current(match.group(1))
                 currentmon = players[current_player].currentmon
                 if currentmon:
-                    converted = f'|faint|p{current_player + 1}a: {currentmon.nick}'
+                    converted = (
+                        f'|faint|p{current_player + 1}a: {currentmon.nick}'
+                    )
 
     elif is_watching_pat.match(line):
         match = is_watching_pat.search(line)
@@ -264,7 +279,8 @@ for line_num, line in enumerate(log_arr):
         match = chat_pat.search(line)
         if match:
             full_msg = [match.group(1), match.group(2)]
-            if (full_msg[0] == players[0].name or full_msg[0] == players[1].name):
+            if (full_msg[0] == players[0].name or
+                    full_msg[0] == players[1].name):
                 full_msg[0] = '☆' + full_msg[0]
             converted = f"|c|{full_msg[0]}|{full_msg[1]}"
 
@@ -305,7 +321,10 @@ for line_num, line in enumerate(log_arr):
                         damage = 25
                 mon.damage(damage)
                 status = mon.space_status()
-                converted = rf'|-damage|p{player + 1}a: {mon.nick}|{mon.hp}\/100|[from] Spikes'
+                converted = (
+                    rf'|-damage|p{player + 1}a: {mon.nick}|'
+                    rf'{mon.hp}\/100|[from] Spikes'
+                )
 
     elif stealth_rock_dmg_pat.match(line):
         match = stealth_rock_dmg_pat.search(line)
@@ -335,7 +354,10 @@ for line_num, line in enumerate(log_arr):
             if mon:
                 mon.damage(utils.stealth_rock_damage(mon, gen))
                 status = mon.space_status()
-                converted = rf'|-damage|p{player + 1}a: {mon.nick}|{mon.hp}\/100|[from] Stealth Rock'
+                converted = (
+                    rf'|-damage|p{player + 1}a: {mon.nick}|'
+                    rf'{mon.hp}\/100|[from] Stealth Rock'
+                )
 
     elif sandstorm_dmg_pat.match(line):
         match = sandstorm_dmg_pat.search(line)
@@ -345,7 +367,8 @@ for line_num, line in enumerate(log_arr):
             if ('the foe\'s' in match.group(1).lower()):
                 # the Foe
                 if current_player == -1:
-                    nick = re.sub("the foe\'s ", '', match.group(1), re.IGNORECASE)
+                    nick = re.sub("the foe\'s ", '', match.group(1),
+                                  re.IGNORECASE)
                     find_foe(nick)
                 mon = players[other_player].currentmon
                 player = other_player
@@ -364,7 +387,10 @@ for line_num, line in enumerate(log_arr):
             if mon:
                 mon.damage(6.25)
                 status = mon.space_status()
-                converted = rf'|-damage|p{player + 1}a: {mon.nick}|{mon.hp}\/100|[from] Sandstorm'
+                converted = (
+                    rf'|-damage|p{player + 1}a: {mon.nick}|'
+                    rf'{mon.hp}\/100|[from] Sandstorm'
+                )
 
     elif sandstream_pat.match(line):
         match = sandstream_pat.search(line)
@@ -373,7 +399,8 @@ for line_num, line in enumerate(log_arr):
             mon = None
             if ('the foe\'s' in match.group(1).lower()):
                 if current_player == -1:
-                    nick = re.sub("the foe\'s ", '', match.group(1), re.IGNORECASE)
+                    nick = re.sub("the foe\'s ", '', match.group(1),
+                                  re.IGNORECASE)
                     find_foe(nick)
                 player = other_player
                 mon = players[other_player].currentmon
@@ -389,7 +416,10 @@ for line_num, line in enumerate(log_arr):
                 mon = players[current_player].currentmon
                 player = current_player
             if mon:
-                converted = rf'|-weather|Sandstorm|[from] ability: Sand Stream|[of] p{player + 1}a: {mon.nick}'
+                converted = (
+                    rf'|-weather|Sandstorm|[from] ability: Sand Stream|'
+                    rf'[of] p{player + 1}a: {mon.nick}'
+                )
 
     elif line == 'The sandstorm rages.':
         converted = '|-weather|Sandstorm|[upkeep]'
@@ -401,7 +431,8 @@ for line_num, line in enumerate(log_arr):
             mon = None
             if ('the foe\'s' in match.group(1).lower()):
                 if current_player == -1:
-                    nick = re.sub("the foe\'s ", '', match.group(1), re.IGNORECASE)
+                    nick = re.sub("the foe\'s ", '', match.group(1),
+                                  re.IGNORECASE)
                     find_foe(nick)
                 player = other_player
                 mon = players[other_player].currentmon
@@ -433,7 +464,10 @@ for line_num, line in enumerate(log_arr):
             else:
                 player = 1
             if player > -1:
-                converted = f'|-sidestart|p{player + 1}: {players[player].name}|move: Stealth Rock'
+                converted = (
+                    f'|-sidestart|p{player + 1}: {players[player].name}|'
+                    'move: Stealth Rock'
+                )
 
     elif spikes_set_pat.match(line):
         match = spikes_set_pat.search(line)
@@ -444,8 +478,11 @@ for line_num, line in enumerate(log_arr):
             else:
                 player = 1
             if player > -1:
-                converted = f'|-sidestart|p{player + 1}: {players[player].name}|move: Spikes'
                 players[player].add_spikes()
+                converted = (
+                    f'|-sidestart|p{player + 1}: {players[player].name}|'
+                    'move: Spikes'
+                )
 
     elif win_battle_pat.match(line):
         match = win_battle_pat.search(line)
@@ -459,7 +496,8 @@ for line_num, line in enumerate(log_arr):
             mon = None
             if ('the foe\'s' in match.group(1).lower()):
                 if current_player == -1:
-                    nick = re.sub("the foe\'s ", '', match.group(1), re.IGNORECASE)
+                    nick = re.sub("the foe\'s ", '', match.group(1),
+                                  re.IGNORECASE)
                     find_foe(nick)
                 player = other_player
                 mon = players[other_player].currentmon
@@ -476,8 +514,8 @@ for line_num, line in enumerate(log_arr):
                 player = current_player
             if mon:
                 status = mon.space_status()
-                converted = f'|-activate|p{player + 1}a: {mon.nick}|move: Pursuit'
+                converted = (
+                    f'|-activate|p{player + 1}a: {mon.nick}|move: Pursuit'
+                )
 
     output(converted)
-
-
