@@ -27,7 +27,7 @@ chat_pat = re.compile(r"(.*): (.*)")
 win_battle_pat = re.compile(r"(.*) won the battle!")
 fainted_pat = re.compile(r"(.*) fainted!")
 
-sandstream_pat = re.compile('(.*) Sand Stream whipped up a sandstorm!')
+sandstream_pat = re.compile('(.*)\'s Sand Stream whipped up a sandstorm!')
 stealth_rock_set_pat = re.compile('Pointed stones float in the air around (.*)\'s team!')
 spikes_set_pat = re.compile('Spikes were scattered all around the feet of (.*)\'s team!')
 
@@ -340,8 +340,11 @@ for line_num, line in enumerate(log_arr):
         if match:
             player = -1
             mon = None
-            if ('The foe\'s' in match.group(1)):
+            if ('the foe\'s' in match.group(1).lower()):
                 # the Foe
+                if current_player == -1:
+                    nick = re.sub("the foe\'s ", '', match.group(1), re.IGNORECASE)
+                    find_foe(nick)
                 mon = players[other_player].currentmon
                 player = other_player
 
@@ -366,7 +369,10 @@ for line_num, line in enumerate(log_arr):
         if match:
             player = -1
             mon = None
-            if ('The foe\'s' in match.group(1)):
+            if ('the foe\'s' in match.group(1).lower()):
+                if current_player == -1:
+                    nick = re.sub("the foe\'s ", '', match.group(1), re.IGNORECASE)
+                    find_foe(nick)
                 player = other_player
                 mon = players[other_player].currentmon
             elif (f'{players[0].name.lower()}\'s' in match.group(1).lower()):
@@ -391,7 +397,10 @@ for line_num, line in enumerate(log_arr):
         if match:
             player = -1
             mon = None
-            if ('The foe\'s' in match.group(1)):
+            if ('the foe\'s' in match.group(1).lower()):
+                if current_player == -1:
+                    nick = re.sub("the foe\'s ", '', match.group(1), re.IGNORECASE)
+                    find_foe(nick)
                 player = other_player
                 mon = players[other_player].currentmon
             elif (f'{players[0].name.lower()}\'s' in match.group(1).lower()):
