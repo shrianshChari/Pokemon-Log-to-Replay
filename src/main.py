@@ -27,6 +27,8 @@ chat_pat = re.compile(r"(.*): (.*)")
 win_battle_pat = re.compile(r"(.*) won the battle!")
 fainted_pat = re.compile(r"(.*) fainted!")
 
+pursuit_pat = re.compile("(.*) is being sent back!")
+
 sandstream_pat = re.compile('(.*)\'s Sand Stream whipped up a sandstorm!')
 stealth_rock_set_pat = re.compile('Pointed stones float in the air around (.*)\'s team!')
 spikes_set_pat = re.compile('Spikes were scattered all around the feet of (.*)\'s team!')
@@ -443,11 +445,38 @@ for line_num, line in enumerate(log_arr):
                 player = 1
             if player > -1:
                 converted = f'|-sidestart|p{player + 1}: {players[player].name}|move: Spikes'
+                players[player].add_spikes()
 
     elif win_battle_pat.match(line):
         match = win_battle_pat.search(line)
         if match:
             converted = f"|win|{match.group(1)}"
+
+    elif pursuit_pat.match(line):
+        match = pursuit_pat.match(line)
+        if match:
+            player = -1
+            mon = None
+            if ('the foe\'s' in match.group(1).lower()):
+                if current_player == -1:
+                    nick = re.sub("the foe\'s ", '', match.group(1), re.IGNORECASE)
+                    find_foe(nick)
+                player = other_player
+                mon = players[other_player].currentmon
+            elif (f'{players[0].name.lower()}\'s' in match.group(1).lower()):
+                # Player 1
+                mon = players[0].currentmon
+                player = 0
+            elif (f'{players[1].name.lower()}\'s' in match.group(1).lower()):
+                # Player 2
+                mon = players[1].currentmon
+                player = 1
+            else:
+                mon = players[current_player].currentmon
+                player = current_player
+            if mon:
+                status = mon.space_status()
+                converted = f'|-activate|p{player + 1}a: {mon.nick}|move: Pursuit'
 
     output(converted)
 
