@@ -43,8 +43,6 @@ Earthworm's Swampert lost 28% of its health!
 
 ##### Passive damage
 ```
-Pointed stones dug into the foe's Garchomp!
-The foe's Metmalicious is hurt by spikes!
 The foe's Celebi was hurt by its burn!
 M Dragon's Shadow is buffeted by the sandstorm!
 The foe's Palkia was hurt by poison!
