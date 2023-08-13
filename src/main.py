@@ -331,7 +331,7 @@ for line_num, line in enumerate(log_arr):
                 mon = players[current_player].currentmon
                 player = current_player
             if mon:
-                mon.damage(12.5)
+                mon.damage(utils.stealth_rock_damage(mon, gen))
                 status = mon.space_status()
                 converted = rf'|-damage|p{player + 1}a: {mon.nick}|{mon.hp}\/100|[from] Stealth Rock'
 

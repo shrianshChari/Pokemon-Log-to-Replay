@@ -1,4 +1,5 @@
 from enum import Enum
+import pandas as pd
 import re
 from typing import Union
 
@@ -36,6 +37,7 @@ def get_tier(s: str) -> str:
         return "Ubers"
     # Matches none
     return "AG"
+
 
 
 class Status(Enum):
@@ -136,3 +138,12 @@ class SimpleTrainer():
     def remove_hazards(self) -> None:
         self.spikes = 0
         self.toxic_spikes = 0
+
+
+def stealth_rock_damage(mon: SimplePokemon, gen: int) -> float:
+    df = pd.read_csv('./pokemon.csv')
+    if (not mon or not mon.species):
+        return 0
+    col = 'sr_gen4' if gen == 4 else 'sr_gen5'
+    output = 100 * df[df['battle_name'] == mon.species.lower()][col].item()
+    return output
