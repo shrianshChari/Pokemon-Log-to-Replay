@@ -268,12 +268,14 @@ for line_num, line in enumerate(log_arr):
     elif is_watching_pat.match(line):
         match = is_watching_pat.search(line)
         if match:
-            converted = f"|j|{match.group(1)}"
+            remove_brackets = re.sub('\\[.*\\]', '', match.group(1))
+            converted = f"|j|{remove_brackets}"
 
     elif stopped_watching_pat.match(line):
         match = stopped_watching_pat.search(line)
         if match:
-            converted = f"|l|{match.group(1)}"
+            remove_brackets = re.sub('\\[.*\\]', '', match.group(1))
+            converted = f"|l|{remove_brackets}"
 
     elif chat_pat.match(line):
         match = chat_pat.search(line)
