@@ -109,7 +109,7 @@ def identify_player(line: str, pat: re.Pattern) -> int:
     player = -1
     if match:
         first_group = match.group(1)
-        if ("The foe's" in first_group):
+        if ("the foe's" in first_group.lower()):
             # Find the foe
             if current_player == -1:
                 nick = re.sub('the foe\'s ', '', first_group, re.IGNORECASE)
@@ -313,6 +313,20 @@ for line_num, line in enumerate(log_arr):
         mon = players[player].currentmon
         if mon:
             mon.status = utils.Status.TOXIC
+            converted = f'|-status|p{player + 1}a: {mon.nick}|{mon.status_string()}'
+
+    elif poison_pat.match(line):
+        player = identify_player(line, poison_pat)
+        mon = players[player].currentmon
+        if mon:
+            mon.status = utils.Status.POISON
+            converted = f'|-status|p{player + 1}a: {mon.nick}|{mon.status_string()}'
+
+    elif burn_pat.match(line):
+        player = identify_player(line, burn_pat)
+        mon = players[player].currentmon
+        if mon:
+            mon.status = utils.Status.BURN
             converted = f'|-status|p{player + 1}a: {mon.nick}|{mon.status_string()}'
 
     elif leftovers_pat.match(line):
