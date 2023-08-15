@@ -35,6 +35,8 @@ stealth_rock_set_pat = re.compile(
 spikes_set_pat = re.compile(
     'Spikes were scattered all around the feet of (.*)\'s team!')
 
+toxic_pat = re.compile("(.*) was badly poisoned!")
+
 stealth_rock_dmg_pat = re.compile(r'Pointed stones dug into (.*)!')
 spikes_dmg_pat = re.compile("(.*) (was|is) hurt by spikes!")
 burn_dmg_pat = re.compile("(.*) was hurt by its burn!")
@@ -425,6 +427,33 @@ for line_num, line in enumerate(log_arr):
 
     elif line == 'The sandstorm rages.':
         converted = '|-weather|Sandstorm|[upkeep]'
+
+    elif toxic_pat.match(line):
+        match = toxic_pat.match(line)
+        if match:
+            player = -1
+            mon = None
+            if ('the foe\'s' in match.group(1).lower()):
+                if current_player == -1:
+                    nick = re.sub("the foe\'s ", '', match.group(1),
+                                  re.IGNORECASE)
+                    find_foe(nick)
+                player = other_player
+                mon = players[other_player].currentmon
+            elif (f'{players[0].name.lower()}\'s' in match.group(1).lower()):
+                # Player 1
+                mon = players[0].currentmon
+                player = 0
+            elif (f'{players[1].name.lower()}\'s' in match.group(1).lower()):
+                # Player 2
+                mon = players[1].currentmon
+                player = 1
+            else:
+                mon = players[current_player].currentmon
+                player = current_player
+            if mon:
+                mon.status = utils.Status.TOXIC
+                converted = f'|-status|p{player + 1}a: {mon.nick}|{mon.status_string()}'
 
     elif leftovers_pat.match(line):
         match = leftovers_pat.match(line)
