@@ -1,6 +1,5 @@
 import re
 import sys
-
 import utils
 
 if (len(sys.argv) < 2):
@@ -35,7 +34,9 @@ stealth_rock_set_pat = re.compile(
 spikes_set_pat = re.compile(
     'Spikes were scattered all around the feet of (.*)\'s team!')
 
+poison_pat = re.compile("(.*) was poisoned!")
 toxic_pat = re.compile("(.*) was badly poisoned!")
+burn_pat = re.compile("(.*) was burned!")
 
 stealth_rock_dmg_pat = re.compile(r'Pointed stones dug into (.*)!')
 spikes_dmg_pat = re.compile("(.*) (was|is) hurt by spikes!")
@@ -101,6 +102,28 @@ def find_foe(nick):
                 file=sys.stderr)
             sys.exit(1)
         current_player = int(not other_player)
+
+
+def identify_player(line: str, pat: re.Pattern) -> int:
+    match = pat.match(line)
+    player = -1
+    if match:
+        first_group = match.group(1)
+        if ("The foe's" in first_group):
+            # Find the foe
+            if current_player == -1:
+                nick = re.sub('the foe\'s ', '', first_group, re.IGNORECASE)
+                find_foe(nick)
+            player = other_player
+        elif (f"{players[0]}'s".lower() in first_group.lower()):
+            player = 0
+        elif (f"{players[1]}'s".lower() in first_group.lower()):
+            player = 1
+        else:
+            if current_player == -1:
+                find_current(first_group)
+            player = current_player
+    return player
 
 
 for line_num, line in enumerate(log_arr):
@@ -186,86 +209,29 @@ for line_num, line in enumerate(log_arr):
                 )
 
     elif move_used_pat.match(line):
-        use_player = -1
-        target_player = -1
+        use_player = identify_player(line, move_used_pat)
+        target_player = int(not use_player)
+        match = move_used_pat.match(line)
         move = ''
-        if ('The foe\'s' in line):
-            # The Foe
-            match = re.search('The foe\'s (.*) used (.*)!', line)
-            if match:
-                if current_player == -1:
-                    find_foe(match.group(1))
-                use_player = other_player
-                target_player = current_player
-                move = match.group(2)
-        elif (f'{players[0].name.lower()}\'s' in line.lower()):
-            # Player 1
-            match = re.search('.* used (.*)!', line)
-            if match:
-                use_player = 0
-                target_player = 1
-                move = match.group(1)
-        elif (f'{players[1].name.lower()}\'s' in line.lower()):
-            # Player 2
-            match = re.search('.* used (.*)!', line)
-            if match:
-                use_player = 1
-                target_player = 0
-                move = match.group(1)
-        else:
-            # Current player
-            match = re.search('(.*) used (.*)!', line)
-            if match:
-                if current_player == -1:
-                    find_current(match.group(1))
-                use_player = current_player
-                target_player = other_player
-                move = match.group(2)
-        use_mon = players[use_player].currentmon
-        target_mon = players[target_player].currentmon
-        if use_mon and target_mon:
-            converted = (
-                f'|move|p{use_player + 1}a: {use_mon.nick}|{move}|'
-                f'p{target_player + 1}a: {target_mon.nick}'
-            )
+        if match:
+            move = match.group(2)
+            use_mon = players[use_player].currentmon
+            target_mon = players[target_player].currentmon
+            if use_mon and target_mon:
+                converted = (
+                    f'|move|p{use_player + 1}a: {use_mon.nick}|{move}|'
+                    f'p{target_player + 1}a: {target_mon.nick}'
+                )
 
         # TODO: Implement damage, secondary effects, etc. of moves
 
     elif fainted_pat.match(line):
-        if re.match('The foe\'s (.*) fainted!', line):
-            # Foe's Pokemon fainted
-            match = re.search('The foe\'s (.*) fainted!', line)
-            if (match):
-                if (current_player == -1):
-                    find_foe(match.group(1))
-                currentmon = players[other_player].currentmon
-                if currentmon:
-                    converted = (
-                        f'|faint|p{other_player + 1}a: {currentmon.nick}'
-                    )
-        elif re.match(f'{players[0].name}\'s (.*) fainted!', line,
-                      re.IGNORECASE):
-            # Ok, p1's mon fainted
-            currentmon = players[0].currentmon
-            if currentmon:
-                converted = f'|faint|p1a: {currentmon.nick}'
-        elif re.match(f'{players[1].name}\'s (.*) fainted!', line,
-                      re.IGNORECASE):
-            # Ok, p2's mon fainted
-            currentmon = players[1].currentmon
-            if currentmon:
-                converted = f'|faint|p2a: {currentmon.nick}'
-        else:
-            # "Our" Pokemon fainted
-            match = fainted_pat.search(line)
-            if match:
-                if (current_player == -1):
-                    find_current(match.group(1))
-                currentmon = players[current_player].currentmon
-                if currentmon:
-                    converted = (
-                        f'|faint|p{current_player + 1}a: {currentmon.nick}'
-                    )
+        player = identify_player(line, fainted_pat)
+        currentmon = players[player].currentmon
+        if currentmon:
+            converted = (
+                f'|faint|p{current_player + 1}a: {currentmon.nick}'
+            )
 
     elif is_watching_pat.match(line):
         match = is_watching_pat.search(line)
@@ -289,264 +255,106 @@ for line_num, line in enumerate(log_arr):
             converted = f"|c|{full_msg[0]}|{full_msg[1]}"
 
     elif spikes_dmg_pat.match(line):
-        match = spikes_dmg_pat.search(line)
-        if match:
-            player = -1
-            mon = None
-            if ('The foe\'s' in match.group(1)):
-                # the Foe
-                if (current_player == -1):
-                    find_foe(match.group(1).replace('The foe\'s ', ''))
-                mon = players[other_player].currentmon
-                player = other_player
-
-            elif (f'{players[0]}\'s' in match.group(1)):
-                # Player 1
-                mon = players[0].currentmon
-                player = 0
-            elif (f'{players[1]}\'s' in match.group(1)):
-                # Player 2
-                mon = players[1].currentmon
-                player = 1
-            else:
-                if (current_player == -1):
-                    find_current(match.group(1))
-                mon = players[current_player].currentmon
-                player = current_player
-            if mon:
-                spikes = players[player].spikes
-                damage = 0
-                match spikes:
-                    case 1:
-                        damage = 12.5
-                    case 2:
-                        damage = 16.6
-                    case 3:
-                        damage = 25
-                mon.damage(damage)
-                status = mon.space_status()
-                converted = (
-                    rf'|-damage|p{player + 1}a: {mon.nick}|'
-                    rf'{mon.hp}\/100|[from] Spikes'
-                )
+        player = identify_player(line, spikes_dmg_pat)
+        mon = players[player].currentmon
+        if mon:
+            spikes = players[player].spikes
+            damage = 0
+            match spikes:
+                case 1:
+                    damage = 12.5
+                case 2:
+                    damage = 16.6
+                case 3:
+                    damage = 25
+            mon.damage(damage)
+            status = mon.space_status()
+            converted = (
+                rf'|-damage|p{player + 1}a: {mon.nick}|'
+                rf'{mon.hp}\/100|[from] Spikes'
+            )
 
     elif stealth_rock_dmg_pat.match(line):
-        match = stealth_rock_dmg_pat.search(line)
-        if match:
-            player = -1
-            mon = None
-            if ('the foe\'s' in match.group(1)):
-                # the Foe
-                if (current_player == -1):
-                    find_foe(match.group(1))
-                mon = players[other_player].currentmon
-                player = other_player
-
-            elif (f'{players[0].name.lower()}\'s' in match.group(1).lower()):
-                # Player 1
-                mon = players[0].currentmon
-                player = 0
-            elif (f'{players[1].name.lower()}\'s' in match.group(1).lower()):
-                # Player 2
-                mon = players[1].currentmon
-                player = 1
-            else:
-                if (current_player == -1):
-                    find_current(match.group(1))
-                mon = players[current_player].currentmon
-                player = current_player
-            if mon:
-                mon.damage(utils.stealth_rock_damage(mon, gen))
-                status = mon.space_status()
-                converted = (
-                    rf'|-damage|p{player + 1}a: {mon.nick}|'
-                    rf'{mon.hp}\/100|[from] Stealth Rock'
-                )
-
+        player = identify_player(line, stealth_rock_dmg_pat)
+        mon = players[player].currentmon
+        if mon:
+            mon.damage(utils.stealth_rock_damage(mon, gen))
+            status = mon.space_status()
+            converted = (
+                rf'|-damage|p{player + 1}a: {mon.nick}|'
+                rf'{mon.hp}\/100|[from] Stealth Rock'
+            )
+        
     elif sandstorm_dmg_pat.match(line):
-        match = sandstorm_dmg_pat.search(line)
-        if match:
-            player = -1
-            mon = None
-            if ('the foe\'s' in match.group(1).lower()):
-                # the Foe
-                if current_player == -1:
-                    nick = re.sub("the foe\'s ", '', match.group(1),
-                                  re.IGNORECASE)
-                    find_foe(nick)
-                mon = players[other_player].currentmon
-                player = other_player
-
-            elif (f'{players[0].name.lower()}\'s' in match.group(1).lower()):
-                # Player 1
-                mon = players[0].currentmon
-                player = 0
-            elif (f'{players[1].name.lower()}\'s' in match.group(1).lower()):
-                # Player 2
-                mon = players[1].currentmon
-                player = 1
-            else:
-                mon = players[current_player].currentmon
-                player = current_player
-            if mon:
-                mon.damage(6.25)
-                status = mon.space_status()
-                converted = (
-                    rf'|-damage|p{player + 1}a: {mon.nick}|'
-                    rf'{mon.hp}\/100|[from] Sandstorm'
-                )
-
+        player = identify_player(line, sandstorm_dmg_pat)
+        mon = players[player].currentmon
+        if mon:
+            mon.damage(6.25)
+            status = mon.space_status()
+            converted = (
+                rf'|-damage|p{player + 1}a: {mon.nick}|'
+                rf'{mon.hp}\/100|[from] Sandstorm'
+            )
+        
     elif sandstream_pat.match(line):
-        match = sandstream_pat.search(line)
-        if match:
-            player = -1
-            mon = None
-            if ('the foe\'s' in match.group(1).lower()):
-                if current_player == -1:
-                    nick = re.sub("the foe\'s ", '', match.group(1),
-                                  re.IGNORECASE)
-                    find_foe(nick)
-                player = other_player
-                mon = players[other_player].currentmon
-            elif (f'{players[0].name.lower()}\'s' in match.group(1).lower()):
-                # Player 1
-                mon = players[0].currentmon
-                player = 0
-            elif (f'{players[1].name.lower()}\'s' in match.group(1).lower()):
-                # Player 2
-                mon = players[1].currentmon
-                player = 1
-            else:
-                mon = players[current_player].currentmon
-                player = current_player
-            if mon:
-                converted = (
-                    rf'|-weather|Sandstorm|[from] ability: Sand Stream|'
-                    rf'[of] p{player + 1}a: {mon.nick}'
-                )
-
+        player = identify_player(line, sandstream_pat)
+        mon = players[player].currentmon
+        if mon:
+            converted = (
+                rf'|-weather|Sandstorm|[from] ability: Sand Stream|'
+                rf'[of] p{player + 1}a: {mon.nick}'
+            )
+        
     elif line == 'The sandstorm rages.':
         converted = '|-weather|Sandstorm|[upkeep]'
 
     elif toxic_pat.match(line):
-        match = toxic_pat.match(line)
-        if match:
-            player = -1
-            mon = None
-            if ('the foe\'s' in match.group(1).lower()):
-                if current_player == -1:
-                    nick = re.sub("the foe\'s ", '', match.group(1),
-                                  re.IGNORECASE)
-                    find_foe(nick)
-                player = other_player
-                mon = players[other_player].currentmon
-            elif (f'{players[0].name.lower()}\'s' in match.group(1).lower()):
-                # Player 1
-                mon = players[0].currentmon
-                player = 0
-            elif (f'{players[1].name.lower()}\'s' in match.group(1).lower()):
-                # Player 2
-                mon = players[1].currentmon
-                player = 1
-            else:
-                mon = players[current_player].currentmon
-                player = current_player
-            if mon:
-                mon.status = utils.Status.TOXIC
-                converted = f'|-status|p{player + 1}a: {mon.nick}|{mon.status_string()}'
+        player = identify_player(line, toxic_pat)
+        mon = players[player].currentmon
+        if mon:
+            mon.status = utils.Status.TOXIC
+            converted = f'|-status|p{player + 1}a: {mon.nick}|{mon.status_string()}'
 
     elif leftovers_pat.match(line):
-        match = leftovers_pat.match(line)
-        if match:
-            player = -1
-            mon = None
-            if ('the foe\'s' in match.group(1).lower()):
-                if current_player == -1:
-                    nick = re.sub("the foe\'s ", '', match.group(1),
-                                  re.IGNORECASE)
-                    find_foe(nick)
-                player = other_player
-                mon = players[other_player].currentmon
-            elif (f'{players[0].name.lower()}\'s' in match.group(1).lower()):
-                # Player 1
-                mon = players[0].currentmon
-                player = 0
-            elif (f'{players[1].name.lower()}\'s' in match.group(1).lower()):
-                # Player 2
-                mon = players[1].currentmon
-                player = 1
-            else:
-                mon = players[current_player].currentmon
-                player = current_player
-            if mon:
-                mon.heal(6.25)
-                status = mon.space_status()
-                converted = (
-                    f'|-heal|p{player + 1}a: {mon.nick}|'
-                    rf'{mon.hp}\/100{status}|[from] item: Leftovers'
-                )
-
+        player = identify_player(line, leftovers_pat)
+        mon = players[player].currentmon
+        if mon:
+            mon.heal(6.25)
+            status = mon.space_status()
+            converted = (
+                f'|-heal|p{player + 1}a: {mon.nick}|'
+                rf'{mon.hp}\/100{status}|[from] item: Leftovers'
+            )
+        
     elif stealth_rock_set_pat.match(line):
-        match = stealth_rock_set_pat.search(line)
-        if match:
-            player = -1
-            if players[0].name == match.group(1):
-                player = 0
-            else:
-                player = 1
-            if player > -1:
-                converted = (
-                    f'|-sidestart|p{player + 1}: {players[player].name}|'
-                    'move: Stealth Rock'
-                )
-
+        player = identify_player(line, stealth_rock_set_pat)
+        if player > -1:
+            converted = (
+                f'|-sidestart|p{player + 1}: {players[player].name}|'
+                'move: Stealth Rock'
+            )
+        
     elif spikes_set_pat.match(line):
-        match = spikes_set_pat.search(line)
-        if match:
-            player = -1
-            if players[0].name == match.group(1):
-                player = 0
-            else:
-                player = 1
-            if player > -1:
-                players[player].add_spikes()
-                converted = (
-                    f'|-sidestart|p{player + 1}: {players[player].name}|'
-                    'move: Spikes'
-                )
-
+        player = identify_player(line, spikes_set_pat)
+        if player > -1:
+            players[player].add_spikes()
+            converted = (
+                f'|-sidestart|p{player + 1}: {players[player].name}|'
+                'move: Spikes'
+            )
+        
     elif win_battle_pat.match(line):
         match = win_battle_pat.search(line)
         if match:
             converted = f"|win|{match.group(1)}"
 
     elif pursuit_pat.match(line):
-        match = pursuit_pat.match(line)
-        if match:
-            player = -1
-            mon = None
-            if ('the foe\'s' in match.group(1).lower()):
-                if current_player == -1:
-                    nick = re.sub("the foe\'s ", '', match.group(1),
-                                  re.IGNORECASE)
-                    find_foe(nick)
-                player = other_player
-                mon = players[other_player].currentmon
-            elif (f'{players[0].name.lower()}\'s' in match.group(1).lower()):
-                # Player 1
-                mon = players[0].currentmon
-                player = 0
-            elif (f'{players[1].name.lower()}\'s' in match.group(1).lower()):
-                # Player 2
-                mon = players[1].currentmon
-                player = 1
-            else:
-                mon = players[current_player].currentmon
-                player = current_player
-            if mon:
-                status = mon.space_status()
-                converted = (
-                    f'|-activate|p{player + 1}a: {mon.nick}|move: Pursuit'
-                )
+        player = identify_player(line, pursuit_pat)
+        mon = players[player].currentmon
+        if mon:
+            status = mon.space_status()
+            converted = (
+                f'|-activate|p{player + 1}a: {mon.nick}|move: Pursuit'
+            )
 
     output(converted)
