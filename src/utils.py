@@ -39,7 +39,6 @@ def get_tier(s: str) -> str:
     return "AG"
 
 
-
 class Status(Enum):
     NONE = 0
     POISON = 1
@@ -84,18 +83,19 @@ class SimplePokemon():
             self.hp = 100
 
     def status_string(self) -> str:
-        if self.status == Status.POISON:
-            return "psn"
-        elif self.status == Status.TOXIC:
-            return "tox"
-        elif self.status == Status.PARALYSIS:
-            return "par"
-        elif self.status == Status.BURN:
-            return "brn"
-        elif self.status == Status.FREEZE:
-            return "frz"
-        elif self.status == Status.FAINT:
-            return "fnt"
+        match self.status:
+            case Status.POISON:
+                return "psn"
+            case Status.TOXIC:
+                return "tox"
+            case Status.PARALYSIS:
+                return "par"
+            case Status.BURN:
+                return "brn"
+            case Status.FREEZE:
+                return "frz"
+            case Status.FAINT:
+                return "fnt"
         return ""
 
     def space_status(self) -> str:
