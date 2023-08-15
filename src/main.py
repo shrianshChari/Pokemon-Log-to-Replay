@@ -69,8 +69,8 @@ def find_current(nick):
                 and nick.lower() != p2_mon.nick.lower()):
             # Player 0 is the current player
             current_player = 0
-        elif (p2_mon and nick.lower() == p2_mon.nick.lower()
-                and nick.lower() != p2_mon.nick.lower()):
+        elif (nick.lower() != p1_mon.nick.lower()
+                and nick.lower() == p2_mon.nick.lower()):
             # Player 1 is the current player
             current_player = 1
         else:
@@ -92,8 +92,8 @@ def find_foe(nick):
                 and nick.lower() != p2_mon.nick.lower()):
             # Player 0 is the foe
             other_player = 0
-        elif (nick.lower() == p1_mon.nick.lower()
-                and nick.lower() != p2_mon.nick.lower()):
+        elif (nick.lower() != p1_mon.nick.lower()
+                and nick.lower() == p2_mon.nick.lower()):
             # Player 1 is the foe
             other_player = 1
         else:
