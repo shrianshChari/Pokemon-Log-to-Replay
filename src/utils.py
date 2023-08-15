@@ -66,6 +66,14 @@ class SimplePokemon():
                 self.species = 'Rotom-Frost'
             case 'Rotom-S':
                 self.species = 'Rotom-Fan'
+            case 'Deoxys-A':
+                self.species = 'Deoxys-Attack'
+            case 'Deoxys-D':
+                self.species = 'Deoxys-Defense'
+            case 'Deoxys-S':
+                self.species = 'Deoxys-Speed'
+            case 'Giratina-O':
+                self.species = 'Giratina-Origin'
         self.nick = species if len(nick) == 0 else nick
         self.hp = 100
         self.status = Status.NONE
