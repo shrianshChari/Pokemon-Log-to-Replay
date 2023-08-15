@@ -30,9 +30,9 @@ pursuit_pat = re.compile("(.*) is being sent back!")
 
 sandstream_pat = re.compile('(.*)\'s Sand Stream whipped up a sandstorm!')
 stealth_rock_set_pat = re.compile(
-    'Pointed stones float in the air around (.*)\'s team!')
+    'Pointed stones float in the air around (.*) team!')
 spikes_set_pat = re.compile(
-    'Spikes were scattered all around the feet of (.*)\'s team!')
+    'Spikes were scattered all around the feet of (.*) team!')
 
 poison_pat = re.compile("(.*) was poisoned!")
 toxic_pat = re.compile("(.*) was badly poisoned!")
@@ -115,9 +115,9 @@ def identify_player(line: str, pat: re.Pattern) -> int:
                 nick = re.sub('the foe\'s ', '', first_group, re.IGNORECASE)
                 find_foe(nick)
             player = other_player
-        elif (f"{players[0]}'s".lower() in first_group.lower()):
+        elif (f"{players[0].name}'s".lower() in first_group.lower()):
             player = 0
-        elif (f"{players[1]}'s".lower() in first_group.lower()):
+        elif (f"{players[1].name}'s".lower() in first_group.lower()):
             player = 1
         else:
             if current_player == -1:
@@ -230,7 +230,7 @@ for line_num, line in enumerate(log_arr):
         currentmon = players[player].currentmon
         if currentmon:
             converted = (
-                f'|faint|p{current_player + 1}a: {currentmon.nick}'
+                f'|faint|p{player + 1}a: {currentmon.nick}'
             )
 
     elif is_watching_pat.match(line):
@@ -284,7 +284,7 @@ for line_num, line in enumerate(log_arr):
                 rf'|-damage|p{player + 1}a: {mon.nick}|'
                 rf'{mon.hp}\/100|[from] Stealth Rock'
             )
-        
+
     elif sandstorm_dmg_pat.match(line):
         player = identify_player(line, sandstorm_dmg_pat)
         mon = players[player].currentmon
@@ -295,7 +295,7 @@ for line_num, line in enumerate(log_arr):
                 rf'|-damage|p{player + 1}a: {mon.nick}|'
                 rf'{mon.hp}\/100|[from] Sandstorm'
             )
-        
+
     elif sandstream_pat.match(line):
         player = identify_player(line, sandstream_pat)
         mon = players[player].currentmon
@@ -304,7 +304,7 @@ for line_num, line in enumerate(log_arr):
                 rf'|-weather|Sandstorm|[from] ability: Sand Stream|'
                 rf'[of] p{player + 1}a: {mon.nick}'
             )
-        
+
     elif line == 'The sandstorm rages.':
         converted = '|-weather|Sandstorm|[upkeep]'
 
@@ -339,7 +339,7 @@ for line_num, line in enumerate(log_arr):
                 f'|-heal|p{player + 1}a: {mon.nick}|'
                 rf'{mon.hp}\/100{status}|[from] item: Leftovers'
             )
-        
+
     elif stealth_rock_set_pat.match(line):
         player = identify_player(line, stealth_rock_set_pat)
         if player > -1:
@@ -347,7 +347,7 @@ for line_num, line in enumerate(log_arr):
                 f'|-sidestart|p{player + 1}: {players[player].name}|'
                 'move: Stealth Rock'
             )
-        
+
     elif spikes_set_pat.match(line):
         player = identify_player(line, spikes_set_pat)
         if player > -1:
@@ -356,7 +356,7 @@ for line_num, line in enumerate(log_arr):
                 f'|-sidestart|p{player + 1}: {players[player].name}|'
                 'move: Spikes'
             )
-        
+
     elif win_battle_pat.match(line):
         match = win_battle_pat.search(line)
         if match:
