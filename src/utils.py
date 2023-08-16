@@ -53,27 +53,7 @@ class SimplePokemon():
     '''Basic representation of Pokemon\'s HP and status'''
 
     def __init__(self, species: str, nick: str = ""):
-        self.species = species
-        # Handling Rotom formes
-        match self.species:
-            case 'Rotom-W':
-                self.species = 'Rotom-Wash'
-            case 'Rotom-H':
-                self.species = 'Rotom-Heat'
-            case 'Rotom-C':
-                self.species = 'Rotom-Mow'
-            case 'Rotom-F':
-                self.species = 'Rotom-Frost'
-            case 'Rotom-S':
-                self.species = 'Rotom-Fan'
-            case 'Deoxys-A':
-                self.species = 'Deoxys-Attack'
-            case 'Deoxys-D':
-                self.species = 'Deoxys-Defense'
-            case 'Deoxys-S':
-                self.species = 'Deoxys-Speed'
-            case 'Giratina-O':
-                self.species = 'Giratina-Origin'
+        self.species = self.parse_species(species)
         self.nick = species if len(nick) == 0 else nick
         self.hp = 100
         self.status = Status.NONE
@@ -112,6 +92,29 @@ class SimplePokemon():
         else:
             return " " + self.status_string()
 
+    def parse_species(self, species: str) -> str:
+        # Handling Rotom formes
+        match species:
+            case 'Rotom-W':
+                species = 'Rotom-Wash'
+            case 'Rotom-H':
+                species = 'Rotom-Heat'
+            case 'Rotom-C':
+                species = 'Rotom-Mow'
+            case 'Rotom-F':
+                species = 'Rotom-Frost'
+            case 'Rotom-S':
+                species = 'Rotom-Fan'
+            case 'Deoxys-A':
+                species = 'Deoxys-Attack'
+            case 'Deoxys-D':
+                species = 'Deoxys-Defense'
+            case 'Deoxys-S':
+                species = 'Deoxys-Speed'
+            case 'Giratina-O':
+                species = 'Giratina-Origin'
+        return species
+
 
 class SimpleTrainer():
     '''Basic representation of each trainer and their Pokemon'''
@@ -130,7 +133,7 @@ class SimpleTrainer():
     def has_pokemon(self, species: str, nick: str = ""):
         nick = species if len(nick) == 0 else nick
         for mon in self.mons:
-            if mon.species == species and mon.nick == nick:
+            if mon.species == mon.parse_species(species) and mon.nick == nick:
                 return True
         return False
 
@@ -138,7 +141,7 @@ class SimpleTrainer():
             Union[SimplePokemon, None]:
         nick = species if len(nick) == 0 else nick
         for mon in self.mons:
-            if mon.species == species and mon.nick == nick:
+            if mon.species == mon.parse_species(species) and mon.nick == nick:
                 return mon
         return None
 
