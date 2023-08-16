@@ -10,45 +10,13 @@ log = open(sys.argv[1])
 log_data = log.read()
 log_arr = log_data.split('\n')
 
-# Compiling regex patterns for efficiency
-
-battle_started_pat = re.compile(
-    "Battle between (.*) and (.*) (started|is underway)!", re.IGNORECASE)
-mode_pat = re.compile(r"Mode: (\w*)", re.IGNORECASE)
-tier_pat = re.compile(r"Tier: (\w*)", re.IGNORECASE)
-turn_start_pat = re.compile(r"Start of turn (\d*)!?", re.IGNORECASE)
-clause_pat = re.compile(r"Rule: (.*)", re.IGNORECASE)
-sent_out_pat = re.compile(r"(.*) sent out (.*)!( \(.*\))?")
-move_used_pat = re.compile(r"(.*) used (.*)!")
-is_watching_pat = re.compile(r"(.*) is watching the battle.")
-stopped_watching_pat = re.compile(r"(.*) stopped watching the battle.")
-chat_pat = re.compile(r"(.*): (.*)")
-win_battle_pat = re.compile(r"(.*) won the battle!")
-fainted_pat = re.compile(r"(.*) fainted!")
-
-pursuit_pat = re.compile("(.*) is being sent back!")
-
-sandstream_pat = re.compile('(.*)\'s Sand Stream whipped up a sandstorm!')
-stealth_rock_set_pat = re.compile(
-    'Pointed stones float in the air around (.*) team!')
-spikes_set_pat = re.compile(
-    'Spikes were scattered all around the feet of (.*) team!')
-
-poison_pat = re.compile("(.*) was poisoned!")
-toxic_pat = re.compile("(.*) was badly poisoned!")
-burn_pat = re.compile("(.*) was burned!")
-
-stealth_rock_dmg_pat = re.compile(r'Pointed stones dug into (.*)!')
-spikes_dmg_pat = re.compile("(.*) (was|is) hurt by spikes!")
-burn_dmg_pat = re.compile("(.*) was hurt by its burn!")
-poison_dmg_pat = re.compile("(.*) was hurt by poison!")
-sandstorm_dmg_pat = re.compile("(.*) (was|is) buffeted by the sandstorm!")
-leftovers_pat = re.compile("(.*) restored a little HP using its Leftovers!")
-
 current_player = -1
 other_player = -1
 gen = 0
 players = []
+
+is_phased = False
+phase_hazard_list = []
 
 
 # Function that defines how I output each line
@@ -126,7 +94,49 @@ def identify_player(line: str, pat: re.Pattern) -> int:
     return player
 
 
-for line_num, line in enumerate(log_arr):
+def analyze_line(line: str) -> str:
+    global players
+    global gen
+    global is_phased
+    global phase_hazard_list
+
+    # Compiling regex patterns for efficiency
+
+    battle_started_pat = re.compile(
+        "Battle between (.*) and (.*) (started|is underway)!", re.IGNORECASE)
+    mode_pat = re.compile(r"Mode: (\w*)", re.IGNORECASE)
+    tier_pat = re.compile(r"Tier: (\w*)", re.IGNORECASE)
+    turn_start_pat = re.compile(r"Start of turn (\d*)!?", re.IGNORECASE)
+    clause_pat = re.compile(r"Rule: (.*)", re.IGNORECASE)
+    sent_out_pat = re.compile(r"(.*) sent out (.*)!( \(.*\))?")
+    extract_species_pat = re.compile(r" \((.*)\)")
+    dragged_out_pat = re.compile(r"(.*) was dragged out!")
+    move_used_pat = re.compile(r"(.*) used (.*)!")
+    is_watching_pat = re.compile(r"(.*) is watching the battle.")
+    stopped_watching_pat = re.compile(r"(.*) stopped watching the battle.")
+    chat_pat = re.compile(r"(.*): (.*)")
+    win_battle_pat = re.compile(r"(.*) won the battle!")
+    fainted_pat = re.compile(r"(.*) fainted!")
+
+    pursuit_pat = re.compile("(.*) is being sent back!")
+
+    sandstream_pat = re.compile('(.*)\'s Sand Stream whipped up a sandstorm!')
+    stealth_rock_set_pat = re.compile(
+        'Pointed stones float in the air around (.*) team!')
+    spikes_set_pat = re.compile(
+        'Spikes were scattered all around the feet of (.*) team!')
+
+    poison_pat = re.compile("(.*) was poisoned!")
+    toxic_pat = re.compile("(.*) was badly poisoned!")
+    burn_pat = re.compile("(.*) was burned!")
+
+    stealth_rock_dmg_pat = re.compile(r'Pointed stones dug into (.*)!')
+    spikes_dmg_pat = re.compile("(.*) (was|is) hurt by spikes!")
+    burn_dmg_pat = re.compile("(.*) was hurt by its burn!")
+    poison_dmg_pat = re.compile("(.*) was hurt by poison!")
+    sandstorm_dmg_pat = re.compile("(.*) (was|is) buffeted by the sandstorm!")
+    leftovers_pat = re.compile("(.*) restored a little HP using its Leftovers!")
+
     converted = '|'
     if battle_started_pat.match(line):
         match = battle_started_pat.match(line)
@@ -146,6 +156,28 @@ for line_num, line in enumerate(log_arr):
                 f"|player|p1|{players[0].name}|red|\n"
                 f"|player|p2|{players[1].name}|blue|"
             )
+            sent_outs = set(filter(lambda x: sent_out_pat.match(x), log_arr))
+            for sent_out in sent_outs:
+                match = sent_out_pat.match(sent_out)
+                if match:
+                    if match.group(1) == players[0].name:
+                        # Player 1
+                        if match.group(3):
+                            species = extract_species_pat.match(match.group(3))
+                            if (species):
+                                players[0].add_pokemon(species.group(1),
+                                                       match.group(2))
+                        else:
+                            players[0].add_pokemon(match.group(2))
+                    else:
+                        # Player 2
+                        if match.group(3):
+                            species = extract_species_pat.match(match.group(3))
+                            if (species):
+                                players[1].add_pokemon(species.group(1),
+                                                       match.group(2))
+                        else:
+                            players[1].add_pokemon(match.group(2))
 
         # Eventually we want to be able to change these avatars,
         # will want to figure out an interface to do so
@@ -203,18 +235,68 @@ for line_num, line in enumerate(log_arr):
             if mon:
                 player.currentmon = mon
                 status = mon.space_status()
+                mon.toxic_turns = 0
                 converted = (
                     rf'|switch|p{playernum + 1}a: {mon.nick}|'
-                    rf'{mon.species}{status}|{mon.hp}\/100'
+                    rf'{mon.species}|{mon.hp}\/100{status}'
                 )
+
+    elif dragged_out_pat.match(line):
+        player = identify_player(line, dragged_out_pat)
+        match = dragged_out_pat.match(line)
+        if match:
+            nick = re.sub(".*'s ", "", match.group(1))
+            mon = players[player].get_pokemon_by_nick(nick)
+            if mon:
+                players[player].currentmon = mon
+                status = mon.space_status()
+                mon.toxic_turns = 0
+                converted = (
+                    rf'|drag|p{player + 1}a: {mon.nick}|'
+                    rf'{mon.species}|{mon.hp}\/100{status}'
+                )
+            else:
+                print('Cannot tell who the mon is.', file=sys.stderr)
+                sys.exit(1)
+            is_phased = False
+            for line in phase_hazard_list:
+                converted = converted + '\n' + analyze_line(line)
+            phase_hazard_list = []
 
     elif move_used_pat.match(line):
         use_player = identify_player(line, move_used_pat)
-        target_player = int(not use_player)
         match = move_used_pat.match(line)
         move = ''
         if match:
+            target_player = -1
             move = match.group(2)
+            # Deals with moves that target the user
+            self_target = {
+                # Setup moves
+                'Acid Armor', 'Agility', 'Amnesia', 'Autotomize', 'Barrier',
+                'Belly Drum', 'Bulk Up', 'Calm Mind', 'Coil', 'Cosmic Power',
+                'Cotton Guard', 'Curse', 'Defend Order', 'Defense Curl',
+                'Double Team', 'Dragon Dance', 'Focus Energy', 'Growth',
+                'Harden', 'Hone Claws', 'Howl', 'Iron Defense', 'Light Screen',
+                'Meditate', 'Minimize', 'Nasty Plot', 'Quiver Dance',
+                'Reflect', 'Rock Polish', 'Sharpen', 'Shell Smash',
+                'Shift Gear', 'Stockpile', 'Swords Dance', 'Tail Glow',
+                'Withdraw', 'Work Up',
+                # Healing moves
+                'Heal Order', 'Milk Drink', 'Moonlight', 'Morning Sun', 'Rest',
+                'Recover', 'Roost', 'Slack Off', 'Soft-Boiled', 'Synthesis',
+                'Wish',
+                # Miscellaneous
+                'Assist', 'Baton Pass', 'Camouflage', 'Copycat',
+                'Destiny Bond', 'Detect', 'Endure', 'Healing Wish', 'Imprison',
+                'Lunar Dance', 'Magic Coat', 'Magnet Rise', 'Metronome',
+                'Power Trick', 'Protect', 'Recycle', 'Refresh', 'Sleep Talk',
+                'Snatch', 'Substitute',
+            }
+            if (move in self_target):
+                target_player = use_player
+            else:
+                target_player = int(not use_player)
             use_mon = players[use_player].currentmon
             target_mon = players[target_player].currentmon
             if use_mon and target_mon:
@@ -222,6 +304,9 @@ for line_num, line in enumerate(log_arr):
                     f'|move|p{use_player + 1}a: {use_mon.nick}|{move}|'
                     f'p{target_player + 1}a: {target_mon.nick}'
                 )
+
+            if move in {'Whirlwind', 'Roar', 'Dragon Tail', 'Circle Throw'}:
+                is_phased = True
 
         # TODO: Implement damage, secondary effects, etc. of moves
 
@@ -255,35 +340,41 @@ for line_num, line in enumerate(log_arr):
             converted = f"|c|{full_msg[0]}|{full_msg[1]}"
 
     elif spikes_dmg_pat.match(line):
-        player = identify_player(line, spikes_dmg_pat)
-        mon = players[player].currentmon
-        if mon:
-            spikes = players[player].spikes
-            damage = 0
-            match spikes:
-                case 1:
-                    damage = 12.5
-                case 2:
-                    damage = 16.6
-                case 3:
-                    damage = 25
-            mon.damage(damage)
-            status = mon.space_status()
-            converted = (
-                rf'|-damage|p{player + 1}a: {mon.nick}|'
-                rf'{mon.hp}\/100|[from] Spikes'
-            )
+        if is_phased:
+            phase_hazard_list.append(line)
+        else:
+            player = identify_player(line, spikes_dmg_pat)
+            mon = players[player].currentmon
+            if mon:
+                spikes = players[player].spikes
+                damage = 0
+                match spikes:
+                    case 1:
+                        damage = 12.5
+                    case 2:
+                        damage = 16.6
+                    case 3:
+                        damage = 25
+                mon.damage(damage)
+                status = mon.space_status()
+                converted = (
+                    rf'|-damage|p{player + 1}a: {mon.nick}|'
+                    rf'{mon.hp}\/100{status}|[from] Spikes'
+                )
 
     elif stealth_rock_dmg_pat.match(line):
-        player = identify_player(line, stealth_rock_dmg_pat)
-        mon = players[player].currentmon
-        if mon:
-            mon.damage(utils.stealth_rock_damage(mon, gen))
-            status = mon.space_status()
-            converted = (
-                rf'|-damage|p{player + 1}a: {mon.nick}|'
-                rf'{mon.hp}\/100|[from] Stealth Rock'
-            )
+        if is_phased:
+            phase_hazard_list.append(line)
+        else:
+            player = identify_player(line, stealth_rock_dmg_pat)
+            mon = players[player].currentmon
+            if mon:
+                mon.damage(utils.stealth_rock_damage(mon, gen))
+                status = mon.space_status()
+                converted = (
+                    rf'|-damage|p{player + 1}a: {mon.nick}|'
+                    rf'{mon.hp}\/100{status}|[from] Stealth Rock'
+                )
 
     elif sandstorm_dmg_pat.match(line):
         player = identify_player(line, sandstorm_dmg_pat)
@@ -293,7 +384,7 @@ for line_num, line in enumerate(log_arr):
             status = mon.space_status()
             converted = (
                 rf'|-damage|p{player + 1}a: {mon.nick}|'
-                rf'{mon.hp}\/100|[from] Sandstorm'
+                rf'{mon.hp}\/100{status}|[from] Sandstorm'
             )
 
     elif sandstream_pat.match(line):
@@ -328,6 +419,37 @@ for line_num, line in enumerate(log_arr):
         if mon:
             mon.status = utils.Status.BURN
             converted = f'|-status|p{player + 1}a: {mon.nick}|{mon.status_string()}'
+
+    elif poison_dmg_pat.match(line):
+        player = identify_player(line, poison_dmg_pat)
+        mon = players[player].currentmon
+        if mon:
+            if mon.status == utils.Status.TOXIC:
+                mon.toxic_turns += 1
+                mon.damage(mon.toxic_turns / 16 * 100)
+            elif gen == 1:
+                mon.damage(6.25)
+            else:
+                mon.damage(12.5)
+            status = mon.space_status()
+            converted = (
+                f'|-damage|p{player + 1}a: {mon.nick}|'
+                rf'{mon.hp}\/100{status}|[from] psn'
+            )
+
+    elif burn_dmg_pat.match(line):
+        player = identify_player(line, burn_dmg_pat)
+        mon = players[player].currentmon
+        if mon:
+            if gen == 1:
+                mon.damage(6.25)
+            else:
+                mon.damage(12.5)
+            status = mon.space_status()
+            converted = (
+                f'|-damage|p{player + 1}a: {mon.nick}|'
+                rf'{mon.hp}\/100{status}|[from] brn'
+            )
 
     elif leftovers_pat.match(line):
         player = identify_player(line, leftovers_pat)
@@ -370,5 +492,9 @@ for line_num, line in enumerate(log_arr):
             converted = (
                 f'|-activate|p{player + 1}a: {mon.nick}|move: Pursuit'
             )
+    return converted
 
+
+for line_num, line in enumerate(log_arr):
+    converted = analyze_line(line)
     output(converted)

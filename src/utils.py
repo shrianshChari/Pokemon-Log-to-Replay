@@ -142,6 +142,13 @@ class SimpleTrainer():
                 return mon
         return None
 
+    def get_pokemon_by_nick(self, nick: str) -> \
+            Union[SimplePokemon, None]:
+        for mon in self.mons:
+            if mon.nick == nick:
+                return mon
+        return None
+
     def add_pokemon(self, species: str, nick: str = "") -> None:
         nick = species if len(nick) == 0 else nick
         if (not self.has_pokemon(species, nick)):
