@@ -216,10 +216,11 @@ def analyze_line(line: str) -> str:
                 output('|start')
             sent_out_data = []
             if (match.group(3)):
-                sent_out_data = [match.group(1),
-                                 match.group(3).replace(' (', '').replace(')',
-                                                                          ''),
-                                 match.group(2)]
+                species = extract_species_pat.match(match.group(3))
+                if species:
+                    sent_out_data = [match.group(1),
+                                     species.group(1),
+                                     match.group(2)]
             else:
                 sent_out_data = [match.group(1),
                                  match.group(2),
