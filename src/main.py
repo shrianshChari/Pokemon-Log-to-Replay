@@ -55,6 +55,7 @@ def find_foe(nick):
 
     p1_mon = players[0].currentmon
     p2_mon = players[1].currentmon
+    nick = re.sub("[Tt]he foe\'s ", "", nick, re.IGNORECASE)
     if (p1_mon and p2_mon):
         if (nick.lower() == p1_mon.nick.lower()
                 and nick.lower() != p2_mon.nick.lower()):
@@ -135,6 +136,7 @@ def analyze_line(line: str) -> str:
     poison_pat = re.compile("(.*) was poisoned!")
     toxic_pat = re.compile("(.*) was badly poisoned!")
     burn_pat = re.compile("(.*) was burned!")
+    sleep_pat = re.compile("(.*) fell asleep!")
 
     encore_pat = re.compile("(.*) received an encore!")
 
@@ -145,6 +147,9 @@ def analyze_line(line: str) -> str:
     sandstorm_dmg_pat = re.compile("(.*) (was|is) buffeted by the sandstorm!")
     leftovers_pat = re.compile("(.*) restored a little HP using its Leftovers!")
     black_sludge_pat = re.compile("(.*) restored a little HP using its Black Sludge!")
+
+    fast_asleep_pat = re.compile("(.*) is fast asleep.")
+    woke_up_pat = re.compile("(.*) woke up!")
 
     converted = '|'
     if battle_started_pat.match(line):
@@ -456,6 +461,26 @@ def analyze_line(line: str) -> str:
         if mon:
             mon.status = utils.Status.BURN
             converted = f'|-status|p{player + 1}a: {mon.nick}|{mon.status_string()}'
+
+    elif sleep_pat.match(line):
+        player = identify_player(line, sleep_pat)
+        mon = players[player].currentmon
+        if mon:
+            mon.status = utils.Status.SLEEP
+            converted = f'|-status|p{player + 1}a: {mon.nick}|{mon.status_string()}'
+
+    elif fast_asleep_pat.match(line):
+        player = identify_player(line, fast_asleep_pat)
+        mon = players[player].currentmon
+        if mon:
+            converted = f'|cant|p{player + 1}a: {mon.nick}|{mon.status_string()}'
+
+    elif woke_up_pat.match(line):
+        player = identify_player(line, woke_up_pat)
+        mon = players[player].currentmon
+        if mon:
+            mon.status = utils.Status.NONE
+            converted = f'|-curestatus|p{player + 1}a: {mon.nick}|slp|[msg]'
 
     elif encore_pat.match(line):
         player = identify_player(line, encore_pat)

@@ -45,8 +45,9 @@ class Status(Enum):
     TOXIC = 2
     PARALYSIS = 3
     BURN = 4
-    FREEZE = 5
-    FAINT = 6
+    SLEEP = 5
+    FREEZE = 6
+    FAINT = 7
 
 
 class SimplePokemon():
@@ -80,6 +81,8 @@ class SimplePokemon():
                 return "par"
             case Status.BURN:
                 return "brn"
+            case Status.SLEEP:
+                return "slp"
             case Status.FREEZE:
                 return "frz"
             case Status.FAINT:
