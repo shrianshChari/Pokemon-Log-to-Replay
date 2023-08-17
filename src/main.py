@@ -142,6 +142,7 @@ def analyze_line(line: str) -> str:
     poison_dmg_pat = re.compile("(.*) was hurt by poison!")
     sandstorm_dmg_pat = re.compile("(.*) (was|is) buffeted by the sandstorm!")
     leftovers_pat = re.compile("(.*) restored a little HP using its Leftovers!")
+    black_sludge_pat = re.compile("(.*) restored a little HP using its Black Sludge!")
 
     converted = '|'
     if battle_started_pat.match(line):
@@ -493,6 +494,17 @@ def analyze_line(line: str) -> str:
             converted = (
                 f'|-heal|p{player + 1}a: {mon.nick}|'
                 rf'{mon.approx_hp()}\/100{status}|[from] item: Leftovers'
+            )
+
+    elif black_sludge_pat.match(line):
+        player = identify_player(line, black_sludge_pat)
+        mon = players[player].currentmon
+        if mon:
+            mon.heal(6.25)
+            status = mon.space_status()
+            converted = (
+                f'|-heal|p{player + 1}a: {mon.nick}|'
+                rf'{mon.approx_hp()}\/100{status}|[from] item: Black Sludge'
             )
 
     elif stealth_rock_set_pat.match(line):
