@@ -218,10 +218,11 @@ def analyze_line(line: str) -> str:
             converted = f"|turn|{match.group(1)}"
 
     elif sent_out_pat.match(line):
+        converted = ""
         match = sent_out_pat.search(line)
         if match:
             if players[0].currentmon is None and players[1].currentmon is None:
-                output('|start')
+                converted += "|start\n"
             sent_out_data = []
             if (match.group(3)):
                 species = extract_species_pat.match(match.group(3))
@@ -245,7 +246,7 @@ def analyze_line(line: str) -> str:
                 player.currentmon = mon
                 status = mon.space_status()
                 mon.toxic_turns = 0
-                converted = (
+                converted += (
                     rf'|switch|p{playernum + 1}a: {mon.nick}|'
                     rf'{mon.species}|{mon.approx_hp()}\/100{status}'
                 )
