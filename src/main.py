@@ -121,6 +121,9 @@ def analyze_line(line: str) -> str:
     pursuit_pat = re.compile("(.*) is being sent back!")
 
     sandstream_pat = re.compile('(.*)\'s Sand Stream whipped up a sandstorm!')
+    drought_pat = re.compile('(.*)\'s Drought intensified the sun\'s rays!')
+    drizzle_pat = re.compile('(.*)\'s Drizzle made it rain!')
+
     stealth_rock_set_pat = re.compile(
         'Pointed stones float in the air around (.*) team!')
     spikes_set_pat = re.compile(
@@ -393,6 +396,24 @@ def analyze_line(line: str) -> str:
                 rf'{mon.approx_hp()}\/100{status}|[from] Sandstorm'
             )
 
+    elif drought_pat.match(line):
+        player = identify_player(line, drought_pat)
+        mon = players[player].currentmon
+        if mon:
+            converted = (
+                rf'|-weather|SunnyDay|[from] ability: Drought|'
+                rf'[of] p{player + 1}a: {mon.nick}'
+            )
+
+    elif drizzle_pat.match(line):
+        player = identify_player(line, drizzle_pat)
+        mon = players[player].currentmon
+        if mon:
+            converted = (
+                rf'|-weather|RainDance|[from] ability: Drizzle|'
+                rf'[of] p{player + 1}a: {mon.nick}'
+            )
+
     elif sandstream_pat.match(line):
         player = identify_player(line, sandstream_pat)
         mon = players[player].currentmon
@@ -401,6 +422,12 @@ def analyze_line(line: str) -> str:
                 rf'|-weather|Sandstorm|[from] ability: Sand Stream|'
                 rf'[of] p{player + 1}a: {mon.nick}'
             )
+
+    elif line == 'The sunlight is strong.':
+        converted = '|-weather|SunnyDay|[upkeep]'
+
+    elif line == 'Rain continues to fall.':
+        converted = '|-weather|RainDance|[upkeep]'
 
     elif line == 'The sandstorm rages.':
         converted = '|-weather|Sandstorm|[upkeep]'
