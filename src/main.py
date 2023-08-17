@@ -241,7 +241,7 @@ def analyze_line(line: str) -> str:
                 mon.toxic_turns = 0
                 converted = (
                     rf'|switch|p{playernum + 1}a: {mon.nick}|'
-                    rf'{mon.species}|{mon.hp}\/100{status}'
+                    rf'{mon.species}|{mon.approx_hp()}\/100{status}'
                 )
 
     elif dragged_out_pat.match(line):
@@ -256,7 +256,7 @@ def analyze_line(line: str) -> str:
                 mon.toxic_turns = 0
                 converted = (
                     rf'|drag|p{player + 1}a: {mon.nick}|'
-                    rf'{mon.species}|{mon.hp}\/100{status}'
+                    rf'{mon.species}|{mon.approx_hp()}\/100{status}'
                 )
             else:
                 print('Cannot tell who the mon is.', file=sys.stderr)
@@ -362,7 +362,7 @@ def analyze_line(line: str) -> str:
                 status = mon.space_status()
                 converted = (
                     rf'|-damage|p{player + 1}a: {mon.nick}|'
-                    rf'{mon.hp}\/100{status}|[from] Spikes'
+                    rf'{mon.approx_hp()}\/100{status}|[from] Spikes'
                 )
 
     elif stealth_rock_dmg_pat.match(line):
@@ -376,7 +376,7 @@ def analyze_line(line: str) -> str:
                 status = mon.space_status()
                 converted = (
                     rf'|-damage|p{player + 1}a: {mon.nick}|'
-                    rf'{mon.hp}\/100{status}|[from] Stealth Rock'
+                    rf'{mon.approx_hp()}\/100{status}|[from] Stealth Rock'
                 )
 
     elif sandstorm_dmg_pat.match(line):
@@ -387,7 +387,7 @@ def analyze_line(line: str) -> str:
             status = mon.space_status()
             converted = (
                 rf'|-damage|p{player + 1}a: {mon.nick}|'
-                rf'{mon.hp}\/100{status}|[from] Sandstorm'
+                rf'{mon.approx_hp()}\/100{status}|[from] Sandstorm'
             )
 
     elif sandstream_pat.match(line):
@@ -437,7 +437,7 @@ def analyze_line(line: str) -> str:
             status = mon.space_status()
             converted = (
                 f'|-damage|p{player + 1}a: {mon.nick}|'
-                rf'{mon.hp}\/100{status}|[from] psn'
+                rf'{mon.approx_hp()}\/100{status}|[from] psn'
             )
 
     elif burn_dmg_pat.match(line):
@@ -451,7 +451,7 @@ def analyze_line(line: str) -> str:
             status = mon.space_status()
             converted = (
                 f'|-damage|p{player + 1}a: {mon.nick}|'
-                rf'{mon.hp}\/100{status}|[from] brn'
+                rf'{mon.approx_hp()}\/100{status}|[from] brn'
             )
 
     elif leftovers_pat.match(line):
@@ -462,7 +462,7 @@ def analyze_line(line: str) -> str:
             status = mon.space_status()
             converted = (
                 f'|-heal|p{player + 1}a: {mon.nick}|'
-                rf'{mon.hp}\/100{status}|[from] item: Leftovers'
+                rf'{mon.approx_hp()}\/100{status}|[from] item: Leftovers'
             )
 
     elif stealth_rock_set_pat.match(line):

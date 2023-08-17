@@ -92,6 +92,9 @@ class SimplePokemon():
         else:
             return " " + self.status_string()
 
+    def approx_hp(self) -> float:
+        return round(self.hp, 1)
+
     def parse_species(self, species: str) -> str:
         # Handling Rotom formes
         match species:
