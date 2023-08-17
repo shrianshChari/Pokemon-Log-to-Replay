@@ -124,11 +124,9 @@ class SimpleTrainer():
         self.mons = []
         self.currentmon: SimplePokemon | None = None
 
-        # Only need Spikes and T-Spikes bc they are the only ones
-        # whose damage output is dependent on the number of layers,
-        # which need to be tracked. SR is a fixed percentage.
+        # Only need to track layers of Spikes since only that affects the
+        # damage that the Pokemon takes upon switching.
         self.spikes = 0
-        self.toxic_spikes = 0
 
     def has_pokemon(self, species: str, nick: str = ""):
         nick = species if len(nick) == 0 else nick
@@ -161,13 +159,8 @@ class SimpleTrainer():
         if (self.spikes < 3):
             self.spikes += 1
 
-    def add_toxic_spikes(self) -> None:
-        if (self.toxic_spikes < 2):
-            self.toxic_spikes += 1
-
     def remove_hazards(self) -> None:
         self.spikes = 0
-        self.toxic_spikes = 0
 
 
 def stealth_rock_damage(mon: SimplePokemon, gen: int) -> float:

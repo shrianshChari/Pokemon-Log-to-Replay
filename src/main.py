@@ -125,6 +125,9 @@ def analyze_line(line: str) -> str:
         'Pointed stones float in the air around (.*) team!')
     spikes_set_pat = re.compile(
         'Spikes were scattered all around the feet of (.*) team!')
+    toxic_spikes_set_pat = re.compile(
+        'Poison spikes were scattered all around the feet of (.*) team!')
+    spin_hazards_pat = re.compile('(.*) blew away (.*)!')
 
     poison_pat = re.compile("(.*) was poisoned!")
     toxic_pat = re.compile("(.*) was badly poisoned!")
@@ -156,6 +159,8 @@ def analyze_line(line: str) -> str:
                 f"|player|p1|{players[0].name}|red|\n"
                 f"|player|p2|{players[1].name}|blue|"
             )
+            # Eventually we want to be able to change these avatars,
+            # will want to figure out an interface to do so
             sent_outs = set(filter(lambda x: sent_out_pat.match(x), log_arr))
             for sent_out in sent_outs:
                 match = sent_out_pat.match(sent_out)
@@ -178,9 +183,6 @@ def analyze_line(line: str) -> str:
                                                        match.group(2))
                         else:
                             players[1].add_pokemon(match.group(2))
-
-        # Eventually we want to be able to change these avatars,
-        # will want to figure out an interface to do so
     if mode_pat.search(line):
         match = mode_pat.search(line)
         if match:
@@ -479,6 +481,26 @@ def analyze_line(line: str) -> str:
                 f'|-sidestart|p{player + 1}: {players[player].name}|'
                 'move: Spikes'
             )
+
+    elif toxic_spikes_set_pat.match(line):
+        player = identify_player(line, toxic_spikes_set_pat)
+        if player > -1:
+            converted = (
+                f'|-sidestart|p{player + 1}: {players[player].name}|'
+                'move: Toxic Spikes'
+            )
+
+    elif spin_hazards_pat.match(line):
+        player = identify_player(line, spin_hazards_pat)
+        mon = players[player].currentmon
+        if player > -1:
+            match = spin_hazards_pat.match(line)
+            if match and mon:
+                converted = (
+                    f'|-sideend|p{player + 1}: {players[player].name}'
+                    f'|{match.group(2)}|[from] move: Rapid Spin'
+                    f'|[of]: p{player + 1}a: {mon.nick}'
+                )
 
     elif win_battle_pat.match(line):
         match = win_battle_pat.search(line)
