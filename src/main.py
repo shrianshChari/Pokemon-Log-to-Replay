@@ -243,6 +243,9 @@ def analyze_line(line: str) -> str:
                     rf'|switch|p{playernum + 1}a: {mon.nick}|'
                     rf'{mon.species}|{mon.approx_hp()}\/100{status}'
                 )
+                if gen <= 2 and mon.status == utils.Status.TOXIC:
+                    mon.status = utils.Status.POISON
+                    converted += '\n' + f'|-status|p{playernum + 1}a: {mon.nick}|psn|[silent]'
 
     elif dragged_out_pat.match(line):
         player = identify_player(line, dragged_out_pat)
