@@ -136,6 +136,8 @@ def analyze_line(line: str) -> str:
     toxic_pat = re.compile("(.*) was badly poisoned!")
     burn_pat = re.compile("(.*) was burned!")
 
+    encore_pat = re.compile("(.*) received an encore!")
+
     stealth_rock_dmg_pat = re.compile(r'Pointed stones dug into (.*)!')
     spikes_dmg_pat = re.compile("(.*) (was|is) hurt by spikes!")
     burn_dmg_pat = re.compile("(.*) was hurt by its burn!")
@@ -453,6 +455,12 @@ def analyze_line(line: str) -> str:
         if mon:
             mon.status = utils.Status.BURN
             converted = f'|-status|p{player + 1}a: {mon.nick}|{mon.status_string()}'
+
+    elif encore_pat.match(line):
+        player = identify_player(line, encore_pat)
+        mon = players[player].currentmon
+        if mon:
+            converted = f'|-start|p{player + 1}a: {mon.nick}|Encore'
 
     elif poison_dmg_pat.match(line):
         player = identify_player(line, poison_dmg_pat)
