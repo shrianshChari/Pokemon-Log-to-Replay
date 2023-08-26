@@ -11,27 +11,12 @@ Convert from logs from Pokemon Online and Shoddy to replays from Pokemon Showdow
 - [ ] Start developing (currently testing RegEx patterns)
 
 ### Patterns to be implemented:
-
-##### Type effectiveness
-```
-Floppy's spamming it used Crunch!
-It's super effective!
-```
-```
-M Dragon's Metagross used Meteor Mash!
-It's not very effective...
-```
+Ineffectiveness
 ```
 Floppy's polaroid used Earthquake!
 It had no effect on M Dragon's Claydol!
 ```
 Maybe won't keep track of Levitate, but will probably have to worry about Volt Absorb/Water Absorb/Flash Fire.
-
-##### Direct damage
-```
-Neurotica lost 286 HP! (89% of its health)
-Earthworm's Swampert lost 28% of its health!
-```
 
 ##### Passive damage
 ```
@@ -42,24 +27,6 @@ THE DADDY KITH's Bronzong's health is sapped by leech seed.
 Passive recovery
 ```
 THE DADDY KITH's Bronzong's health is sapped by leech seed.
-```
-Roost
-```
-Salamence used Roost!
-
-Salamence landed on the ground!
-
-Salamence regained health!
-```
-Softboiled
-```
-The foe's Blissey used Softboiled!
-The foe's Blissey regained health!
-```
-Recover
-```
-The foe's Starmie used Recover!
-The foe's Starmie regained health!
 ```
 Will probably have to do some stuff for Synthesis and Leech Seed.
 
