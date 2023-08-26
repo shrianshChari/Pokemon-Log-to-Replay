@@ -4,14 +4,6 @@ import re
 from typing import Union
 
 
-def match_big_stat_to_small(s: str) -> str:
-    s = s.lower()
-    if "sp. att." in s: return "spa"
-    if "sp. def." in s: return "spd"
-    if "speed" in s: return "spe"
-    if "attack" in s: return "atk"
-    if "defense" in s: return "def"
-
 def get_gen(s: str) -> int:
     if re.search("(bw)|(bw2)|(b2w2)|(gen 5)|(5th gen)|(Black)|(White)|(5G)",
                  s, re.IGNORECASE) is not None:
