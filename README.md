@@ -11,14 +11,6 @@ Convert from logs from Pokemon Online and Shoddy to replays from Pokemon Showdow
 - [ ] Start developing (currently testing RegEx patterns)
 
 ### Patterns to be implemented:
-##### Using moves
-```
-Stengah used U-turn!
-Earthworm's Swampert used Ice Beam!
-
-Latias is being sent back!
-Nachos's Scizor used Pursuit!
-```
 
 ##### Type effectiveness
 ```
@@ -43,17 +35,13 @@ Earthworm's Swampert lost 28% of its health!
 
 ##### Passive damage
 ```
-The foe's Celebi was hurt by its burn!
-M Dragon's Shadow is buffeted by the sandstorm!
-The foe's Palkia was hurt by poison!
+THE DADDY KITH's Bronzong's health is sapped by leech seed.
 ```
-Will have to account for Toxic turns
 
 ##### Recovery
 Passive recovery
 ```
-Floppy's nice bird restored a little HP using its Leftovers!
-Vicarious restored a little HP using its Black Sludge!
+THE DADDY KITH's Bronzong's health is sapped by leech seed.
 ```
 Roost
 ```
@@ -78,9 +66,6 @@ Will probably have to do some stuff for Synthesis and Leech Seed.
 ##### Abilities
 ```
 M Dragon's M Dragon intimidates Floppy's Blaziken!
-intension's Sand Stream whipped up a sandstorm!
-Groudon's Drought intensified the sun's rays!
-The foe's Palkia is exerting its Pressure!
 Blue_Star's Poison Point activates!
 ```
 
