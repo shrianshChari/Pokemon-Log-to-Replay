@@ -58,4 +58,4 @@ All the images of the backgrounds are available [here](https://play.pokemonshowd
 ##### Extra notes
 
 - Changing the `replayid` will also change the background music that plays. I turn music off regardless when watching replays.
-- I wish I could somehow put the SPL replays or the cosmic replay, but I'm not sure how to make that happen.
+- I wish I could somehow put the SPL backgrounds or the space background, but I'm not sure how to make that happen.
