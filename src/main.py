@@ -141,6 +141,7 @@ def analyze_line(line: str) -> str:
     sleep_pat = re.compile("(.*) fell asleep!")
 
     encore_pat = re.compile("(.*) received an encore!")
+    taunt_pat = re.compile("(.*) fell for the taunt!")
 
     stealth_rock_dmg_pat = re.compile(r'Pointed stones dug into (.*)!')
     spikes_dmg_pat = re.compile("(.*) (was|is) hurt by spikes!")
@@ -555,6 +556,12 @@ def analyze_line(line: str) -> str:
         mon = players[player].currentmon
         if mon:
             converted = f'|-start|p{player + 1}a: {mon.nick}|Encore'
+
+    elif taunt_pat.match(line):
+        player = identify_player(line, taunt_pat)
+        mon = players[player].currentmon
+        if mon:
+            converted = f'|-start|p{player + 1}a: {mon.nick}|Taunt'
 
     elif poison_dmg_pat.match(line):
         player = identify_player(line, poison_dmg_pat)
