@@ -3,14 +3,20 @@ import pandas as pd
 import re
 from typing import Union
 
+
 def match_big_stat_to_small(s: str) -> str:
     s = s.lower()
-    if "sp. att." in s: return "spa"
-    if "sp. def." in s: return "spd"
-    if "speed" in s: return "spe"
-    if "attack" in s: return "atk"
-    if "defense" in s: return "def"
-
+    if "sp. att." in s:
+        return "spa"
+    if "sp. def." in s:
+        return "spd"
+    if "speed" in s:
+        return "spe"
+    if "attack" in s:
+        return "atk"
+    if "defense" in s:
+        return "def"
+    return ""
 
 
 def get_gen(s: str) -> int:
@@ -57,7 +63,6 @@ class Status(Enum):
     SLEEP = 5
     FREEZE = 6
     FAINT = 7
-
 
 
 class SimplePokemon():
