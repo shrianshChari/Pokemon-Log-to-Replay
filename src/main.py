@@ -140,6 +140,7 @@ def analyze_line(line: str) -> str:
     burn_pat = re.compile("(.*) was burned!")
     sleep_pat = re.compile("(.*) fell asleep!")
     freeze_pat = re.compile("(.*) was frozen solid!")
+    paralysis_pat = re.compile("(.*) is paralyzed! It may be unable to move!")
 
     encore_pat = re.compile("(.*) received an encore!")
 
@@ -153,6 +154,8 @@ def analyze_line(line: str) -> str:
 
     fast_asleep_pat = re.compile("(.*) is fast asleep.")
     woke_up_pat = re.compile("(.*) woke up!")
+
+    full_para_pat = re.compile("(.*) is paralyzed! It can't move!")
 
     frozen_solid_pat = re.compile("(.*) is frozen solid!")
     # Don't have a replay where a Pokemon thaws out
@@ -545,6 +548,13 @@ def analyze_line(line: str) -> str:
             mon.status = utils.Status.FREEZE
             converted = f'|-status|p{player + 1}a: {mon.nick}|{mon.status_string()}'
 
+    elif paralysis_pat.match(line):
+        player = identify_player(line, paralysis_pat)
+        mon = players[player].currentmon
+        if mon:
+            mon.status = utils.Status.PARALYSIS
+            converted = f'|-status|p{player + 1}a: {mon.nick}|{mon.status_string()}'
+
     elif fast_asleep_pat.match(line):
         player = identify_player(line, fast_asleep_pat)
         mon = players[player].currentmon
@@ -557,6 +567,18 @@ def analyze_line(line: str) -> str:
         if mon:
             mon.status = utils.Status.NONE
             converted = f'|-curestatus|p{player + 1}a: {mon.nick}|slp|[msg]'
+
+    elif frozen_solid_pat.match(line):
+        player = identify_player(line, frozen_solid_pat)
+        mon = players[player].currentmon
+        if mon:
+            converted = f'|cant|p{player + 1}a: {mon.nick}|{mon.status_string()}'
+
+    elif full_para_pat.match(line):
+        player = identify_player(line, full_para_pat)
+        mon = players[player].currentmon
+        if mon:
+            converted = f'|cant|p{player + 1}a: {mon.nick}|{mon.status_string()}'
 
     elif encore_pat.match(line):
         player = identify_player(line, encore_pat)
@@ -594,12 +616,6 @@ def analyze_line(line: str) -> str:
                 f'|-damage|p{player + 1}a: {mon.nick}|'
                 rf'{mon.approx_hp()}\/100{status}|[from] brn'
             )
-
-    elif frozen_solid_pat.match(line):
-        player = identify_player(line, frozen_solid_pat)
-        mon = players[player].currentmon
-        if mon:
-            converted = f'|cant|p{player + 1}a: {mon.nick}|frz'
 
     elif leftovers_pat.match(line):
         player = identify_player(line, leftovers_pat)
