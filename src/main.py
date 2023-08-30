@@ -6,7 +6,7 @@ if (len(sys.argv) < 2):
     print("Please supply a log to turn into a replay", file=sys.stderr)
     sys.exit(1)
 
-log = open(sys.argv[1])
+log = open(sys.argv[1],encoding="utf-8")
 log_data = log.read()
 log_arr = log_data.split('\n')
 
