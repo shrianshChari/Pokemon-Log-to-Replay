@@ -19,6 +19,7 @@ is_phased = False
 phase_hazard_list = []
 moves_buffer = []
 
+
 # Function that defines how I output each line
 # As of now I just output to standard output
 # At some point I will send input to a file
@@ -102,7 +103,6 @@ def analyze_line(line: str) -> str:
     global phase_hazard_list
     global moves_buffer
 
-
     # Compiling regex patterns for efficiency
 
     battle_started_pat = re.compile(
@@ -139,6 +139,8 @@ def analyze_line(line: str) -> str:
     toxic_pat = re.compile("(.*) was badly poisoned!")
     burn_pat = re.compile("(.*) was burned!")
     sleep_pat = re.compile("(.*) fell asleep!")
+    freeze_pat = re.compile("(.*) was frozen solid!")
+    paralysis_pat = re.compile("(.*) is paralyzed! It may be unable to move!")
 
     encore_pat = re.compile("(.*) received an encore!")
 
@@ -150,11 +152,15 @@ def analyze_line(line: str) -> str:
     leftovers_pat = re.compile("(.*) restored a little HP using its Leftovers!")
     black_sludge_pat = re.compile("(.*) restored a little HP using its Black Sludge!")
 
-
     fast_asleep_pat = re.compile("(.*) is fast asleep.")
     woke_up_pat = re.compile("(.*) woke up!")
 
-    damage_dealt_pat = re.compile("[0-9\.]*%")
+    full_para_pat = re.compile("(.*) is paralyzed! It can't move!")
+
+    frozen_solid_pat = re.compile("(.*) is frozen solid!")
+    # Don't have a replay where a Pokemon thaws out
+
+    damage_dealt_pat = re.compile("[0-9.]+%")
 
     landed_pat = re.compile("(.*) landed on the ground!")
     heal_pat = re.compile("(.*) regained health!")
@@ -167,8 +173,6 @@ def analyze_line(line: str) -> str:
     crit_pat = "A critical hit!"
     super_effective_pat = "It's super effective!"
     not_very_effective_pat = "It's not very effective..."
-
-
 
     converted = '|'
     if battle_started_pat.match(line):
@@ -301,52 +305,61 @@ def analyze_line(line: str) -> str:
             phase_hazard_list = []
 
     elif landed_pat.match(line):
-        move,use_player,target_player,use_mon,target_mon = moves_buffer
+        move, use_player, target_player, use_mon, target_mon = moves_buffer
         converted = f"|-singleturn|p{target_player+1}a: {target_mon.nick}|move: Roost"
+
     elif heal_pat.match(line):
-        move,use_player,target_player,use_mon,target_mon = moves_buffer
+        move, use_player, target_player, use_mon, target_mon = moves_buffer
         target_mon.heal(50.0)
         converted = f"|-heal|p{target_player+1}a: {target_mon.nick}|{target_mon.approx_hp()}\/100"
+
     elif not_very_effective_pat == line:
-        move,use_player,target_player,use_mon,target_mon = moves_buffer
+        move, use_player, target_player, use_mon, target_mon = moves_buffer
         converted = f'|-resisted|p{target_player+1}a: {target_mon.nick}'
+
     elif boosted_stat_two_level_pat.match(line):
-        move,use_player,target_player,use_mon,target_mon = moves_buffer
-        line = line.replace(target_mon.nick,"")
+        move, use_player, target_player, use_mon, target_mon = moves_buffer
+        line = line.replace(target_mon.nick, "")
         converted = f'|-boost|p{target_player+1}a: {target_mon.nick}|{utils.match_big_stat_to_small(line)}|2'
+
     elif lowered_stat_two_level_pat.match(line):
-        move,use_player,target_player,use_mon,target_mon = moves_buffer
-        line = line.replace(target_mon.nick,"")
+        move, use_player, target_player, use_mon, target_mon = moves_buffer
+        line = line.replace(target_mon.nick, "")
         converted = f'|-unboost|p{target_player+1}a: {target_mon.nick}|{utils.match_big_stat_to_small(line)}|2'
 
     elif boosted_stat_one_level_pat.match(line):
-        move,use_player,target_player,use_mon,target_mon = moves_buffer
-        line = line.replace(target_mon.nick,"")
+        move, use_player, target_player, use_mon, target_mon = moves_buffer
+        line = line.replace(target_mon.nick, "")
         converted = f'|-boost|p{target_player+1}a: {target_mon.nick}|{utils.match_big_stat_to_small(line)}|1'
+
     elif lowered_stat_one_level_pat.match(line):
-        move,use_player,target_player,use_mon,target_mon = moves_buffer
-        line = line.replace(target_mon.nick,"")
+        move, use_player, target_player, use_mon, target_mon = moves_buffer
+        line = line.replace(target_mon.nick, "")
         converted = f'|-unboost|p{target_player+1}a: {target_mon.nick}|{utils.match_big_stat_to_small(line)}|1'
+
     elif crit_pat == line:
-        move,use_player,target_player,use_mon,target_mon = moves_buffer
+        move, use_player, target_player, use_mon, target_mon = moves_buffer
         converted = f'|-crit|p{target_player+1}a: {target_mon.nick}'
+
     elif miss_pat.match(line):
-        move,use_player,target_player,use_mon,target_mon = moves_buffer
+        move, use_player, target_player, use_mon, target_mon = moves_buffer
         converted = f'|-miss|p{use_player+1}a: {use_mon.nick}|p{target_player+1}a: {target_mon.nick}'
 
-
     elif super_effective_pat == line:
-        move,use_player,target_player,use_mon,target_mon = moves_buffer
+        move, use_player, target_player, use_mon, target_mon = moves_buffer
         converted = f'|-supereffective|p{target_player+1}a: {target_mon.nick}'
+
     elif immune_pat.match(line):
-        move,use_player,target_player,use_mon,target_mon = moves_buffer
+        move, use_player, target_player, use_mon, target_mon = moves_buffer
         converted = f'|-immune|p{target_player+1}a: {target_mon.nick}'
+
     elif damage_dealt_pat.search(line):
-        move,use_player,target_player,use_mon,target_mon = moves_buffer
+        move, use_player, target_player, use_mon, target_mon = moves_buffer
         opposing_player = int(not target_player)
         damage_done = damage_dealt_pat.search(line).group(0)
         target_mon.damage(float(damage_done[:-1]))
         converted = f"|-damage|p{target_player+1}a: {target_mon.nick}|{target_mon.approx_hp()}\/100"
+
     elif move_used_pat.match(line):
         use_player = identify_player(line, move_used_pat)
         match = move_used_pat.match(line)
@@ -422,7 +435,6 @@ def analyze_line(line: str) -> str:
             if (full_msg[0] == players[0].name or
                     full_msg[0] == players[1].name):
                 full_msg[0] = '☆' + full_msg[0]
-                #full_msg[0] = '*' + full_msg[0]
             converted = f"|c|{full_msg[0]}|{full_msg[1]}"
 
     elif spikes_dmg_pat.match(line):
@@ -537,6 +549,20 @@ def analyze_line(line: str) -> str:
             mon.status = utils.Status.SLEEP
             converted = f'|-status|p{player + 1}a: {mon.nick}|{mon.status_string()}'
 
+    elif freeze_pat.match(line):
+        player = identify_player(line, freeze_pat)
+        mon = players[player].currentmon
+        if mon:
+            mon.status = utils.Status.FREEZE
+            converted = f'|-status|p{player + 1}a: {mon.nick}|{mon.status_string()}'
+
+    elif paralysis_pat.match(line):
+        player = identify_player(line, paralysis_pat)
+        mon = players[player].currentmon
+        if mon:
+            mon.status = utils.Status.PARALYSIS
+            converted = f'|-status|p{player + 1}a: {mon.nick}|{mon.status_string()}'
+
     elif fast_asleep_pat.match(line):
         player = identify_player(line, fast_asleep_pat)
         mon = players[player].currentmon
@@ -549,6 +575,18 @@ def analyze_line(line: str) -> str:
         if mon:
             mon.status = utils.Status.NONE
             converted = f'|-curestatus|p{player + 1}a: {mon.nick}|slp|[msg]'
+
+    elif frozen_solid_pat.match(line):
+        player = identify_player(line, frozen_solid_pat)
+        mon = players[player].currentmon
+        if mon:
+            converted = f'|cant|p{player + 1}a: {mon.nick}|{mon.status_string()}'
+
+    elif full_para_pat.match(line):
+        player = identify_player(line, full_para_pat)
+        mon = players[player].currentmon
+        if mon:
+            converted = f'|cant|p{player + 1}a: {mon.nick}|{mon.status_string()}'
 
     elif encore_pat.match(line):
         player = identify_player(line, encore_pat)
