@@ -11,12 +11,6 @@ Convert from logs from Pokemon Online and Shoddy to replays from Pokemon Showdow
 - [ ] Start developing (currently testing RegEx patterns)
 
 ### Patterns to be implemented:
-Ineffectiveness
-```
-Floppy's polaroid used Earthquake!
-It had no effect on M Dragon's Claydol!
-```
-Maybe won't keep track of Levitate, but will probably have to worry about Volt Absorb/Water Absorb/Flash Fire.
 
 ##### Passive damage
 ```
