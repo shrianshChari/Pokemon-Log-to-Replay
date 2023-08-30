@@ -143,6 +143,11 @@ def analyze_line(line: str) -> str:
     paralysis_pat = re.compile("(.*) is paralyzed! It may be unable to move!")
 
     encore_pat = re.compile("(.*) received an encore!")
+    substitute_start_pat = re.compile("(.*) made a substitute!")
+    substitute_end_pat = re.compile("(.*) substitute faded!")
+    reflect_start_pat = re.compile('Reflect raised (.*) team defense!')
+    reflect_end_pat = re.compile('(.*) reflect wore off!')
+    protect_pat = re.compile('(.*) protected itself!')
 
     stealth_rock_dmg_pat = re.compile(r'Pointed stones dug into (.*)!')
     spikes_dmg_pat = re.compile("(.*) (was|is) hurt by spikes!")
@@ -164,12 +169,19 @@ def analyze_line(line: str) -> str:
 
     landed_pat = re.compile("(.*) landed on the ground!")
     heal_pat = re.compile("(.*) regained health!")
-    immune_pat = re.compile("It had no effect on (.*)!")
+
     boosted_stat_one_level_pat = re.compile('(.*) rose!')
     lowered_stat_one_level_pat = re.compile('(.*) fell!')
     lowered_stat_two_level_pat = re.compile('(.*) sharply fell!')
     boosted_stat_two_level_pat = re.compile('(.*) sharply rose!')
+
+    immune_pat = re.compile("It had no effect on (.*)!")
     miss_pat = re.compile('The attack (.*) missed!')
+    miss_pat_avoid = re.compile('(.*) avoided the attack!')
+
+    intim_pat = re.compile("(.*) intimidates (.*)")
+
+
     crit_pat = "A critical hit!"
     super_effective_pat = "It's super effective!"
     not_very_effective_pat = "It's not very effective..."
@@ -318,30 +330,26 @@ def analyze_line(line: str) -> str:
         converted = f'|-resisted|p{target_player+1}a: {target_mon.nick}'
 
     elif boosted_stat_two_level_pat.match(line):
-        move, use_player, target_player, use_mon, target_mon = moves_buffer
-        line = line.replace(target_mon.nick, "")
-        converted = f'|-boost|p{target_player+1}a: {target_mon.nick}|{utils.match_big_stat_to_small(line)}|2'
+       target = identify_player(line, boosted_stat_two_level_pat)
+       converted = f'|-boost|p{target+1}a: {players[target].currentmon.nick}|{utils.match_big_stat_to_small(line)}|2'
 
     elif lowered_stat_two_level_pat.match(line):
-        move, use_player, target_player, use_mon, target_mon = moves_buffer
-        line = line.replace(target_mon.nick, "")
-        converted = f'|-unboost|p{target_player+1}a: {target_mon.nick}|{utils.match_big_stat_to_small(line)}|2'
+        target = identify_player(line, lowered_stat_one_level_pat)
+        converted = f'|-unboost|p{target+1}a: {players[target].currentmon.nick}|{utils.match_big_stat_to_small(line)}|2'
 
     elif boosted_stat_one_level_pat.match(line):
-        move, use_player, target_player, use_mon, target_mon = moves_buffer
-        line = line.replace(target_mon.nick, "")
-        converted = f'|-boost|p{target_player+1}a: {target_mon.nick}|{utils.match_big_stat_to_small(line)}|1'
+       target = identify_player(line, boosted_stat_one_level_pat)
+       converted = f'|-boost|p{target+1}a: {players[target].currentmon.nick}|{utils.match_big_stat_to_small(line)}|1'
 
     elif lowered_stat_one_level_pat.match(line):
-        move, use_player, target_player, use_mon, target_mon = moves_buffer
-        line = line.replace(target_mon.nick, "")
-        converted = f'|-unboost|p{target_player+1}a: {target_mon.nick}|{utils.match_big_stat_to_small(line)}|1'
+        target = identify_player(line, lowered_stat_one_level_pat)
+        converted = f'|-unboost|p{target+1}a: {players[target].currentmon.nick}|{utils.match_big_stat_to_small(line)}|1'
 
     elif crit_pat == line:
         move, use_player, target_player, use_mon, target_mon = moves_buffer
         converted = f'|-crit|p{target_player+1}a: {target_mon.nick}'
 
-    elif miss_pat.match(line):
+    elif miss_pat.match(line) or miss_pat_avoid.match(line):
         move, use_player, target_player, use_mon, target_mon = moves_buffer
         converted = f'|-miss|p{use_player+1}a: {use_mon.nick}|p{target_player+1}a: {target_mon.nick}'
 
@@ -358,7 +366,21 @@ def analyze_line(line: str) -> str:
         opposing_player = int(not target_player)
         damage_done = damage_dealt_pat.search(line).group(0)
         target_mon.damage(float(damage_done[:-1]))
-        converted = f"|-damage|p{target_player+1}a: {target_mon.nick}|{target_mon.approx_hp()}\/100"
+        converted = f"|-damage|p{target_player+1}a: {target_mon.nick}|{target_mon.approx_hp()}\/100{target_mon.space_status()}"
+
+    elif protect_pat.match(line):
+        move, use_player, target_player, use_mon, target_mon = moves_buffer
+        # both the started protect and defended itself from a move use the same pattern we have to recognize it
+        if use_mon == target_mon:
+            converted = f'|-singleturn|p{target_player+1}a: {target_mon.nick}|Protect'
+        else: 
+            converted = f'|-activate|p{target_player+1}a: {target_mon.nick}|move: Protect'
+
+    elif intim_pat.match(line):
+        user = identify_player(line, intim_pat)
+        converted = f'|-ability|p{user+1}a: {players[user].currentmon.nick}|Intimidate|boost'
+
+
 
     elif move_used_pat.match(line):
         use_player = identify_player(line, move_used_pat)
@@ -401,12 +423,12 @@ def analyze_line(line: str) -> str:
                     f'|move|p{use_player + 1}a: {use_mon.nick}|{move}|'
                     f'p{target_player + 1}a: {target_mon.nick}'
                 )
-
             if move in {'Whirlwind', 'Roar', 'Dragon Tail', 'Circle Throw'}:
                 is_phased = True
 
         # TODO: Implement damage, secondary effects, etc. of moves
         moves_buffer = (move,use_player,target_player,use_mon,target_mon)
+
 
     elif fainted_pat.match(line):
         player = identify_player(line, fainted_pat)
@@ -593,6 +615,23 @@ def analyze_line(line: str) -> str:
         mon = players[player].currentmon
         if mon:
             converted = f'|-start|p{player + 1}a: {mon.nick}|Encore'
+    elif substitute_start_pat.match(line):
+        player = identify_player(line, substitute_start_pat)
+        mon = players[player].currentmon
+        if mon:
+            mon.damage(25)
+
+            converted = f'|-start|p{player + 1}a: {mon.nick}|Substitute\n|-damage|p{player + 1}a: {mon.nick}|{mon.approx_hp()}\/100{mon.space_status()}'
+    elif substitute_end_pat.match(line):
+        player = identify_player(line, substitute_end_pat)
+        mon = players[player].currentmon
+        converted = f'|-end|p{player + 1}a: {mon.nick}|Substitute'
+    elif reflect_start_pat.match(line):
+        player = identify_player(line, reflect_start_pat)
+        converted = f'|-sidestart|p{player+1}: {players[player].name}|Reflect'
+    elif reflect_end_pat.match(line):
+        player = identify_player(line, reflect_end_pat)
+        converted = f'|-sideend|p{player+1}: {players[player].name}|Reflect'
 
     elif poison_dmg_pat.match(line):
         player = identify_player(line, poison_dmg_pat)
