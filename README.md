@@ -11,25 +11,28 @@ Convert from logs from Pokemon Online and Shoddy to replays from Pokemon Showdow
 - [ ] Start developing (currently testing RegEx patterns)
 
 ### Patterns to be implemented:
-
-##### Passive damage
+Damage via leech seed
 ```
 THE DADDY KITH's Bronzong's health is sapped by leech seed.
 ```
+Focus punch tightening
 
-##### Recovery
-Passive recovery
 ```
-THE DADDY KITH's Bronzong's health is sapped by leech seed.
+Snorlax is tightening its focus!
 ```
-Will probably have to do some stuff for Synthesis and Leech Seed.
+
+"Static" Recovery via Rest and \< gen 5 wish, healing wish
+```
+The foe's Skarmory went to sleep and became healthy!
+The healing wish came true!
+THE DADDY KITH's Conkeldurr regained health!
+Jirachi's wish came true!
+```
 
 ##### Abilities
 ```
-M Dragon's M Dragon intimidates Floppy's Blaziken!
 Blue_Star's Poison Point activates!
 ```
-
 ### Things to Solve
 Life Orb recoil doesn't appear in the chat
 ```
@@ -54,3 +57,19 @@ Wish Mechanics in Gen 5
 Jolteon's wish came true!
 ```
 I don't have access to Gen 5 logs at the moment, so I don't know if it tells how much a Pokemon heals by with Wish. If not, Wish mechanics could produce uncertainty in the replay, and if there's one thing I want to avoid, it's misrepresenting historic battles.
+
+Baton Pass
+```
+The foe's Zapdos used Baton Pass!
+Snorlax used Body Slam!
+It's not very effective...
+The foe's Tyranitar's substitute took the damage!
+```
+
+Passive recovery
+```
+THE DADDY KITH's Bronzong's health is sapped by leech seed.
+```
+Weather reliant recovery?
+
+Better Build system for building working html files with replays
