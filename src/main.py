@@ -143,6 +143,9 @@ def analyze_line(line: str) -> str:
     paralysis_pat = re.compile("(.*) is paralyzed! It may be unable to move!")
 
     encore_pat = re.compile("(.*) received an encore!")
+    encore_end_pat = re.compile("(.*) encore ended!") #couldn't find a log with encore ending so this may be changed
+    taunt_pat = re.compile("(.*) fell for the taunt!")
+    taunt_end_pat = re.compile("(.*) taunt ended!")
 
     stealth_rock_dmg_pat = re.compile(r'Pointed stones dug into (.*)!')
     spikes_dmg_pat = re.compile("(.*) (was|is) hurt by spikes!")
@@ -173,6 +176,7 @@ def analyze_line(line: str) -> str:
     crit_pat = "A critical hit!"
     super_effective_pat = "It's super effective!"
     not_very_effective_pat = "It's not very effective..."
+    #but_it_failed_pat = "But it failed!" #Happens when trying to toxic a poison type, double protecting, etc
 
     converted = '|'
     if battle_started_pat.match(line):
@@ -352,6 +356,10 @@ def analyze_line(line: str) -> str:
     elif immune_pat.match(line):
         move, use_player, target_player, use_mon, target_mon = moves_buffer
         converted = f'|-immune|p{target_player+1}a: {target_mon.nick}'
+
+    #elif but_it_failed_pat == line:
+    #    move, use_player, target_player, use_mon, target_mon = moves_buffer
+    #    converted = f'|-fail|p{target_player}a: {target_mon.nick}'
 
     elif damage_dealt_pat.search(line):
         move, use_player, target_player, use_mon, target_mon = moves_buffer
@@ -593,6 +601,24 @@ def analyze_line(line: str) -> str:
         mon = players[player].currentmon
         if mon:
             converted = f'|-start|p{player + 1}a: {mon.nick}|Encore'
+
+    elif encore_end_pat.match(line):
+        player = identify_player(line, encore_end_pat)
+        mon = players[player].currentmon
+        if mon:
+            converted = f'|-end|p{player + 1}a: {mon.nick}|Encore'
+
+    elif taunt_pat.match(line):
+        player = identify_player(line, taunt_pat)
+        mon = players[player].currentmon
+        if mon:
+            converted = f'|-start|p{player + 1}a: {mon.nick}|Taunt'
+
+    elif taunt_end_pat.match(line):
+        player = identify_player(line, taunt_end_pat)
+        mon = players[player].currentmon
+        if mon:
+            converted = f'|-end|p{player + 1}a: {mon.nick}|Taunt'
 
     elif poison_dmg_pat.match(line):
         player = identify_player(line, poison_dmg_pat)
