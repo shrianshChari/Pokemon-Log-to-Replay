@@ -20,6 +20,7 @@ phase_hazard_list = []
 moves_buffer = []
 
 
+
 # Function that defines how I output each line
 # As of now I just output to standard output
 # At some point I will send input to a file
@@ -176,7 +177,8 @@ def analyze_line(line: str) -> str:
     crit_pat = "A critical hit!"
     super_effective_pat = "It's super effective!"
     not_very_effective_pat = "It's not very effective..."
-    #but_it_failed_pat = "But it failed!" #Happens when trying to toxic a poison type, double protecting, etc
+
+
 
     converted = '|'
     if battle_started_pat.match(line):
@@ -356,11 +358,6 @@ def analyze_line(line: str) -> str:
     elif immune_pat.match(line):
         move, use_player, target_player, use_mon, target_mon = moves_buffer
         converted = f'|-immune|p{target_player+1}a: {target_mon.nick}'
-
-    #elif but_it_failed_pat == line:
-    #    move, use_player, target_player, use_mon, target_mon = moves_buffer
-    #    converted = f'|-fail|p{target_player}a: {target_mon.nick}'
-
     elif damage_dealt_pat.search(line):
         move, use_player, target_player, use_mon, target_mon = moves_buffer
         opposing_player = int(not target_player)

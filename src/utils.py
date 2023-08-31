@@ -16,6 +16,21 @@ def match_big_stat_to_small(s: str) -> str:
         return "atk"
     if "defense" in s:
         return "def"
+    return ""
+
+
+def match_big_stat_to_small(s: str) -> str:
+    s = s.lower()
+    if "sp. att." in s:
+        return "spa"
+    if "sp. def." in s:
+        return "spd"
+    if "speed" in s:
+        return "spe"
+    if "attack" in s:
+        return "atk"
+    if "defense" in s:
+        return "def"
     return ""   
 
 
