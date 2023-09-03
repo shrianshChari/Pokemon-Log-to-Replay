@@ -293,7 +293,7 @@ def analyze_line(line: str) -> str:
                 )
                 if gen <= 2 and mon.status == utils.Status.TOXIC:
                     mon.status = utils.Status.POISON
-                    converted += '\n' + f'|-status|p{playernum + 1}a: {mon.nick}|psn|[silent]'
+                    converted += f'\n|-status|p{playernum + 1}a: {mon.nick}|psn|[silent]'
 
     elif dragged_out_pat.match(line):
         player = identify_player(line, dragged_out_pat)
@@ -331,16 +331,16 @@ def analyze_line(line: str) -> str:
         converted = f'|-resisted|p{target_player+1}a: {target_mon.nick}'
 
     elif boosted_stat_two_level_pat.match(line):
-       target = identify_player(line, boosted_stat_two_level_pat)
-       converted = f'|-boost|p{target+1}a: {players[target].currentmon.nick}|{utils.match_big_stat_to_small(line)}|2'
+        target = identify_player(line, boosted_stat_two_level_pat)
+        converted = f'|-boost|p{target+1}a: {players[target].currentmon.nick}|{utils.match_big_stat_to_small(line)}|2'
 
     elif lowered_stat_two_level_pat.match(line):
         target = identify_player(line, lowered_stat_one_level_pat)
         converted = f'|-unboost|p{target+1}a: {players[target].currentmon.nick}|{utils.match_big_stat_to_small(line)}|2'
 
     elif boosted_stat_one_level_pat.match(line):
-       target = identify_player(line, boosted_stat_one_level_pat)
-       converted = f'|-boost|p{target+1}a: {players[target].currentmon.nick}|{utils.match_big_stat_to_small(line)}|1'
+        target = identify_player(line, boosted_stat_one_level_pat)
+        converted = f'|-boost|p{target+1}a: {players[target].currentmon.nick}|{utils.match_big_stat_to_small(line)}|1'
 
     elif lowered_stat_one_level_pat.match(line):
         target = identify_player(line, lowered_stat_one_level_pat)
@@ -380,8 +380,6 @@ def analyze_line(line: str) -> str:
     elif intim_pat.match(line):
         user = identify_player(line, intim_pat)
         converted = f'|-ability|p{user+1}a: {players[user].currentmon.nick}|Intimidate|boost'
-
-
 
     elif move_used_pat.match(line):
         use_player = identify_player(line, move_used_pat)
@@ -428,8 +426,7 @@ def analyze_line(line: str) -> str:
                 is_phased = True
 
         # TODO: Implement damage, secondary effects, etc. of moves
-        moves_buffer = (move,use_player,target_player,use_mon,target_mon)
-
+        moves_buffer = (move, use_player, target_player, use_mon, target_mon)
 
     elif fainted_pat.match(line):
         player = identify_player(line, fainted_pat)
@@ -632,8 +629,10 @@ def analyze_line(line: str) -> str:
         mon = players[player].currentmon
         if mon:
             mon.damage(25)
-
-            converted = f'|-start|p{player + 1}a: {mon.nick}|Substitute\n|-damage|p{player + 1}a: {mon.nick}|{mon.approx_hp()}\/100{mon.space_status()}'
+            converted = (
+                f'|-start|p{player + 1}a: {mon.nick}|Substitute\n'
+                f'|-damage|p{player + 1}a: {mon.nick}|{mon.approx_hp()}\/100{mon.space_status()}'
+            )
     elif substitute_end_pat.match(line):
         player = identify_player(line, substitute_end_pat)
         mon = players[player].currentmon
