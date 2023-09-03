@@ -134,6 +134,14 @@ class SimplePokemon():
                 species = 'Deoxys-Speed'
             case 'Giratina-O':
                 species = 'Giratina-Origin'
+            case 'Tornadus-T':
+                species = 'Tornadus-Therian'
+            case 'Thundurus-T':
+                species = 'Thundurus-Therian'
+            case 'Landorus-T':
+                species = 'Landorus-Therian'
+            case 'Keldeo-R':
+                species = 'Keldeo-Resolute'
         return species
 
 
