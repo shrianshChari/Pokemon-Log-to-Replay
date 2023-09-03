@@ -159,6 +159,7 @@ def analyze_line(line: str) -> str:
 
     fast_asleep_pat = re.compile("(.*) is fast asleep.")
     woke_up_pat = re.compile("(.*) woke up!")
+    rest_heal_pat = re.compile("(.*) went to sleep and became healthy!")
 
     full_para_pat = re.compile("(.*) is paralyzed! It can't move!")
 
@@ -597,6 +598,17 @@ def analyze_line(line: str) -> str:
         if mon:
             mon.status = utils.Status.NONE
             converted = f'|-curestatus|p{player + 1}a: {mon.nick}|slp|[msg]'
+
+    elif rest_heal_pat.match(line):
+        player = identify_player(line, rest_heal_pat)
+        mon = players[player].currentmon
+        if mon:
+            mon.status = utils.Status.SLEEP
+            mon.heal(100)
+            converted = (
+                f'|-status|p{player + 1}a: {mon.nick}|slp|[from] move: Rest\n'
+                f'|-heal|p{player + 1}a: {mon.nick}|{mon.approx_hp()}/100 slp|[silent]'
+            )
 
     elif frozen_solid_pat.match(line):
         player = identify_player(line, frozen_solid_pat)
