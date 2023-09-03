@@ -23,7 +23,6 @@ Snorlax is tightening its focus!
 
 "Static" Recovery via Rest and \< gen 5 wish, healing wish
 ```
-The foe's Skarmory went to sleep and became healthy!
 The healing wish came true!
 THE DADDY KITH's Conkeldurr regained health!
 Jirachi's wish came true!
