@@ -155,10 +155,8 @@ def analyze_line(line: str) -> str:
 
     stealth_rock_dmg_pat = re.compile(r'Pointed stones dug into (.*)!')
     spikes_dmg_pat = re.compile("(.*) (was|is) hurt by spikes!")
-    burn_dmg_pat = re.compile("(.*) was hurt by its burn!")
-    # poison gets the verb removed as sometimes it is in present tense (is hurt by poison) and sometimes it is in past tense 
-    # (was hurt by poison) this matches both
-    poison_dmg_pat = re.compile("(.*) hurt by poison!")
+    burn_dmg_pat = re.compile("(.*) (was|is) hurt by its burn!")
+    poison_dmg_pat = re.compile("(.*) (was|is) hurt by poison!")
     sandstorm_dmg_pat = re.compile("(.*) (was|is) buffeted by the sandstorm!")
     leftovers_pat = re.compile("(.*) restored a little HP using its Leftovers!")
     black_sludge_pat = re.compile("(.*) restored a little HP using its Black Sludge!")
