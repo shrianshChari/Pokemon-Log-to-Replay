@@ -166,7 +166,7 @@ def analyze_line(line: str) -> str:
     frozen_solid_pat = re.compile("(.*) is frozen solid!")
     # Don't have a replay where a Pokemon thaws out
 
-    damage_dealt_pat = re.compile("[0-9.]+%")
+    damage_dealt_pat = re.compile("[0-9.]+\% of")
 
     landed_pat = re.compile("(.*) landed on the ground!")
     heal_pat = re.compile("(.*) regained health!")
@@ -366,7 +366,7 @@ def analyze_line(line: str) -> str:
         move, use_player, target_player, use_mon, target_mon = moves_buffer
         opposing_player = int(not target_player)
         damage_done = damage_dealt_pat.search(line).group(0)
-        target_mon.damage(float(damage_done[:-1]))
+        target_mon.damage(float(damage_done[:-4]))
         converted = f"|-damage|p{target_player+1}a: {target_mon.nick}|{target_mon.approx_hp()}\/100{target_mon.space_status()}"
 
     elif protect_pat.match(line):
