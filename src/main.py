@@ -148,11 +148,15 @@ def analyze_line(line: str) -> str:
     reflect_start_pat = re.compile('Reflect raised (.*) team defense!')
     reflect_end_pat = re.compile('(.*) reflect wore off!')
     protect_pat = re.compile('(.*) protected itself!')
+    taunt_pat = re.compile("(.*) fell for the taunt!")
+    taunt_end_pat = re.compile("(.*) taunt ended!")
+    trick_item_pat = re.compile("(.*) obtained one (.*)!")
+    trick_activate_pat = re.compile("(.*) switched items with (.*)!")
 
     stealth_rock_dmg_pat = re.compile(r'Pointed stones dug into (.*)!')
     spikes_dmg_pat = re.compile("(.*) (was|is) hurt by spikes!")
-    burn_dmg_pat = re.compile("(.*) was hurt by its burn!")
-    poison_dmg_pat = re.compile("(.*) was hurt by poison!")
+    burn_dmg_pat = re.compile("(.*) (was|is) hurt by its burn!")
+    poison_dmg_pat = re.compile("(.*) (was|is) hurt by poison!")
     sandstorm_dmg_pat = re.compile("(.*) (was|is) buffeted by the sandstorm!")
     leftovers_pat = re.compile("(.*) restored a little HP using its Leftovers!")
     black_sludge_pat = re.compile("(.*) restored a little HP using its Black Sludge!")
@@ -162,8 +166,8 @@ def analyze_line(line: str) -> str:
     rest_heal_pat = re.compile("(.*) went to sleep and became healthy!")
 
     full_para_pat = re.compile("(.*) is paralyzed! It can't move!")
-
     frozen_solid_pat = re.compile("(.*) is frozen solid!")
+    is_poisoned_pat = re.compile("(.*) is already poisoned.")
     # Don't have a replay where a Pokemon thaws out
 
     damage_dealt_pat = re.compile("[0-9.]+\% of")
@@ -177,15 +181,20 @@ def analyze_line(line: str) -> str:
     boosted_stat_two_level_pat = re.compile('(.*) sharply rose!')
 
     immune_pat = re.compile("It had no effect on (.*)!")
+    flash_fire_pat = re.compile('(.*) Flash Fire raised the power of its Fire-type moves!')
     miss_pat = re.compile('The attack (.*) missed!')
     miss_pat_avoid = re.compile('(.*) avoided the attack!')
+    has_sub_pat = re.compile("(.*) already has a substitute.")
 
     intim_pat = re.compile("(.*) intimidates (.*)")
 
-
+    immune_no_info_pat = "It had no effect!"
     crit_pat = "A critical hit!"
     super_effective_pat = "It's super effective!"
     not_very_effective_pat = "It's not very effective..."
+    # yes there is a typo, yes its intended
+    failed_pat_typo = "But if failed!"
+    failed_pat = "But it failed!"
 
     converted = '|'
     if battle_started_pat.match(line):
@@ -324,7 +333,10 @@ def analyze_line(line: str) -> str:
     elif heal_pat.match(line):
         move, use_player, target_player, use_mon, target_mon = moves_buffer
         target_mon.heal(50.0)
-        converted = f"|-heal|p{target_player+1}a: {target_mon.nick}|{target_mon.approx_hp()}\/100"
+        converted = f"|-heal|p{target_player+1}a: {target_mon.nick}|{target_mon.approx_hp()}\/100{target_mon.space_status()}"
+
+
+
 
     elif not_very_effective_pat == line:
         move, use_player, target_player, use_mon, target_mon = moves_buffer
@@ -350,6 +362,11 @@ def analyze_line(line: str) -> str:
         move, use_player, target_player, use_mon, target_mon = moves_buffer
         converted = f'|-crit|p{target_player+1}a: {target_mon.nick}'
 
+    elif failed_pat in line or failed_pat_typo in line or is_poisoned_pat.match(line) or has_sub_pat.match(line):
+        move, use_player, target_player, use_mon, target_mon = moves_buffer
+        converted = f'|-fail|p{use_player+1}a: {use_mon.nick}|{move}'
+
+
     elif miss_pat.match(line) or miss_pat_avoid.match(line):
         move, use_player, target_player, use_mon, target_mon = moves_buffer
         converted = f'|-miss|p{use_player+1}a: {use_mon.nick}|p{target_player+1}a: {target_mon.nick}'
@@ -358,7 +375,7 @@ def analyze_line(line: str) -> str:
         move, use_player, target_player, use_mon, target_mon = moves_buffer
         converted = f'|-supereffective|p{target_player+1}a: {target_mon.nick}'
 
-    elif immune_pat.match(line):
+    elif immune_pat.match(line) or immune_no_info_pat in line:
         move, use_player, target_player, use_mon, target_mon = moves_buffer
         converted = f'|-immune|p{target_player+1}a: {target_mon.nick}'
 
@@ -377,9 +394,38 @@ def analyze_line(line: str) -> str:
         else: 
             converted = f'|-activate|p{target_player+1}a: {target_mon.nick}|move: Protect'
 
+    elif trick_activate_pat.match(line):
+        move, use_player, target_player, use_mon, target_mon = moves_buffer
+        converted = f'|-activate|p{use_player+1}a: {use_mon.nick}|move: Trick|[of] p{target_player+1}a: {target_mon.nick}'
+
+    elif trick_item_pat.match(line):
+        player = identify_player(line, trick_item_pat)
+        mon = players[player].currentmon
+        item = trick_item_pat.match(line).group(2)
+        if mon and item:
+            converted = f'|-item|p{player+1}a: {mon.nick}|{item}|[from] move: Trick'
+
+
     elif intim_pat.match(line):
         user = identify_player(line, intim_pat)
         converted = f'|-ability|p{user+1}a: {players[user].currentmon.nick}|Intimidate|boost'
+    elif flash_fire_pat.match(line):
+        user = identify_player(line, flash_fire_pat)
+        converted = (
+            f"|-ability|p{user+1}a: {players[user].currentmon.nick}|Flash Fire|\n"
+            f"|-start|p{user+1}a: {players[user].currentmon.nick}|Flash Fire|[silent]"
+        )
+
+    elif taunt_pat.match(line):
+        player = identify_player(line, taunt_pat)
+        mon = players[player].currentmon
+        if mon:
+            converted = f'|-start|p{player + 1}a: {mon.nick}|Taunt'
+    elif taunt_end_pat.match(line):
+        player = identify_player(line, taunt_end_pat)
+        mon = players[player].currentmon
+        if mon:
+            converted = f'|-end|p{player + 1}a: {mon.nick}|Taunt'
 
     elif move_used_pat.match(line):
         use_player = identify_player(line, move_used_pat)
@@ -473,6 +519,9 @@ def analyze_line(line: str) -> str:
                         damage = 16.6
                     case 3:
                         damage = 25
+                # TODO: this is a band aid fix, rapid spin might not remove internal hazards?
+                if gen == 2:
+                    damage = 12.5
                 mon.damage(damage)
                 status = mon.space_status()
                 converted = (
