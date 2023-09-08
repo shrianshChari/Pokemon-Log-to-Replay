@@ -95,7 +95,6 @@ def identify_player(line: str, pat: re.Pattern) -> int:
             player = current_player
     return player
 
-
 def analyze_line(line: str) -> str:
     global players
     global gen
@@ -239,10 +238,12 @@ def analyze_line(line: str) -> str:
                                                        match.group(2))
                         else:
                             players[1].add_pokemon(match.group(2))
+
     if mode_pat.search(line):
         match = mode_pat.search(line)
         if match:
             converted = f"|gametype|{match.group(1).lower()}"
+
 
     elif tier_pat.match(line):
         tier_log = line
@@ -257,6 +258,14 @@ def analyze_line(line: str) -> str:
         match = clause_pat.search(line)
         if match:
             converted = f"|rule|{match.group(1)}"
+    elif chat_pat.match(line):
+        match = chat_pat.search(line)
+        if match:
+            full_msg = [match.group(1), match.group(2)]
+            if (full_msg[0] == players[0].name or
+                    full_msg[0] == players[1].name):
+                full_msg[0] = '☆' + full_msg[0]
+            converted = f"|c|{full_msg[0]}|{full_msg[1]}"
 
     elif turn_start_pat.match(line):
         match = turn_start_pat.search(line)
@@ -296,9 +305,13 @@ def analyze_line(line: str) -> str:
                 player.currentmon = mon
                 status = mon.space_status()
                 mon.toxic_turns = 0
+                source = ""
+                if moves_buffer:
+                    if moves_buffer[0] == "Baton Pass":
+                        source = '|[from] Baton Pass'
                 converted += (
                     rf'|switch|p{playernum + 1}a: {mon.nick}|'
-                    rf'{mon.species}|{mon.approx_hp()}\/100{status}'
+                    rf'{mon.species}|{mon.approx_hp()}\/100{status}{source}'
                 )
                 if gen <= 2 and mon.status == utils.Status.TOXIC:
                     mon.status = utils.Status.POISON
@@ -344,19 +357,23 @@ def analyze_line(line: str) -> str:
 
     elif boosted_stat_two_level_pat.match(line):
         target = identify_player(line, boosted_stat_two_level_pat)
-        converted = f'|-boost|p{target+1}a: {players[target].currentmon.nick}|{utils.match_big_stat_to_small(line)}|2'
+        boosted_stat = utils.match_big_stat_to_small(line)
+        converted = f'|-boost|p{target+1}a: {players[target].currentmon.nick}|{boosted_stat}|2'
 
     elif lowered_stat_two_level_pat.match(line):
         target = identify_player(line, lowered_stat_one_level_pat)
-        converted = f'|-unboost|p{target+1}a: {players[target].currentmon.nick}|{utils.match_big_stat_to_small(line)}|2'
+        boosted_stat = utils.match_big_stat_to_small(line)
+        converted = f'|-unboost|p{target+1}a: {players[target].currentmon.nick}|{boosted_stat}|2'
 
     elif boosted_stat_one_level_pat.match(line):
         target = identify_player(line, boosted_stat_one_level_pat)
-        converted = f'|-boost|p{target+1}a: {players[target].currentmon.nick}|{utils.match_big_stat_to_small(line)}|1'
+        boosted_stat = utils.match_big_stat_to_small(line)
+        converted = f'|-boost|p{target+1}a: {players[target].currentmon.nick}|{boosted_stat}|1'
 
     elif lowered_stat_one_level_pat.match(line):
         target = identify_player(line, lowered_stat_one_level_pat)
-        converted = f'|-unboost|p{target+1}a: {players[target].currentmon.nick}|{utils.match_big_stat_to_small(line)}|1'
+        boosted_stat = utils.match_big_stat_to_small(line)
+        converted = f'|-unboost|p{target+1}a: {players[target].currentmon.nick}|{boosted_stat}|1'
 
     elif crit_pat == line:
         move, use_player, target_player, use_mon, target_mon = moves_buffer
@@ -493,15 +510,6 @@ def analyze_line(line: str) -> str:
         if match:
             remove_brackets = re.sub('\\[.*\\]', '', match.group(1))
             converted = f"|l|{remove_brackets}"
-
-    elif chat_pat.match(line):
-        match = chat_pat.search(line)
-        if match:
-            full_msg = [match.group(1), match.group(2)]
-            if (full_msg[0] == players[0].name or
-                    full_msg[0] == players[1].name):
-                full_msg[0] = '☆' + full_msg[0]
-            converted = f"|c|{full_msg[0]}|{full_msg[1]}"
 
     elif spikes_dmg_pat.match(line):
         if is_phased:
