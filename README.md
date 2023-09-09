@@ -11,29 +11,20 @@ Convert from logs from Pokemon Online and Shoddy to replays from Pokemon Showdow
 - [ ] Start developing (currently testing RegEx patterns)
 
 ### Patterns to be implemented:
-Damage via leech seed
-```
-THE DADDY KITH's Bronzong's health is sapped by leech seed.
-```
-Focus punch tightening
 
-```
-Snorlax is tightening its focus!
-```
+alf-100celsiuscpu-gen4ou - But there was no target!
+ardorin-boudouche-gen4ou - Focus Sash
+crashingboombang-mangonation-gen3ou - Focus Punch, Flinch
+highimpulse-ciele-gen3ou - Clear Body
+highimpulse-ciele-gen4ou - Bounce
+pimpmygo-Malekith-gen3ou - Non-modern Wish
+pimpmygo-Malekith-gen4ou - Rain Dance
+pasy-annoyer-gen4-nu / hvislysettaross-dolcefarniente-gen4ou - Chesto Berry / Resist Berry
 
-"Static" Recovery via Rest and \< gen 5 wish, healing wish
-```
-The healing wish came true!
-THE DADDY KITH's Conkeldurr regained health!
-Jirachi's wish came true!
-```
 
-##### Abilities
-```
-Blue_Star's Poison Point activates!
-```
 ### Things to Solve
-Life Orb recoil doesn't appear in the chat
+
+1. Life Orb recoil doesn't appear in the chat
 ```
 Earthworm sent out Tyranitar!
 BKC sent out Orion! (Starmie)
@@ -51,24 +42,32 @@ Orion fainted!
 ```
 > From [BKC vs Earthworm Redux](https://www.smogon.com/forums/threads/past-gen-battle-logs.3483431); the only way that Starmie dies turn 1 is if it is holding a Life Orb, otherwise it doesn't die to 90% Crunch + 6% Sandstorm.
 
-Wish Mechanics in Gen 5
+1. Wish Mechanics in Gen 5
 ```
 Jolteon's wish came true!
 ```
 I don't have access to Gen 5 logs at the moment, so I don't know if it tells how much a Pokemon heals by with Wish. If not, Wish mechanics could produce uncertainty in the replay, and if there's one thing I want to avoid, it's misrepresenting historic battles.
 
-Baton Pass
-```
-The foe's Zapdos used Baton Pass!
-Snorlax used Body Slam!
-It's not very effective...
-The foe's Tyranitar's substitute took the damage!
-```
-
-Passive recovery
+1. Leech Seed
 ```
 THE DADDY KITH's Bronzong's health is sapped by leech seed.
 ```
-Weather reliant recovery?
+1. Pain Split
+```
+NEGRITO BANANA's Rotom-W used Pain Split!
+The battlers shared their pain!
+```
 
-Better Build system for building working html files with replays
+1. Recoil
+```
+Sweepage's SoulWind is damaged by recoil!
+```
+
+1. Tier ambiguity
+Sometimes the tier shows up just as "Overused" which causes replays to be generated with "Gen -1 OU"
+Battle logs effected: boudouche-absurd-gen5ou, negritobanana-sweepage-gen5ou, nicedognicedog-alf-gen5ou
+
+1. Errors
+ardorin-boudouche-gen5ou and boudouche-absurd-gen4ou have whirlwind broken, `Cannot tell who the mon is.`
+
+1. Better Build system for building working html files with replays
