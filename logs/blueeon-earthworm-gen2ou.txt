@@ -34,6 +34,9 @@ el dog: DOG
 bro fist is watching the battle.
 react is watching the battle.
 
+Blue Eon sent out Raikou!
+Earthworm sent out Raikou!
+
 Start of turn 1
 Blue Eon's Raikou used Thunder!
 The attack of Blue Eon's Raikou missed!
