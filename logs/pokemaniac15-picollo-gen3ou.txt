@@ -1,0 +1,766 @@
+Battle Log:
+Battle Mode: Ruby/Sapphire
+Rule: Sleep Clause
+Rule: Freeze Clause
+Rule: Self-KO Clause
+Rule: Apply PP Ups
+Rule: Battle Timeout
+Rule: Unrated
+pokemaniac15 vs Picollo..  Begin!
+pokemaniac15 sent out Zapdos (Lv.100 Zapdos)!
+Picollo. sent out Celebi (Lv.100 Celebi)!
+Devilkid [386] has started watching.
+Devilkid [386]: gl guys
+
+Begin Turn #1
+Celebi used Baton Pass!
+Picollo. sent out Snorlax (Lv.100 Snorlax)!
+---------------------------------
+Zapdos used Hidden Power!
+(68 damage)
+---------------------------------
+Snorlax's Leftovers restored its HP a little!
+End of turn #1
+pokemaniac15's Zapdos: 100% HP
+Picollo.'s Snorlax: 470 HP
+goofball has started watching.
+
+Begin Turn #2
+pokemaniac15 withdrew Zapdos!
+pokemaniac15 sent out Skarmory (Lv.100 Skarmory)!
+---------------------------------
+Snorlax used Return!
+(14% damage)
+It's not very effective...
+---------------------------------
+Skarmory's Leftovers restored its HP a little!
+Snorlax's Leftovers restored its HP a little!
+End of turn #2
+pokemaniac15's Skarmory: 92% HP
+Picollo.'s Snorlax: 501 HP
+........... has started watching.
+
+Begin Turn #3
+Picollo. withdrew Snorlax!
+Picollo. sent out Magneton (Lv.100 Magneton)!
+---------------------------------
+Skarmory used Whirlwind!
+Magneton was blown away!
+Celebi (Lv.100 Celebi) was dragged out!
+---------------------------------
+Skarmory's Leftovers restored its HP a little!
+End of turn #3
+pokemaniac15's Skarmory: 98% HP
+Picollo.'s Celebi: 353 HP
+pokemaniac15: crap
+
+Begin Turn #4
+pokemaniac15 withdrew Skarmory!
+pokemaniac15 sent out Zapdos (Lv.100 Zapdos)!
+---------------------------------
+Celebi used Swords Dance!
+Celebi's Attack sharply rose!
+---------------------------------
+End of turn #4
+pokemaniac15's Zapdos: 100% HP
+Picollo.'s Celebi: 353 HP
+
+Begin Turn #5
+Celebi used Baton Pass!
+Picollo. sent out Snorlax (Lv.100 Snorlax)!
+---------------------------------
+Zapdos used Metal Sound!
+Snorlax's Special Defense sharply fell!
+---------------------------------
+Snorlax's Leftovers restored its HP a little!
+End of turn #5
+pokemaniac15's Zapdos: 100% HP
+Picollo.'s Snorlax: 507 HP
+
+Begin Turn #6
+Picollo. withdrew Snorlax!
+Picollo. sent out Magneton (Lv.100 Magneton)!
+---------------------------------
+Zapdos used Thunderbolt!
+(113 damage)
+It's not very effective...
+---------------------------------
+Magneton's Leftovers restored its HP a little!
+End of turn #6
+pokemaniac15's Zapdos: 100% HP
+Picollo.'s Magneton: 186 HP
+sidious (RBY) has started watching.
+IMAP has started watching.
+Devilkid [386]: :(
+
+Begin Turn #7
+Picollo. withdrew Magneton!
+Picollo. sent out Snorlax (Lv.100 Snorlax)!
+---------------------------------
+Zapdos used Thunderbolt!
+(141 damage)
+---------------------------------
+Snorlax's Leftovers restored its HP a little!
+End of turn #7
+pokemaniac15's Zapdos: 100% HP
+Picollo.'s Snorlax: 397 HP
+pokemaniac15: I like how Metal Sound can screw Baton Pass oriented teams
+
+Begin Turn #8
+Picollo. withdrew Snorlax!
+Picollo. sent out Magneton (Lv.100 Magneton)!
+---------------------------------
+Zapdos used Metal Sound!
+Magneton's Special Defense sharply fell!
+---------------------------------
+Magneton's Leftovers restored its HP a little!
+End of turn #8
+pokemaniac15's Zapdos: 100% HP
+Picollo.'s Magneton: 203 HP
+
+Begin Turn #9
+Picollo. withdrew Magneton!
+Picollo. sent out Celebi (Lv.100 Celebi)!
+---------------------------------
+Zapdos used Thunderbolt!
+(87 damage)
+It's not very effective...
+---------------------------------
+Celebi's Leftovers restored its HP a little!
+End of turn #9
+pokemaniac15's Zapdos: 100% HP
+Picollo.'s Celebi: 288 HP
+
+Begin Turn #10
+Celebi used Leech Seed!
+Zapdos was seeded!
+---------------------------------
+Zapdos used Hidden Power!
+(155 damage)
+It's super effective!
+---------------------------------
+Celebi's Leftovers restored its HP a little!
+Zapdos's health is sapped by Leech Seed!
+End of turn #10
+pokemaniac15's Zapdos: 88% HP
+Picollo.'s Celebi: 201 HP
+
+Begin Turn #11
+pokemaniac15 withdrew Zapdos!
+pokemaniac15 sent out Heracross (Lv.100 Heracross)!
+---------------------------------
+Celebi used Baton Pass!
+Devilkid [386]: yes
+Picollo. sent out Dugtrio (Lv.100 Dugtrio)!
+---------------------------------
+End of turn #11
+pokemaniac15's Heracross: 100% HP
+Picollo.'s Dugtrio: 212 HP
+pokemaniac15: ._.
+
+Begin Turn #12
+Dugtrio used Aerial Ace!
+(100% damage)
+A critical hit!
+It's super effective!
+Heracross fainted!
+IMAP: aint that a shame
+IMAP: >_>
+pokemaniac15: Dugtrio + Magneton = instant gay
+pokemaniac15 sent out Swampert (Lv.100 Swampert)!
+---------------------------------
+End of turn #12
+pokemaniac15's Swampert: 100% HP
+Picollo.'s Dugtrio: 212 HP
+IMAP: Fagneton?
+IMAP: <_<
+
+Begin Turn #13
+Picollo. withdrew Dugtrio!
+Picollo. sent out Celebi (Lv.100 Celebi)!
+---------------------------------
+Swampert used Ice Beam!
+(148 damage)
+It's super effective!
+---------------------------------
+Celebi's Leftovers restored its HP a little!
+End of turn #13
+pokemaniac15's Swampert: 100% HP
+Picollo.'s Celebi: 75 HP
+
+Begin Turn #14
+Picollo. withdrew Celebi!
+Picollo. sent out Snorlax (Lv.100 Snorlax)!
+---------------------------------
+Swampert used Ice Beam!
+(64 damage)
+---------------------------------
+Snorlax's Leftovers restored its HP a little!
+End of turn #14
+pokemaniac15's Swampert: 100% HP
+Picollo.'s Snorlax: 364 HP
+
+Begin Turn #15
+Swampert used Curse!
+Swampert's Attack rose!
+Swampert's Defense rose!
+Swampert's Speed fell!
+---------------------------------
+Snorlax used Curse!
+Snorlax's Attack rose!
+Snorlax's Defense rose!
+Snorlax's Speed fell!
+---------------------------------
+Snorlax's Leftovers restored its HP a little!
+End of turn #15
+pokemaniac15's Swampert: 100% HP
+Picollo.'s Snorlax: 395 HP
+
+Begin Turn #16
+Swampert used Earthquake!
+(395 damage)
+A critical hit!
+Snorlax fainted!
+Devilkid [386]: autch
+pokemaniac15: ok that works
+IMAP: O_O
+goofball: smelly
+sidious (RBY): ...
+Picollo. sent out Metagross (Lv.100 Metagross)!
+---------------------------------
+End of turn #16
+pokemaniac15's Swampert: 100% HP
+Picollo.'s Metagross: 313 HP
+
+Begin Turn #17
+Picollo. withdrew Metagross!
+Picollo. sent out Salamence (Lv.100 Salamence)!
+Salamence's Intimidate cuts Swampert's Attack!
+---------------------------------
+Swampert used Earthquake!
+It doesn't affect Salamence...
+---------------------------------
+End of turn #17
+pokemaniac15's Swampert: 100% HP
+Picollo.'s Salamence: 345 HP
+
+Begin Turn #18
+Picollo. withdrew Salamence!
+Picollo. sent out Metagross (Lv.100 Metagross)!
+---------------------------------
+Swampert used Curse!
+Swampert's Attack rose!
+Swampert's Defense rose!
+Swampert's Speed fell!
+---------------------------------
+End of turn #18
+pokemaniac15's Swampert: 100% HP
+Picollo.'s Metagross: 313 HP
+
+Begin Turn #19
+Metagross used Explosion!
+(75% damage)
+Metagross fainted!
+Picollo. sent out Dugtrio (Lv.100 Dugtrio)!
+---------------------------------
+Swampert's Leftovers restored its HP a little!
+End of turn #19
+pokemaniac15's Swampert: 31% HP
+Picollo.'s Dugtrio: 212 HP
+
+Begin Turn #20
+Dugtrio used Earthquake!
+(25% damage)
+---------------------------------
+Swampert used Rest!
+Swampert went to sleep!
+---------------------------------
+End of turn #20
+pokemaniac15's Swampert: 100% HP (Slp)
+Picollo.'s Dugtrio: 212 HP
+
+Begin Turn #21
+Picollo. withdrew Dugtrio!
+Picollo. sent out Magneton (Lv.100 Magneton)!
+---------------------------------
+Swampert is fast asleep.
+---------------------------------
+Magneton's Leftovers restored its HP a little!
+End of turn #21
+pokemaniac15's Swampert: 100% HP (Slp)
+Picollo.'s Magneton: 220 HP
+goofball has started watching.
+
+Begin Turn #22
+pokemaniac15 withdrew Swampert!
+pokemaniac15 sent out Celebi (Lv.100 Celebi)!
+---------------------------------
+Magneton used Hidden Power!
+(9% damage)
+It's not very effective...
+---------------------------------
+Celebi's Leftovers restored its HP a little!
+Magneton's Leftovers restored its HP a little!
+End of turn #22
+pokemaniac15's Celebi: 98% HP
+Picollo.'s Magneton: 237 HP
+
+Begin Turn #23
+Picollo. withdrew Magneton!
+Picollo. sent out Dugtrio (Lv.100 Dugtrio)!
+---------------------------------
+Celebi used Leech Seed!
+Dugtrio was seeded!
+---------------------------------
+Dugtrio's health is sapped by Leech Seed!
+End of turn #23
+pokemaniac15's Celebi: 100% HP
+Picollo.'s Dugtrio: 186 HP
+goofball: IT HAS HP PSYCHIC !!!!
+
+Begin Turn #24
+Picollo. withdrew Dugtrio!
+Picollo. sent out Magneton (Lv.100 Magneton)!
+---------------------------------
+Celebi used Hidden Power!
+(61 damage)
+It's not very effective...
+---------------------------------
+Magneton's Leftovers restored its HP a little!
+End of turn #24
+pokemaniac15's Celebi: 100% HP
+Picollo.'s Magneton: 193 HP
+Devilkid [386]: IT DOES
+
+Begin Turn #25
+Celebi used Heal Bell!
+A bell chimed!
+---------------------------------
+Magneton used Thunder Wave!
+Celebi is paralyzed! It may be unable to move!
+---------------------------------
+Magneton's Leftovers restored its HP a little!
+End of turn #25
+pokemaniac15's Celebi: 100% HP (Par)
+Picollo.'s Magneton: 210 HP
+goofball: or grass
+goofball: xD
+Devilkid [386]: NAH PSYCHIC ^^
+
+Begin Turn #26
+Magneton used Hidden Power!
+(9% damage)
+It's not very effective...
+---------------------------------
+Celebi used Hidden Power!
+(56 damage)
+It's not very effective...
+---------------------------------
+Magneton's Leftovers restored its HP a little!
+Celebi's Leftovers restored its HP a little!
+End of turn #26
+pokemaniac15's Celebi: 97% HP (Par)
+Picollo.'s Magneton: 171 HP
+IMAP: I hope it is grass
+IMAP: >_>
+
+Begin Turn #27
+Picollo. withdrew Magneton!
+Picollo. sent out Salamence (Lv.100 Salamence)!
+Salamence's Intimidate cuts Celebi's Attack!
+---------------------------------
+Celebi used Hidden Power!
+(25 damage)
+It's not very effective...
+---------------------------------
+Salamence's Leftovers restored its HP a little!
+Celebi's Leftovers restored its HP a little!
+End of turn #27
+pokemaniac15's Celebi: 100% HP (Par)
+Picollo.'s Salamence: 341 HP
+........... has left.
+Devilkid [386]: oh u are so lolling
+sidious (RBY): grass
+Devilkid [386]: sure it is >_>
+goofball: use hp grass salamence !!!
+
+Begin Turn #28
+pokemaniac15 withdrew Celebi!
+pokemaniac15 sent out Swampert (Lv.100 Swampert)!
+---------------------------------
+Salamence used Dragon Dance!
+Salamence's Attack rose!
+Salamence's Speed rose!
+---------------------------------
+Salamence's Leftovers restored its HP a little!
+End of turn #28
+pokemaniac15's Swampert: 100% HP
+Picollo.'s Salamence: 345 HP
+
+Begin Turn #29
+Salamence used Hidden Power!
+(44% damage)
+---------------------------------
+Swampert used Ice Beam!
+(331 damage)
+It's super effective!
+---------------------------------
+Salamence's Leftovers restored its HP a little!
+Swampert's Leftovers restored its HP a little!
+End of turn #29
+pokemaniac15's Swampert: 62% HP
+Picollo.'s Salamence: 35 HP
+Devilkid [386]: yes that owns also
+goofball: what did i tell you !!!!!!!!!
+Sky. has started watching.
+
+Begin Turn #30
+Picollo. withdrew Salamence!
+Picollo. sent out Magneton (Lv.100 Magneton)!
+---------------------------------
+Swampert used Ice Beam!
+(48 damage)
+It's not very effective...
+---------------------------------
+Magneton's Leftovers restored its HP a little!
+Swampert's Leftovers restored its HP a little!
+End of turn #30
+pokemaniac15's Swampert: 68% HP
+Picollo.'s Magneton: 140 HP
+
+Begin Turn #31
+pokemaniac15 withdrew Swampert!
+pokemaniac15 sent out Zapdos (Lv.100 Zapdos)!
+---------------------------------
+Picollo. withdrew Magneton!
+Picollo. sent out Dugtrio (Lv.100 Dugtrio)!
+---------------------------------
+Zapdos's Leftovers restored its HP a little!
+End of turn #31
+pokemaniac15's Zapdos: 94% HP
+Picollo.'s Dugtrio: 186 HP
+Devilkid [386]: cmon profil
+
+Begin Turn #32
+pokemaniac15 withdrew Zapdos!
+pokemaniac15 sent out Donphan (Lv.100 Donphan)!
+---------------------------------
+Dugtrio used Rock Slide!
+(10% damage)
+It's not very effective...
+---------------------------------
+Donphan's Leftovers restored its HP a little!
+End of turn #32
+pokemaniac15's Donphan: 97% HP
+Picollo.'s Dugtrio: 186 HP
+
+Begin Turn #33
+Picollo. withdrew Dugtrio!
+Picollo. sent out Salamence (Lv.100 Salamence)!
+Salamence's Intimidate cuts Donphan's Attack!
+---------------------------------
+Donphan used Hidden Power!
+(35 damage)
+It's super effective!
+Salamence fainted!
+Picollo. sent out Celebi (Lv.100 Celebi)!
+---------------------------------
+Celebi's Leftovers restored its HP a little!
+Donphan's Leftovers restored its HP a little!
+End of turn #33
+pokemaniac15's Donphan: 100% HP
+Picollo.'s Celebi: 97 HP
+
+Begin Turn #34
+pokemaniac15 withdrew Donphan!
+pokemaniac15 sent out Zapdos (Lv.100 Zapdos)!
+---------------------------------
+Celebi used Leech Seed!
+Zapdos was seeded!
+---------------------------------
+Celebi's Leftovers restored its HP a little!
+Zapdos's Leftovers restored its HP a little!
+Zapdos's health is sapped by Leech Seed!
+End of turn #34
+pokemaniac15's Zapdos: 88% HP
+Picollo.'s Celebi: 165 HP
+
+Begin Turn #35
+Celebi used Psychic!
+(32% damage)
+---------------------------------
+Zapdos used Metal Sound!
+Celebi's Special Defense sharply fell!
+---------------------------------
+Celebi's Leftovers restored its HP a little!
+Zapdos's Leftovers restored its HP a little!
+Zapdos's health is sapped by Leech Seed!
+End of turn #35
+pokemaniac15's Zapdos: 50% HP
+Picollo.'s Celebi: 233 HP
+
+Begin Turn #36
+pokemaniac15 withdrew Zapdos!
+pokemaniac15 sent out Celebi (Lv.100 Celebi)!
+---------------------------------
+Picollo. withdrew Celebi!
+Picollo. sent out Magneton (Lv.100 Magneton)!
+---------------------------------
+Magneton's Leftovers restored its HP a little!
+End of turn #36
+pokemaniac15's Celebi: 100% HP
+Picollo.'s Magneton: 157 HP
+
+Begin Turn #37
+Celebi used Leech Seed!
+Celebi's attack missed!
+---------------------------------
+Magneton used Hidden Power!
+(9% damage)
+It's not very effective...
+---------------------------------
+Celebi's Leftovers restored its HP a little!
+Magneton's Leftovers restored its HP a little!
+End of turn #37
+pokemaniac15's Celebi: 97% HP
+Picollo.'s Magneton: 174 HP
+
+Begin Turn #38
+Picollo. withdrew Magneton!
+Picollo. sent out Celebi (Lv.100 Celebi)!
+---------------------------------
+Celebi used Hidden Power!
+(46 damage)
+It's not very effective...
+---------------------------------
+Celebi's Leftovers restored its HP a little!
+Celebi's Leftovers restored its HP a little!
+End of turn #38
+pokemaniac15's Celebi: 100% HP
+Picollo.'s Celebi: 209 HP
+
+Begin Turn #39
+Celebi used Leech Seed!
+Celebi evaded the attack!
+---------------------------------
+Celebi used Hidden Power!
+(43 damage)
+It's not very effective...
+---------------------------------
+Celebi's Leftovers restored its HP a little!
+End of turn #39
+pokemaniac15's Celebi: 100% HP
+Picollo.'s Celebi: 188 HP
+
+Begin Turn #40
+Celebi used Swords Dance!
+Celebi's Attack sharply rose!
+---------------------------------
+Celebi used Hidden Power!
+(45 damage)
+It's not very effective...
+---------------------------------
+Celebi's Leftovers restored its HP a little!
+End of turn #40
+pokemaniac15's Celebi: 100% HP
+Picollo.'s Celebi: 165 HP
+
+Begin Turn #41
+Celebi used Leech Seed!
+Celebi evaded the attack!
+---------------------------------
+Celebi used Hidden Power!
+(43 damage)
+It's not very effective...
+---------------------------------
+Celebi's Leftovers restored its HP a little!
+End of turn #41
+pokemaniac15's Celebi: 100% HP
+Picollo.'s Celebi: 144 HP
+
+Begin Turn #42
+Celebi used Leech Seed!
+Celebi evaded the attack!
+---------------------------------
+Celebi used Hidden Power!
+(41 damage)
+It's not very effective...
+---------------------------------
+Celebi's Leftovers restored its HP a little!
+End of turn #42
+pokemaniac15's Celebi: 100% HP
+Picollo.'s Celebi: 125 HP
+
+Begin Turn #43
+Celebi used Baton Pass!
+Picollo. sent out Dugtrio (Lv.100 Dugtrio)!
+---------------------------------
+Celebi used Hidden Power!
+(186 damage)
+It's super effective!
+Dugtrio fainted!
+Picollo. sent out Magneton (Lv.100 Magneton)!
+---------------------------------
+Magneton's Leftovers restored its HP a little!
+End of turn #43
+pokemaniac15's Celebi: 100% HP
+Picollo.'s Magneton: 191 HP
+Devilkid [386]: gg
+pokemaniac15: lol
+
+Begin Turn #44
+Celebi used Leech Seed!
+Magneton was seeded!
+---------------------------------
+Magneton used Thunder Wave!
+Celebi is paralyzed! It may be unable to move!
+---------------------------------
+Magneton's Leftovers restored its HP a little!
+Magneton's health is sapped by Leech Seed!
+End of turn #44
+pokemaniac15's Celebi: 100% HP (Par)
+Picollo.'s Magneton: 173 HP
+goofball: gg :(
+
+Begin Turn #45
+pokemaniac15 withdrew Celebi!
+pokemaniac15 sent out Zapdos (Lv.100 Zapdos)!
+---------------------------------
+Magneton used Hidden Power!
+(12% damage)
+It's not very effective...
+---------------------------------
+Zapdos's Leftovers restored its HP a little!
+Magneton's Leftovers restored its HP a little!
+Magneton's health is sapped by Leech Seed!
+End of turn #45
+pokemaniac15's Zapdos: 53% HP
+Picollo.'s Magneton: 155 HP
+goofball: dont worry picollo rby and gsc is still left !
+
+Begin Turn #46
+Zapdos used Thunderbolt!
+(115 damage)
+It's not very effective...
+---------------------------------
+Magneton used Thunderbolt!
+(53% damage)
+A critical hit!
+Zapdos fainted!
+pokemaniac15 sent out Celebi (Lv.100 Celebi)!
+---------------------------------
+Magneton's Leftovers restored its HP a little!
+Magneton's health is sapped by Leech Seed!
+End of turn #46
+pokemaniac15's Celebi: 100% HP
+Picollo.'s Magneton: 22 HP
+
+Begin Turn #47
+Celebi used Hidden Power!
+(22 damage)
+It's not very effective...
+Magneton fainted!
+Picollo. sent out Celebi (Lv.100 Celebi)!
+---------------------------------
+Celebi's Leftovers restored its HP a little!
+End of turn #47
+pokemaniac15's Celebi: 100% HP
+Picollo.'s Celebi: 147 HP
+
+Begin Turn #48
+Celebi used Swords Dance!
+Celebi's Attack sharply rose!
+---------------------------------
+Celebi used Hidden Power!
+(45 damage)
+It's not very effective...
+---------------------------------
+Celebi's Leftovers restored its HP a little!
+End of turn #48
+pokemaniac15's Celebi: 100% HP
+Picollo.'s Celebi: 124 HP
+
+Begin Turn #49
+pokemaniac15 withdrew Celebi!
+pokemaniac15 sent out Skarmory (Lv.100 Skarmory)!
+---------------------------------
+Celebi used Swords Dance!
+Celebi's Attack sharply rose!
+---------------------------------
+Celebi's Leftovers restored its HP a little!
+Skarmory's Leftovers restored its HP a little!
+End of turn #49
+pokemaniac15's Skarmory: 100% HP
+Picollo.'s Celebi: 146 HP
+
+Begin Turn #50
+Celebi used Leech Seed!
+Skarmory was seeded!
+---------------------------------
+Skarmory used Hidden Power!
+(103 damage)
+It's super effective!
+---------------------------------
+Celebi's Leftovers restored its HP a little!
+Skarmory's health is sapped by Leech Seed!
+End of turn #50
+pokemaniac15's Skarmory: 88% HP
+Picollo.'s Celebi: 106 HP
+
+Begin Turn #51
+Celebi used Psychic!
+(21% damage)
+It's not very effective...
+---------------------------------
+Skarmory used Hidden Power!
+(104 damage)
+It's super effective!
+---------------------------------
+Celebi's Leftovers restored its HP a little!
+Skarmory's Leftovers restored its HP a little!
+Skarmory's health is sapped by Leech Seed!
+End of turn #51
+pokemaniac15's Skarmory: 61% HP
+Picollo.'s Celebi: 65 HP
+
+Begin Turn #52
+Celebi used Psychic!
+(20% damage)
+It's not very effective...
+---------------------------------
+Skarmory used Hidden Power!
+(65 damage)
+It's super effective!
+Celebi fainted!
+
+End Battle!  pokemaniac15 wins!
+Score: 4 to 0
+Picollo.:  gg
+Devilkid [386]: gg
+pokemaniac15: gg
+sidious (RBY): gg
+goofball: GG
+pokemaniac15: what next?
+Devilkid [386]: what now?
+Picollo.: k. your choice
+Fatum has started watching.
+goofball: gsc or rby?
+pokemaniac15: hmm
+pokemaniac15: how about some rby?
+Picollo.: well ok
+goofball: gsc
+Devilkid [386]: gsd
+goofball: aw :(
+Devilkid [386]: c*
+Devilkid [386]: specs want GSC
+Devilkid [386]: lol
+goofball: play gsc :(
+goofball: ._.
+sidious (RBY): go gsc
+Devilkid [386]: ok RBY hax is also funny
+Picollo.: its p15 decission
+Fatum: both need to played if pico wanna win :D
+Fatum: +be
+
+NetBattle v0.9.6
+Log saved 16.03.2006 at 18:21:22
