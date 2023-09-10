@@ -468,8 +468,8 @@ def analyze_line(line: str) -> str:
                 'Withdraw', 'Work Up',
                 # Healing moves
                 'Heal Order', 'Milk Drink', 'Moonlight', 'Morning Sun', 'Rest',
-                'Recover', 'Roost', 'Slack Off', 'Soft-Boiled', 'Synthesis',
-                'Wish',
+                'Recover', 'Roost', 'Slack Off', 'Soft-Boiled', 'Softboiled',
+                'Synthesis', 'Wish',
                 # Miscellaneous
                 'Assist', 'Baton Pass', 'Camouflage', 'Copycat',
                 'Destiny Bond', 'Detect', 'Endure', 'Healing Wish', 'Imprison',
