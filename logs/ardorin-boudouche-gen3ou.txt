@@ -7,6 +7,8 @@ Rule: Sleep Clause
 Rule: Freeze Clause
 Rule: Species Clause
 Rule: Self-KO Clause
+
+
 MEGA SUICUNE is watching the battle.
 MF is watching the battle.
 NobodyWannaLose is watching the battle.
@@ -30,6 +32,9 @@ without sense is watching the battle.
 dolce far niente is watching the battle.
 [FH] Own3y-: :o
 Ryanor is watching the battle.
+
+Ardorin sent out Fear (Salamence)!
+Boudouche sent out Raijin (Zapdos)!
 
 Start of turn 1
 Ardorin called Fear back!
