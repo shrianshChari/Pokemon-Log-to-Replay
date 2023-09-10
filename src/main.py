@@ -144,6 +144,7 @@ def analyze_line(line: str) -> str:
     encore_pat = re.compile("(.*) received an encore!")
     substitute_start_pat = re.compile("(.*) made a substitute!")
     substitute_end_pat = re.compile("(.*) substitute faded!")
+    substitute_hit_pat = re.compile("(.*) substitute took the damage!")
     reflect_start_pat = re.compile('Reflect raised (.*) team defense!')
     reflect_end_pat = re.compile('(.*) reflect wore off!')
     protect_pat = re.compile('(.*) protected itself!')
@@ -151,6 +152,8 @@ def analyze_line(line: str) -> str:
     taunt_end_pat = re.compile("(.*) taunt ended!")
     trick_item_pat = re.compile("(.*) obtained one (.*)!")
     trick_activate_pat = re.compile("(.*) switched items with (.*)!")
+    focus_punch_pat = re.compile("(.*) is tightening its focus!")
+
 
     stealth_rock_dmg_pat = re.compile(r'Pointed stones dug into (.*)!')
     spikes_dmg_pat = re.compile("(.*) (was|is) hurt by spikes!")
@@ -184,6 +187,7 @@ def analyze_line(line: str) -> str:
     miss_pat = re.compile('The attack (.*) missed!')
     miss_pat_avoid = re.compile('(.*) avoided the attack!')
     has_sub_pat = re.compile("(.*) already has a substitute.")
+    flinch_pat = re.compile('(.*) flinched and couldn\'t move!')
 
     intim_pat = re.compile("(.*) intimidates (.*)")
 
@@ -198,6 +202,7 @@ def analyze_line(line: str) -> str:
     converted = '|'
     if battle_started_pat.match(line):
         match = battle_started_pat.match(line)
+        
         if match:
             names = [match.group(1), match.group(2)]
             players = [utils.SimpleTrainer(name) for name in names]
@@ -451,6 +456,7 @@ def analyze_line(line: str) -> str:
         use_player = identify_player(line, move_used_pat)
         match = move_used_pat.match(line)
         move = ''
+        
         if match:
             target_player = -1
             move = match.group(2)
@@ -483,6 +489,7 @@ def analyze_line(line: str) -> str:
                 target_player = int(not use_player)
             use_mon = players[use_player].currentmon
             target_mon = players[target_player].currentmon
+
             if use_mon and target_mon:
                 converted = (
                     f'|move|p{use_player + 1}a: {use_mon.nick}|{move}|'
@@ -648,6 +655,11 @@ def analyze_line(line: str) -> str:
         mon = players[player].currentmon
         if mon:
             converted = f'|cant|p{player + 1}a: {mon.nick}|{mon.status_string()}'
+    elif flinch_pat.match(line):
+        player = identify_player(line, flinch_pat)
+        mon = players[player].currentmon
+        if mon:
+            converted = f'|cant|p{player + 1}a: {mon.nick}|flinch'
 
     elif woke_up_pat.match(line):
         player = identify_player(line, woke_up_pat)
@@ -684,6 +696,13 @@ def analyze_line(line: str) -> str:
         mon = players[player].currentmon
         if mon:
             converted = f'|-start|p{player + 1}a: {mon.nick}|Encore'
+
+    elif focus_punch_pat.match(line):
+        player = identify_player(line, focus_punch_pat)
+        mon = players[player].currentmon
+        if mon:
+            converted = f'|-singleturn|p{player + 1}a: {mon.nick}|move: Focus Punch'
+            
     elif substitute_start_pat.match(line):
         player = identify_player(line, substitute_start_pat)
         mon = players[player].currentmon
@@ -693,6 +712,10 @@ def analyze_line(line: str) -> str:
                 f'|-start|p{player + 1}a: {mon.nick}|Substitute\n'
                 f'|-damage|p{player + 1}a: {mon.nick}|{mon.approx_hp()}\/100{mon.space_status()}'
             )
+    elif substitute_hit_pat.match(line):
+        player = identify_player(line, substitute_hit_pat)
+        mon = players[player].currentmon
+        converted = f'|-activate|p{player+1}a: {mon.nick}|move: Substitute|[damage]'
     elif substitute_end_pat.match(line):
         player = identify_player(line, substitute_end_pat)
         mon = players[player].currentmon
