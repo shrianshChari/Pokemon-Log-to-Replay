@@ -422,6 +422,9 @@ def analyze_line(line: str) -> str:
         if mon and item:
             converted = f'|-item|p{player+1}a: {mon.nick}|{item}|[from] move: Trick'
 
+    elif line == 'But there was no target...':
+        move, use_player, target_player, use_mon, target_mon = moves_buffer
+        converted = f'|-notarget|p{use_player + 1}a: {use_mon.nick}'
 
     elif intim_pat.match(line):
         user = identify_player(line, intim_pat)

@@ -12,14 +12,13 @@ Convert from logs from Pokemon Online and Shoddy to replays from Pokemon Showdow
 
 ### Patterns to be implemented:
 
-alf-100celsiuscpu-gen4ou - But there was no target!
-ardorin-boudouche-gen4ou - Focus Sash
-crashingboombang-mangonation-gen3ou - Focus Punch, Flinch
-highimpulse-ciele-gen3ou - Clear Body
-highimpulse-ciele-gen4ou - Bounce
-pimpmygo-Malekith-gen3ou - Non-modern Wish
-pimpmygo-Malekith-gen4ou - Rain Dance
-pasy-annoyer-gen4-nu / hvislysettaross-dolcefarniente-gen4ou - Chesto Berry / Resist Berry
+ardorin-boudouche-gen4ou - Focus Sash<br>
+crashingboombang-mangonation-gen3ou - Focus Punch, Flinch<br>
+highimpulse-ciele-gen3ou - Clear Body<br>
+highimpulse-ciele-gen4ou - Bounce<br>
+pimpmygo-Malekith-gen3ou - Non-modern Wish<br>
+pimpmygo-Malekith-gen4ou - Rain Dance<br>
+pasy-annoyer-gen4-nu / hvislysettaross-dolcefarniente-gen4ou - Chesto Berry / Resist Berry<br>
 
 
 ### Things to Solve
