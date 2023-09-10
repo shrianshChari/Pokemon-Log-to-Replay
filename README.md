@@ -24,7 +24,7 @@ pasy-annoyer-gen4-nu / hvislysettaross-dolcefarniente-gen4ou - Chesto Berry / Re
 
 ### Things to Solve
 
-1. Life Orb recoil doesn't appear in the chat
+Life Orb recoil doesn't appear in the chat
 ```
 Earthworm sent out Tyranitar!
 BKC sent out Orion! (Starmie)
@@ -42,32 +42,32 @@ Orion fainted!
 ```
 > From [BKC vs Earthworm Redux](https://www.smogon.com/forums/threads/past-gen-battle-logs.3483431); the only way that Starmie dies turn 1 is if it is holding a Life Orb, otherwise it doesn't die to 90% Crunch + 6% Sandstorm.
 
-1. Wish Mechanics in Gen 5
+Wish Mechanics in Gen 5
 ```
 Jolteon's wish came true!
 ```
 I don't have access to Gen 5 logs at the moment, so I don't know if it tells how much a Pokemon heals by with Wish. If not, Wish mechanics could produce uncertainty in the replay, and if there's one thing I want to avoid, it's misrepresenting historic battles.
 
-1. Leech Seed
+Leech Seed
 ```
 THE DADDY KITH's Bronzong's health is sapped by leech seed.
 ```
-1. Pain Split
+Pain Split
 ```
 NEGRITO BANANA's Rotom-W used Pain Split!
 The battlers shared their pain!
 ```
 
-1. Recoil
+Recoil
 ```
 Sweepage's SoulWind is damaged by recoil!
 ```
 
-1. Tier ambiguity
+Tier ambiguity
 Sometimes the tier shows up just as "Overused" which causes replays to be generated with "Gen -1 OU"
 Battle logs effected: boudouche-absurd-gen5ou, negritobanana-sweepage-gen5ou, nicedognicedog-alf-gen5ou
 
-1. Errors
+Errors
 ardorin-boudouche-gen5ou and boudouche-absurd-gen4ou have whirlwind broken, `Cannot tell who the mon is.`
 
-1. Better Build system for building working html files with replays
+Better Build system for building working html files with replays
