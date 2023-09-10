@@ -1,0 +1,875 @@
+Battle between Nachos and Chaosphere started!
+
+
+Tier: Ubers Gen 4
+
+Mode: Singles
+
+Rule: Unrated
+
+Rule: Sleep Clause
+
+Rule: Freeze Clause
+
+Rule: Species Clause
+
+
+Nachos sent out Machamp!
+
+Chaosphere sent out Forretress!
+
+Chaosphere: gl and stuff
+
+Nachos: u2
+
+
+Start of turn 1
+
+Nachos's Machamp used DynamicPunch!
+
+Forretress lost 138 HP! (39% of its health)
+
+Forretress became confused!
+
+
+Forretress is confused!
+
+Forretress used Stealth Rock!
+
+Pointed stones float in the air around Nachos's team!
+
+
+Forretress restored a little HP using its Leftovers!
+
+
+Start of turn 2
+
+Chaosphere called Forretress back!
+
+Chaosphere sent out Salamence!
+
+
+Salamence intimidates Nachos's Machamp!
+
+Nachos's Machamp's Attack fell!
+
+Nachos's Machamp used DynamicPunch!
+
+It's not very effective...
+
+Salamence lost 71 HP! (20% of its health)
+
+Salamence became confused!
+
+
+Start of turn 3
+
+Chaosphere called Salamence back!
+
+Chaosphere sent out Forretress!
+
+
+Nachos called Machamp back!
+
+Nachos sent out Heatran!
+
+Pointed stones dug into Nachos's Heatran!
+
+
+Forretress restored a little HP using its Leftovers!
+
+
+Start of turn 4
+
+Nachos called Heatran back!
+
+Nachos sent out Machamp!
+
+Pointed stones dug into Nachos's Machamp!
+
+
+Chaosphere called Forretress back!
+
+Chaosphere sent out Suicune!
+
+
+Suicune is exerting its Pressure!
+
+
+Start of turn 5
+
+Chaosphere called Suicune back!
+
+Chaosphere sent out Salamence!
+
+
+Salamence intimidates Nachos's Machamp!
+
+Nachos's Machamp's Attack fell!
+
+Nachos's Machamp used DynamicPunch!
+
+It's not very effective...
+
+Salamence lost 75 HP! (22% of its health)
+
+Salamence became confused!
+
+
+Start of turn 6
+
+Chaosphere called Salamence back!
+
+Chaosphere sent out Suicune!
+
+
+Suicune is exerting its Pressure!
+
+Nachos called Machamp back!
+
+Nachos sent out Swampert!
+
+Pointed stones dug into Nachos's Swampert!
+
+
+Nachos's Swampert restored a little HP using its Leftovers!
+
+
+Start of turn 7
+
+Chaosphere called Suicune back!
+
+Chaosphere sent out Forretress!
+
+
+Nachos called Swampert back!
+
+Nachos sent out Machamp!
+
+Pointed stones dug into Nachos's Machamp!
+
+
+Forretress restored a little HP using its Leftovers!
+
+
+Start of turn 8
+
+Chaosphere called Forretress back!
+
+Chaosphere sent out Rotom-h! (Rotom-H)
+
+
+Nachos's Machamp used DynamicPunch!
+
+It had no effect!
+
+
+Start of turn 9
+
+Chaosphere called Rotom-h back!
+
+Chaosphere sent out Salamence!
+
+
+Salamence intimidates Nachos's Machamp!
+
+Nachos's Machamp's Attack fell!
+
+Nachos's Machamp used Payback!
+
+Salamence lost 106 HP! (31% of its health)
+
+
+Start of turn 10
+
+Nachos called Machamp back!
+
+Nachos sent out Swampert!
+
+Pointed stones dug into Nachos's Swampert!
+
+
+Salamence used Roost!
+
+Salamence landed on the ground!
+
+Salamence regained health!
+
+
+Nachos's Swampert restored a little HP using its Leftovers!
+
+viktor vaugn is watching the battle.
+
+
+Start of turn 11
+
+Chaosphere called Salamence back!
+
+Chaosphere sent out Forretress!
+
+
+Nachos's Swampert used Stealth Rock!
+
+Pointed stones float in the air around Chaosphere's team!
+
+
+Forretress restored a little HP using its Leftovers!
+
+viktor vaugn: K
+
+viktor vaugn: im vs winner
+
+
+Start of turn 12
+
+Nachos called Swampert back!
+
+Nachos sent out Machamp!
+
+Pointed stones dug into Nachos's Machamp!
+
+
+Forretress used Rapid Spin!
+
+Nachos's Machamp lost 5% of its health!
+
+Forretress blew away Stealth Rock!
+
+
+Forretress restored a little HP using its Leftovers!
+
+
+Start of turn 13
+
+Chaosphere called Forretress back!
+
+Chaosphere sent out Salamence!
+
+
+Salamence intimidates Nachos's Machamp!
+
+Nachos's Machamp's Attack fell!
+
+Nachos's Machamp used DynamicPunch!
+
+It's not very effective...
+
+Salamence lost 75 HP! (22% of its health)
+
+Salamence became confused!
+
+
+Start of turn 14
+
+Chaosphere called Salamence back!
+
+Chaosphere sent out Suicune!
+
+
+Suicune is exerting its Pressure!
+
+Nachos called Machamp back!
+
+Nachos sent out Salamence!
+
+Pointed stones dug into Nachos's Salamence!
+
+
+Nachos's Salamence intimidates Suicune!
+
+Suicune's Attack fell!
+
+
+Start of turn 15
+
+Chaosphere called Suicune back!
+
+Chaosphere sent out Scizor!
+
+
+Nachos's Salamence used Draco Meteor!
+
+It's not very effective...
+
+Scizor lost 164 HP! (49% of its health)
+
+Nachos's Salamence's Sp. Att. sharply fell!
+
+
+Start of turn 16
+
+Nachos called Salamence back!
+
+Nachos sent out Heatran!
+
+Pointed stones dug into Nachos's Heatran!
+
+
+Chaosphere called Scizor back!
+
+Chaosphere sent out Latias!
+
+
+Start of turn 17
+
+Chaosphere called Latias back!
+
+Chaosphere sent out Suicune!
+
+
+Suicune is exerting its Pressure!
+
+Nachos's Heatran used Dragon Pulse!
+
+Suicune lost 98 HP! (28% of its health)
+
+
+Suicune restored a little HP using its Leftovers!
+
+
+Start of turn 18
+
+Nachos called Heatran back!
+
+Nachos sent out Latias!
+
+Pointed stones dug into Nachos's Latias!
+
+
+Suicune used Surf!
+
+It's not very effective...
+
+Nachos's Latias lost 15% of its health!
+
+
+Suicune restored a little HP using its Leftovers!
+
+
+Start of turn 19
+
+Chaosphere called Suicune back!
+
+Chaosphere sent out Forretress!
+
+
+Nachos's Latias used Draco Meteor!
+
+It's not very effective...
+
+Forretress lost 157 HP! (44% of its health)
+
+Nachos's Latias's Sp. Att. sharply fell!
+
+
+Forretress restored a little HP using its Leftovers!
+
+
+Start of turn 20
+
+Nachos called Latias back!
+
+Nachos sent out Machamp!
+
+Pointed stones dug into Nachos's Machamp!
+
+
+Forretress used Spikes!
+
+Spikes were scattered all around the feet of Nachos's team!
+
+
+Forretress restored a little HP using its Leftovers!
+
+
+Start of turn 21
+
+Chaosphere called Forretress back!
+
+Chaosphere sent out Salamence!
+
+
+Salamence intimidates Nachos's Machamp!
+
+Nachos's Machamp's Attack fell!
+
+Nachos's Machamp used Ice Punch!
+
+It's super effective!
+
+Salamence lost 181 HP! (53% of its health)
+
+Salamence fainted!
+
+
+Chaosphere sent out Latias!
+
+
+viktor vaugn: r4p3d
+
+Chaosphere: poor mence
+
+Top Cat is watching the battle.
+
+viktor vaugn: atm nachos seems to have
+
+viktor vaugn: the advantage
+
+Chaosphere: I must say I agree
+
+Nachos: dont jynx me
+
+Marshall.Law is watching the battle.
+
+Chaosphere: machamp swampert heatran latias mence
+
+Chaosphere: the last must be a steel
+
+
+Start of turn 22
+
+Nachos called Machamp back!
+
+Nachos sent out Heatran!
+
+Pointed stones dug into Nachos's Heatran!
+
+Nachos's Heatran is hurt by spikes!
+
+
+Latias used Draco Meteor!
+
+It's not very effective...
+
+Nachos's Heatran lost 50% of its health!
+
+Latias's Sp. Att. sharply fell!
+
+Nachos's Heatran fainted!
+
+
+viktor vaugn: But!
+
+viktor vaugn: which steel is it
+
+Nachos sent out Scizor!
+
+Pointed stones dug into Nachos's Scizor!
+
+Nachos's Scizor is hurt by spikes!
+
+
+viktor vaugn: Oh
+
+Chaosphere: that one
+
+
+Start of turn 23
+
+Latias is being sent back!
+
+Nachos's Scizor used Pursuit!
+
+It's super effective!
+
+Latias lost 301 HP! (100% of its health)
+
+Latias fainted!
+
+
+Chaosphere called Latias back!
+
+Chaosphere sent out Scizor!
+
+
+viktor vaugn: see i was right
+
+viktor vaugn: nachos won
+
+Chaosphere: idc it felt so good
+
+Chaosphere: to draco meteor something
+
+viktor vaugn: lol
+
+Chaosphere: with latias
+
+viktor vaugn: ill revenge U
+
+
+Start of turn 24
+
+Nachos called Scizor back!
+
+Nachos sent out Swampert!
+
+Pointed stones dug into Nachos's Swampert!
+
+Nachos's Swampert is hurt by spikes!
+
+
+Scizor used U-turn!
+
+Nachos's Swampert lost 38% of its health!
+
+Chaosphere called Scizor back!
+
+Chaosphere sent out Suicune!
+
+
+Suicune is exerting its Pressure!
+
+
+Suicune restored a little HP using its Leftovers!
+
+Nachos's Swampert restored a little HP using its Leftovers!
+
+
+Start of turn 25
+
+Nachos called Swampert back!
+
+Nachos sent out Latias!
+
+Pointed stones dug into Nachos's Latias!
+
+
+Suicune used Calm Mind!
+
+Suicune's Sp. Att. rose!
+
+Suicune's Sp. Def. rose!
+
+
+Suicune restored a little HP using its Leftovers!
+
+
+Start of turn 26
+
+Chaosphere called Suicune back!
+
+Chaosphere sent out Scizor!
+
+
+Nachos's Latias used Thunderbolt!
+
+Scizor lost 162 HP! (48% of its health)
+
+
+viktor vaugn: if u cant protrect smogons, im sure as hell azenges it
+
+Nachos: hmmmmmmm
+
+viktor vaugn: i love that signature
+
+
+Start of turn 27
+
+Nachos called Latias back!
+
+Nachos sent out Scizor!
+
+Pointed stones dug into Nachos's Scizor!
+
+Nachos's Scizor is hurt by spikes!
+
+
+Scizor used Bullet Punch!
+
+It's not very effective...
+
+Nachos's Scizor lost 23% of its health!
+
+
+viktor vaugn: NO
+
+viktor vaugn: nigga take risks
+
+viktor vaugn: you LOSIN
+
+Chaosphere: nothing takes bps
+
+Chaosphere: thats y
+
+
+Start of turn 28
+
+Chaosphere called Scizor back!
+
+Chaosphere sent out Forretress!
+
+
+Nachos's Scizor used U-turn!
+
+It's not very effective...
+
+Forretress lost 66 HP! (18% of its health)
+
+viktor vaugn: except pert
+
+Nachos called Scizor back!
+
+Nachos sent out Salamence!
+
+Pointed stones dug into Nachos's Salamence!
+
+Chaosphere: pert's low
+
+
+Nachos's Salamence intimidates Forretress!
+
+Forretress's Attack fell!
+
+
+Forretress restored a little HP using its Leftovers!
+
+
+Start of turn 29
+
+Nachos's Salamence used Fire Blast!
+
+It's super effective!
+
+Forretress lost 168 HP! (47% of its health)
+
+Forretress fainted!
+
+
+viktor vaugn: and mence
+
+Chaosphere sent out Scizor!
+
+
+viktor vaugn: intimidating . .
+
+viktor vaugn: Oh
+
+
+Start of turn 30
+
+Nachos called Salamence back!
+
+Nachos sent out Swampert!
+
+Pointed stones dug into Nachos's Swampert!
+
+Nachos's Swampert is hurt by spikes!
+
+
+Scizor used Bullet Punch!
+
+It's not very effective...
+
+Nachos's Swampert lost 18% of its health!
+
+
+Nachos's Swampert restored a little HP using its Leftovers!
+
+viktor vaugn: maybe nachos is fucked!
+
+
+Start of turn 31
+
+Scizor used Bullet Punch!
+
+It's not very effective...
+
+Nachos's Swampert lost 17% of its health!
+
+viktor vaugn: Nah
+
+
+Nachos's Swampert used Earthquake!
+
+Scizor lost 5 HP! (1% of its health)
+
+Scizor fainted!
+
+
+Nachos's Swampert restored a little HP using its Leftovers!
+
+Chaosphere: i said
+
+Chaosphere: cancel
+
+Chaosphere: god dammit
+
+viktor vaugn: lol
+
+Chaosphere sent out Suicune!
+
+
+Suicune is exerting its Pressure!
+
+viktor vaugn: r4p3d
+
+
+Start of turn 32
+
+Suicune used Surf!
+
+Nachos's Swampert lost 7% of its health!
+
+Nachos's Swampert fainted!
+
+
+Suicune restored a little HP using its Leftovers!
+
+Nachos sent out Salamence!
+
+Pointed stones dug into Nachos's Salamence!
+
+
+Nachos's Salamence intimidates Suicune!
+
+Suicune's Attack fell!
+
+Chaosphere: i hope youre the slow mixmence
+
+
+Start of turn 33
+
+Nachos's Salamence used Draco Meteor!
+
+Suicune lost 262 HP! (75% of its health)
+
+Nachos's Salamence's Sp. Att. sharply fell!
+
+Nachos's Salamence fainted!
+
+
+Suicune used Calm Mind!
+
+Suicune's Sp. Att. rose!
+
+Suicune's Sp. Def. rose!
+
+
+Suicune restored a little HP using its Leftovers!
+
+viktor vaugn: lol
+
+viktor vaugn: offense cune
+
+Nachos sent out Latias!
+
+Pointed stones dug into Nachos's Latias!
+
+
+Start of turn 34
+
+Nachos's Latias used Thunderbolt!
+
+It's super effective!
+
+Suicune lost 108 HP! (30% of its health)
+
+Suicune fainted!
+
+
+Chaosphere sent out Rotom-h! (Rotom-H)
+
+
+Start of turn 35
+
+Nachos called Latias back!
+
+Nachos sent out Scizor!
+
+Pointed stones dug into Nachos's Scizor!
+
+Nachos's Scizor is hurt by spikes!
+
+
+Rotom-h used Shadow Ball!
+
+It's not very effective...
+
+Nachos's Scizor lost 2% of its health!
+
+Nachos's Scizor fainted!
+
+
+viktor vaugn: oh em gee
+
+Nachos sent out Latias!
+
+Pointed stones dug into Nachos's Latias!
+
+
+Nachos: plz no scarf
+
+
+Start of turn 36
+
+Rotom-h used Shadow Ball!
+
+It's super effective!
+
+Nachos's Latias lost 35% of its health!
+
+Nachos's Latias fainted!
+
+
+viktor vaugn: hahahahaha
+
+Nachos: ugh it was
+
+Nachos sent out Machamp!
+
+Pointed stones dug into Nachos's Machamp!
+
+viktor vaugn: oh man
+
+Nachos's Machamp is hurt by spikes!
+
+
+Chaosphere: go go go
+
+
+Start of turn 37
+
+Rotom-h used Shadow Ball!
+
+Nachos's Machamp lost 29% of its health!
+
+Nachos's Machamp's Sp. Def. fell!
+
+
+Nachos's Machamp used Payback!
+
+It's super effective!
+
+Rotom-h lost 224 HP! (73% of its health)
+
+Chaosphere: gg
+
+
+Nachos: nooooooooooooooooooo
+
+Nachos: i thought i coulda lived
+
+viktor vaugn: time to defeat BKC then
+
+
+Start of turn 38
+
+Nachos's Machamp used Bullet Punch!
+
+It's not very effective...
+
+Rotom-h lost 24 HP! (7% of its health)
+
+
+Rotom-h used Shadow Ball!
+
+Nachos's Machamp lost 22% of its health!
+
+Nachos's Machamp fainted!
+
+
+Chaosphere won the battle!
+
+Nachos: gg
+
+viktor vaugn stopped watching the battle.
