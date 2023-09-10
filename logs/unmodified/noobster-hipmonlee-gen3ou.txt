@@ -1,0 +1,833 @@
+Battle Log:
+Battle Mode: Ruby/Sapphire
+Rule: Sleep Clause
+Rule: Freeze Clause
+Rule: Self-KO Clause
+Rule: Apply PP Ups
+Rule: Battle Timeout
+Rule: Unrated
+Noobster vs Hipmonlee. Begin!
+Noobster sent out Snorlax (Lv.100 Snorlax)!
+Hipmonlee sent out Gengar (Lv.100 Gengar)!
+
+Begin Turn #1
+Noobster withdrew Snorlax!
+Noobster sent out Celebi (Lv.100 Celebi)!
+---------------------------------
+Hipmonlee withdrew Gengar!
+Hipmonlee sent out Metagross (Lv.100 Metagross)!
+---------------------------------
+End of turn #1
+Noobster's Celebi: 404 HP
+Hipmonlee's Metagross: 100% HP
+
+Begin Turn #2
+Noobster withdrew Celebi!
+Noobster sent out Magneton (Lv.100 Magneton)!
+---------------------------------
+Metagross used Meteor Mash!
+(102 damage)
+A critical hit!
+It's not very effective...
+---------------------------------
+Magneton's Leftovers restored its HP a little!
+End of turn #2
+Noobster's Magneton: 172 HP
+Hipmonlee's Metagross: 100% HP
+
+Begin Turn #3
+Magneton used Protect!
+Magneton protected itself!
+---------------------------------
+Metagross used Earthquake!
+Magneton protected itself!
+---------------------------------
+Magneton's Leftovers restored its HP a little!
+End of turn #3
+Noobster's Magneton: 188 HP
+Hipmonlee's Metagross: 100% HP
+
+Begin Turn #4
+Noobster withdrew Magneton!
+Noobster sent out Swampert (Lv.100 Swampert)!
+---------------------------------
+Metagross used Earthquake!
+(105 damage)
+---------------------------------
+Swampert's Leftovers restored its HP a little!
+End of turn #4
+Noobster's Swampert: 324 HP
+Hipmonlee's Metagross: 100% HP
+
+Begin Turn #5
+Hipmonlee withdrew Metagross!
+Hipmonlee sent out Gengar (Lv.100 Gengar)!
+---------------------------------
+Swampert used Hydro Pump!
+(69% damage)
+---------------------------------
+Swampert's Leftovers restored its HP a little!
+End of turn #5
+Noobster's Swampert: 349 HP
+Hipmonlee's Gengar: 31% HP
+
+Begin Turn #6
+Swampert used Protect!
+Swampert protected itself!
+---------------------------------
+Gengar used Hypnosis!
+Swampert protected itself!
+---------------------------------
+Swampert's Leftovers restored its HP a little!
+End of turn #6
+Noobster's Swampert: 374 HP
+Hipmonlee's Gengar: 31% HP
+
+Begin Turn #7
+Gengar used Hypnosis!
+Gengar's attack missed!
+---------------------------------
+Swampert used Hydro Pump!
+(31% damage)
+Gengar fainted!
+Hipmonlee sent out Milotic (Lv.100 Milotic)!
+---------------------------------
+Swampert's Leftovers restored its HP a little!
+End of turn #7
+Noobster's Swampert: 399 HP
+Hipmonlee's Milotic: 100% HP
+
+Begin Turn #8
+Noobster withdrew Swampert!
+Noobster sent out Magneton (Lv.100 Magneton)!
+---------------------------------
+Milotic used Toxic!
+It doesn't affect Magneton...
+---------------------------------
+Magneton's Leftovers restored its HP a little!
+End of turn #8
+Noobster's Magneton: 204 HP
+Hipmonlee's Milotic: 100% HP
+
+Begin Turn #9
+Hipmonlee withdrew Milotic!
+Hipmonlee sent out Regice (Lv.100 Regice)!
+---------------------------------
+Magneton used Toxic!
+Regice was badly poisoned!
+---------------------------------
+Magneton's Leftovers restored its HP a little!
+Regice is hurt by poison!
+End of turn #9
+Noobster's Magneton: 220 HP
+Hipmonlee's Regice: 94% HP (Psn)
+
+Begin Turn #10
+Magneton used Thunderbolt!
+(23% damage)
+---------------------------------
+Regice used Ice Beam!
+(75 damage)
+It's not very effective...
+---------------------------------
+Magneton's Leftovers restored its HP a little!
+Regice's Leftovers restored its HP a little!
+Regice is hurt by poison!
+End of turn #10
+Noobster's Magneton: 161 HP
+Hipmonlee's Regice: 65% HP (Psn)
+
+Begin Turn #11
+Noobster withdrew Magneton!
+Noobster sent out Snorlax (Lv.100 Snorlax)!
+---------------------------------
+Hipmonlee withdrew Regice!
+Hipmonlee sent out Dugtrio (Lv.100 Dugtrio)!
+---------------------------------
+End of turn #11
+Noobster's Snorlax: 481 HP
+Hipmonlee's Dugtrio: 100% HP
+
+Begin Turn #12
+Hipmonlee withdrew Dugtrio!
+Hipmonlee sent out Metagross (Lv.100 Metagross)!
+---------------------------------
+Snorlax used Body Slam!
+(13% damage)
+It's not very effective...
+---------------------------------
+Metagross's Leftovers restored its HP a little!
+End of turn #12
+Noobster's Snorlax: 481 HP
+Hipmonlee's Metagross: 93% HP
+
+Begin Turn #13
+Noobster withdrew Snorlax!
+Noobster sent out Skarmory (Lv.100 Skarmory)!
+---------------------------------
+Metagross used Earthquake!
+It doesn't affect Skarmory...
+---------------------------------
+Metagross's Leftovers restored its HP a little!
+End of turn #13
+Noobster's Skarmory: 334 HP
+Hipmonlee's Metagross: 99% HP
+
+Begin Turn #14
+Metagross used Thunderpunch!
+(145 damage)
+It's super effective!
+---------------------------------
+Skarmory used Spikes!
+Hipmonlee's team had Spikes scattered around it!
+---------------------------------
+Metagross's Leftovers restored its HP a little!
+Skarmory's Leftovers restored its HP a little!
+End of turn #14
+Noobster's Skarmory: 209 HP
+Hipmonlee's Metagross: 100% HP
+
+Begin Turn #15
+Metagross used Thunderpunch!
+(137 damage)
+It's super effective!
+---------------------------------
+Skarmory used Spikes!
+Hipmonlee's team had Spikes scattered around it!
+---------------------------------
+Skarmory's Leftovers restored its HP a little!
+End of turn #15
+Noobster's Skarmory: 92 HP
+Hipmonlee's Metagross: 100% HP
+
+Begin Turn #16
+Noobster withdrew Skarmory!
+Noobster sent out Swampert (Lv.100 Swampert)!
+---------------------------------
+Noobster: talking
+Metagross used Thunderpunch!
+It doesn't affect Swampert...
+---------------------------------
+Swampert's Leftovers restored its HP a little!
+End of turn #16
+Noobster's Swampert: 404 HP
+Hipmonlee's Metagross: 100% HP
+
+Begin Turn #17
+Hipmonlee withdrew Metagross!
+Hipmonlee sent out Milotic (Lv.100 Milotic)!
+Milotic is hurt by Spikes!
+---------------------------------
+Swampert used Earthquake!
+(29% damage)
+---------------------------------
+Milotic's Leftovers restored its HP a little!
+End of turn #17
+Noobster's Swampert: 404 HP
+Hipmonlee's Milotic: 58% HP
+
+Begin Turn #18
+Noobster withdrew Swampert!
+Noobster sent out Celebi (Lv.100 Celebi)!
+---------------------------------
+Milotic used Surf!
+(54 damage)
+It's not very effective...
+---------------------------------
+Celebi's Leftovers restored its HP a little!
+Milotic's Leftovers restored its HP a little!
+End of turn #18
+Noobster's Celebi: 375 HP
+Hipmonlee's Milotic: 64% HP
+
+Begin Turn #19
+Hipmonlee withdrew Milotic!
+Hipmonlee sent out Tyranitar (Lv.100 Tyranitar)!
+Tyranitar is hurt by Spikes!
+Tyranitar's Sand Stream whipped up a sandstorm!
+---------------------------------
+Celebi used Leech Seed!
+Tyranitar was seeded!
+---------------------------------
+The sandstorm rages.
+Celebi is buffeted by the sandstorm!
+Celebi's Leftovers restored its HP a little!
+Tyranitar's health is sapped by Leech Seed!
+End of turn #19
+Noobster's Celebi: 404 HP
+Hipmonlee's Tyranitar: 69% HP
+
+Begin Turn #20
+Tyranitar is tightening its focus!
+Noobster withdrew Celebi!
+Noobster sent out Swampert (Lv.100 Swampert)!
+---------------------------------
+Tyranitar used Focus Punch!
+(261 damage)
+---------------------------------
+The sandstorm rages.
+Swampert's Leftovers restored its HP a little!
+Tyranitar's health is sapped by Leech Seed!
+End of turn #20
+Noobster's Swampert: 213 HP
+Hipmonlee's Tyranitar: 56% HP
+
+Begin Turn #21
+Hipmonlee withdrew Tyranitar!
+Hipmonlee sent out Milotic (Lv.100 Milotic)!
+Milotic is hurt by Spikes!
+---------------------------------
+Swampert used Earthquake!
+(29% damage)
+---------------------------------
+The sandstorm rages.
+Milotic is buffeted by the sandstorm!
+Milotic's Leftovers restored its HP a little!
+Swampert's Leftovers restored its HP a little!
+End of turn #21
+Noobster's Swampert: 238 HP
+Hipmonlee's Milotic: 16% HP
+
+Begin Turn #22
+Milotic used Recover!
+Milotic regained health!
+---------------------------------
+Swampert used Earthquake!
+(27% damage)
+---------------------------------
+The sandstorm rages.
+Milotic is buffeted by the sandstorm!
+Milotic's Leftovers restored its HP a little!
+Swampert's Leftovers restored its HP a little!
+End of turn #22
+Noobster's Swampert: 263 HP
+Hipmonlee's Milotic: 39% HP
+
+Begin Turn #23
+Noobster withdrew Swampert!
+Noobster sent out Magneton (Lv.100 Magneton)!
+---------------------------------
+Milotic used Toxic!
+It doesn't affect Magneton...
+---------------------------------
+The sandstorm rages.
+Milotic is buffeted by the sandstorm!
+Magneton's Leftovers restored its HP a little!
+Milotic's Leftovers restored its HP a little!
+End of turn #23
+Noobster's Magneton: 177 HP
+Hipmonlee's Milotic: 39% HP
+
+Begin Turn #24
+Hipmonlee withdrew Milotic!
+Hipmonlee sent out Regice (Lv.100 Regice)!
+Regice is hurt by Spikes!
+---------------------------------
+Magneton used Thunderbolt!
+(22% damage)
+---------------------------------
+The sandstorm rages.
+Regice is buffeted by the sandstorm!
+Magneton's Leftovers restored its HP a little!
+Regice's Leftovers restored its HP a little!
+Regice is hurt by poison!
+End of turn #24
+Noobster's Magneton: 193 HP
+Hipmonlee's Regice: 17% HP (Psn)
+
+Begin Turn #25
+Noobster withdrew Magneton!
+Noobster sent out Skarmory (Lv.100 Skarmory)!
+---------------------------------
+Regice used Rest!
+Regice went to sleep!
+---------------------------------
+The sandstorm rages.
+Regice is buffeted by the sandstorm!
+Skarmory's Leftovers restored its HP a little!
+Regice's Leftovers restored its HP a little!
+End of turn #25
+Noobster's Skarmory: 112 HP
+Hipmonlee's Regice: 100% HP (Slp)
+
+Begin Turn #26
+Skarmory used Spikes!
+Hipmonlee's team had Spikes scattered around it!
+---------------------------------
+Regice is fast asleep.
+Regice used Sleep Talk!
+Regice used Rest!
+Regice is already asleep!
+---------------------------------
+The sandstorm rages.
+Regice is buffeted by the sandstorm!
+Skarmory's Leftovers restored its HP a little!
+Regice's Leftovers restored its HP a little!
+End of turn #26
+Noobster's Skarmory: 132 HP
+Hipmonlee's Regice: 100% HP (Slp)
+
+Begin Turn #27
+Noobster withdrew Skarmory!
+Noobster sent out Snorlax (Lv.100 Snorlax)!
+---------------------------------
+Hipmonlee withdrew Regice!
+Hipmonlee sent out Tyranitar (Lv.100 Tyranitar)!
+Tyranitar is hurt by Spikes!
+---------------------------------
+The sandstorm rages.
+Snorlax is buffeted by the sandstorm!
+Snorlax's Leftovers restored its HP a little!
+End of turn #27
+Noobster's Snorlax: 481 HP
+Hipmonlee's Tyranitar: 31% HP
+
+Begin Turn #28
+Noobster withdrew Snorlax!
+Noobster sent out Swampert (Lv.100 Swampert)!
+---------------------------------
+Tyranitar used Earthquake!
+(165 damage)
+---------------------------------
+The sandstorm rages.
+Swampert's Leftovers restored its HP a little!
+End of turn #28
+Noobster's Swampert: 123 HP
+Hipmonlee's Tyranitar: 31% HP
+
+Begin Turn #29
+Hipmonlee withdrew Tyranitar!
+Hipmonlee sent out Milotic (Lv.100 Milotic)!
+Milotic is hurt by Spikes!
+---------------------------------
+Swampert used Protect!
+But it failed!
+---------------------------------
+The sandstorm rages.
+Milotic is buffeted by the sandstorm!
+Swampert's Leftovers restored its HP a little!
+Milotic's Leftovers restored its HP a little!
+End of turn #29
+Noobster's Swampert: 148 HP
+Hipmonlee's Milotic: 14% HP
+
+Begin Turn #30
+Milotic used Recover!
+Milotic regained health!
+---------------------------------
+Swampert used Earthquake!
+(26% damage)
+---------------------------------
+The sandstorm rages.
+Milotic is buffeted by the sandstorm!
+Milotic's Leftovers restored its HP a little!
+Swampert's Leftovers restored its HP a little!
+End of turn #30
+Noobster's Swampert: 173 HP
+Hipmonlee's Milotic: 38% HP
+
+Begin Turn #31
+Noobster withdrew Swampert!
+Noobster sent out Celebi (Lv.100 Celebi)!
+---------------------------------
+Milotic used Recover!
+Milotic regained health!
+---------------------------------
+The sandstorm rages.
+Celebi is buffeted by the sandstorm!
+Milotic is buffeted by the sandstorm!
+Celebi's Leftovers restored its HP a little!
+Milotic's Leftovers restored its HP a little!
+End of turn #31
+Noobster's Celebi: 404 HP
+Hipmonlee's Milotic: 88% HP
+
+Begin Turn #32
+Hipmonlee withdrew Milotic!
+Hipmonlee sent out Metagross (Lv.100 Metagross)!
+Metagross is hurt by Spikes!
+---------------------------------
+Celebi used Leech Seed!
+Metagross was seeded!
+---------------------------------
+The sandstorm rages.
+Celebi is buffeted by the sandstorm!
+Celebi's Leftovers restored its HP a little!
+Metagross's Leftovers restored its HP a little!
+Metagross's health is sapped by Leech Seed!
+End of turn #32
+Noobster's Celebi: 404 HP
+Hipmonlee's Metagross: 69% HP
+
+Begin Turn #33
+Noobster withdrew Celebi!
+Noobster sent out Magneton (Lv.100 Magneton)!
+---------------------------------
+Hipmonlee withdrew Metagross!
+Hipmonlee sent out Milotic (Lv.100 Milotic)!
+Milotic is hurt by Spikes!
+---------------------------------
+The sandstorm rages.
+Milotic is buffeted by the sandstorm!
+Magneton's Leftovers restored its HP a little!
+Milotic's Leftovers restored its HP a little!
+End of turn #33
+Noobster's Magneton: 209 HP
+Hipmonlee's Milotic: 63% HP
+
+Begin Turn #34
+Hipmonlee withdrew Milotic!
+Hipmonlee sent out Dugtrio (Lv.100 Dugtrio)!
+Dugtrio is hurt by Spikes!
+---------------------------------
+Magneton used Thunderbolt!
+It doesn't affect Dugtrio...
+---------------------------------
+The sandstorm rages.
+Magneton's Leftovers restored its HP a little!
+End of turn #34
+Noobster's Magneton: 225 HP
+Hipmonlee's Dugtrio: 75% HP
+
+Begin Turn #35
+Dugtrio used Earthquake!
+(225 damage)
+It's super effective!
+Magneton fainted!
+Noobster sent out Salamence (Lv.100 Salamence)!
+Salamence's Intimidate cuts Dugtrio's Attack!
+---------------------------------
+The sandstorm rages.
+Salamence is buffeted by the sandstorm!
+Salamence's Leftovers restored its HP a little!
+End of turn #35
+Noobster's Salamence: 360 HP
+Hipmonlee's Dugtrio: 75% HP
+
+Begin Turn #36
+Hipmonlee withdrew Dugtrio!
+Hipmonlee sent out Milotic (Lv.100 Milotic)!
+Milotic is hurt by Spikes!
+---------------------------------
+Salamence used Dragon Dance!
+Salamence's Attack rose!
+Salamence's Speed rose!
+---------------------------------
+The sandstorm rages.
+Salamence is buffeted by the sandstorm!
+Milotic is buffeted by the sandstorm!
+Salamence's Leftovers restored its HP a little!
+Milotic's Leftovers restored its HP a little!
+End of turn #36
+Noobster's Salamence: 360 HP
+Hipmonlee's Milotic: 38% HP
+
+Begin Turn #37
+Salamence used Hidden Power!
+(38% damage)
+Milotic fainted!
+Hipmonlee sent out Regice (Lv.100 Regice)!
+Regice is hurt by Spikes!
+---------------------------------
+The sandstorm rages.
+Salamence is buffeted by the sandstorm!
+Regice is buffeted by the sandstorm!
+Salamence's Leftovers restored its HP a little!
+Regice's Leftovers restored its HP a little!
+End of turn #37
+Noobster's Salamence: 360 HP
+Hipmonlee's Regice: 75% HP (Slp)
+
+Begin Turn #38
+Noobster withdrew Salamence!
+Noobster sent out Snorlax (Lv.100 Snorlax)!
+---------------------------------
+Regice is fast asleep.
+Regice used Sleep Talk!
+Regice used Rest!
+Regice is already asleep!
+---------------------------------
+The sandstorm rages.
+Regice is buffeted by the sandstorm!
+Snorlax is buffeted by the sandstorm!
+Regice's Leftovers restored its HP a little!
+Snorlax's Leftovers restored its HP a little!
+End of turn #38
+Noobster's Snorlax: 481 HP
+Hipmonlee's Regice: 75% HP (Slp)
+
+Begin Turn #39
+Hipmonlee withdrew Regice!
+Hipmonlee sent out Metagross (Lv.100 Metagross)!
+Metagross is hurt by Spikes!
+---------------------------------
+Snorlax used Curse!
+Snorlax's Attack rose!
+Snorlax's Defense rose!
+Snorlax's Speed fell!
+---------------------------------
+The sandstorm rages.
+Snorlax is buffeted by the sandstorm!
+Metagross's Leftovers restored its HP a little!
+Snorlax's Leftovers restored its HP a little!
+End of turn #39
+Noobster's Snorlax: 481 HP
+Hipmonlee's Metagross: 50% HP
+
+Begin Turn #40
+Noobster withdrew Snorlax!
+Noobster sent out Skarmory (Lv.100 Skarmory)!
+---------------------------------
+Metagross used Explosion!
+(132 damage)
+It's not very effective...
+Skarmory fainted!
+Metagross fainted!
+Noobster sent out Snorlax (Lv.100 Snorlax)!
+Hipmonlee sent out Regice (Lv.100 Regice)!
+Regice is hurt by Spikes!
+---------------------------------
+The sandstorm rages.
+Regice is buffeted by the sandstorm!
+Snorlax is buffeted by the sandstorm!
+Regice's Leftovers restored its HP a little!
+Snorlax's Leftovers restored its HP a little!
+End of turn #40
+Noobster's Snorlax: 481 HP
+Hipmonlee's Regice: 50% HP (Slp)
+
+Begin Turn #41
+Hipmonlee withdrew Regice!
+Hipmonlee sent out Tyranitar (Lv.100 Tyranitar)!
+Tyranitar is hurt by Spikes!
+---------------------------------
+Snorlax used Curse!
+Snorlax's Attack rose!
+Snorlax's Defense rose!
+Snorlax's Speed fell!
+---------------------------------
+The sandstorm rages.
+Snorlax is buffeted by the sandstorm!
+Snorlax's Leftovers restored its HP a little!
+End of turn #41
+Noobster's Snorlax: 481 HP
+Hipmonlee's Tyranitar: 6% HP
+
+Begin Turn #42
+Tyranitar used Rock Slide!
+(175 damage)
+---------------------------------
+Snorlax used Earthquake!
+(7% damage)
+It's super effective!
+Tyranitar fainted!
+Hipmonlee sent out Regice (Lv.100 Regice)!
+Regice is hurt by Spikes!
+---------------------------------
+The sandstorm rages.
+Regice is buffeted by the sandstorm!
+Snorlax is buffeted by the sandstorm!
+Regice's Leftovers restored its HP a little!
+Snorlax's Leftovers restored its HP a little!
+End of turn #42
+Noobster's Snorlax: 306 HP
+Hipmonlee's Regice: 25% HP (Slp)
+
+Begin Turn #43
+Regice woke up!
+Regice used Ice Beam!
+(42 damage)
+Snorlax was frozen solid!
+---------------------------------
+Snorlax is frozen solid!
+---------------------------------
+The sandstorm rages.
+Regice is buffeted by the sandstorm!
+Snorlax is buffeted by the sandstorm!
+Regice's Leftovers restored its HP a little!
+Snorlax's Leftovers restored its HP a little!
+End of turn #43
+Noobster's Snorlax: 264 HP (Frz)
+Hipmonlee's Regice: 25% HP
+
+Begin Turn #44
+Regice used Rest!
+Regice went to sleep!
+---------------------------------
+Snorlax is frozen solid!
+---------------------------------
+The sandstorm rages.
+Regice is buffeted by the sandstorm!
+Snorlax is buffeted by the sandstorm!
+Regice's Leftovers restored its HP a little!
+Snorlax's Leftovers restored its HP a little!
+End of turn #44
+Noobster's Snorlax: 264 HP (Frz)
+Hipmonlee's Regice: 100% HP (Slp)
+
+Begin Turn #45
+Regice is fast asleep.
+Regice used Sleep Talk!
+Regice used Ice Beam!
+(44 damage)
+---------------------------------
+Snorlax is frozen solid!
+---------------------------------
+The sandstorm rages.
+Regice is buffeted by the sandstorm!
+Snorlax is buffeted by the sandstorm!
+Regice's Leftovers restored its HP a little!
+Snorlax's Leftovers restored its HP a little!
+End of turn #45
+Noobster's Snorlax: 220 HP (Frz)
+Hipmonlee's Regice: 100% HP (Slp)
+
+Begin Turn #46
+Regice is fast asleep.
+Regice used Sleep Talk!
+Regice used Rest!
+Regice is already asleep!
+---------------------------------
+Snorlax is frozen solid!
+---------------------------------
+The sandstorm rages.
+Regice is buffeted by the sandstorm!
+Snorlax is buffeted by the sandstorm!
+Regice's Leftovers restored its HP a little!
+Snorlax's Leftovers restored its HP a little!
+End of turn #46
+Noobster's Snorlax: 220 HP (Frz)
+Hipmonlee's Regice: 100% HP (Slp)
+
+Begin Turn #47
+Regice woke up!
+Regice used Thunderbolt!
+(63 damage)
+---------------------------------
+Snorlax was defrosted!
+Snorlax used Curse!
+Snorlax's Attack rose!
+Snorlax's Defense rose!
+Snorlax's Speed fell!
+---------------------------------
+The sandstorm rages.
+Regice is buffeted by the sandstorm!
+Snorlax is buffeted by the sandstorm!
+Regice's Leftovers restored its HP a little!
+Snorlax's Leftovers restored its HP a little!
+End of turn #47
+Noobster's Snorlax: 157 HP
+Hipmonlee's Regice: 100% HP
+
+Begin Turn #48
+Regice used Ice Beam!
+(46 damage)
+---------------------------------
+Snorlax used Rest!
+Snorlax went to sleep!
+---------------------------------
+The sandstorm rages.
+Regice is buffeted by the sandstorm!
+Snorlax is buffeted by the sandstorm!
+Regice's Leftovers restored its HP a little!
+Snorlax's Leftovers restored its HP a little!
+End of turn #48
+Noobster's Snorlax: 481 HP (Slp)
+Hipmonlee's Regice: 100% HP
+
+Begin Turn #49
+Regice used Thunderbolt!
+(59 damage)
+---------------------------------
+Noobster: no stalk
+Snorlax is fast asleep.
+---------------------------------
+The sandstorm rages.
+Regice is buffeted by the sandstorm!
+Snorlax is buffeted by the sandstorm!
+Regice's Leftovers restored its HP a little!
+Snorlax's Leftovers restored its HP a little!
+End of turn #49
+Noobster's Snorlax: 422 HP (Slp)
+Hipmonlee's Regice: 100% HP
+
+Begin Turn #50
+Regice used Thunderbolt!
+(58 damage)
+---------------------------------
+Snorlax is fast asleep.
+---------------------------------
+The sandstorm rages.
+Regice is buffeted by the sandstorm!
+Snorlax is buffeted by the sandstorm!
+Regice's Leftovers restored its HP a little!
+Snorlax's Leftovers restored its HP a little!
+End of turn #50
+Noobster's Snorlax: 364 HP (Slp)
+Hipmonlee's Regice: 100% HP
+
+Begin Turn #51
+Regice used Thunderbolt!
+(61 damage)
+---------------------------------
+Snorlax woke up!
+Snorlax used Curse!
+Snorlax's Attack rose!
+Snorlax's Defense rose!
+Snorlax's Speed fell!
+---------------------------------
+The sandstorm rages.
+Regice is buffeted by the sandstorm!
+Snorlax is buffeted by the sandstorm!
+Regice's Leftovers restored its HP a little!
+Snorlax's Leftovers restored its HP a little!
+End of turn #51
+Noobster's Snorlax: 303 HP
+Hipmonlee's Regice: 100% HP
+
+Begin Turn #52
+Regice used Ice Beam!
+(48 damage)
+---------------------------------
+Snorlax used Body Slam!
+(90% damage)
+---------------------------------
+The sandstorm rages.
+Regice is buffeted by the sandstorm!
+Snorlax is buffeted by the sandstorm!
+Regice's Leftovers restored its HP a little!
+Snorlax's Leftovers restored its HP a little!
+End of turn #52
+Noobster's Snorlax: 255 HP
+Hipmonlee's Regice: 10% HP
+
+Begin Turn #53
+Regice used Ice Beam!
+(46 damage)
+---------------------------------
+Snorlax used Body Slam!
+(10% damage)
+Regice fainted!
+Hipmonlee sent out Dugtrio (Lv.100 Dugtrio)!
+Dugtrio is hurt by Spikes!
+---------------------------------
+The sandstorm rages.
+Snorlax is buffeted by the sandstorm!
+Snorlax's Leftovers restored its HP a little!
+End of turn #53
+Noobster's Snorlax: 209 HP
+Hipmonlee's Dugtrio: 50% HP
+
+Begin Turn #54
+Dugtrio used Rock Slide!
+(42 damage)
+---------------------------------
+Snorlax used Body Slam!
+(50% damage)
+Dugtrio fainted!
+
+End Battle! Noobster wins!
+Score: 4 to 0
+
+NetBattle v0.9.6
+Log saved 3/3/2006 at 8:07:57 PM
