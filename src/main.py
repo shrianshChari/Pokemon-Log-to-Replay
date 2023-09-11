@@ -145,6 +145,7 @@ def analyze_line(line: str) -> str:
     substitute_start_pat = re.compile("(.*) made a substitute!")
     substitute_end_pat = re.compile("(.*) substitute faded!")
     substitute_hit_pat = re.compile("(.*) substitute took the damage!")
+    substitute_hit_inverted_pat = re.compile("The substitute took damage for (.*)")
     reflect_start_pat = re.compile('Reflect raised (.*) team defense!')
     reflect_end_pat = re.compile('(.*) reflect wore off!')
     protect_pat = re.compile('(.*) protected itself!')
@@ -183,6 +184,7 @@ def analyze_line(line: str) -> str:
     boosted_stat_two_level_pat = re.compile('(.*) sharply rose!')
 
     immune_pat = re.compile("It had no effect on (.*)!")
+    immune_doesnot_pat = re.compile("It doesn't effect (.*)...")
     flash_fire_pat = re.compile('(.*) Flash Fire raised the power of its Fire-type moves!')
     miss_pat = re.compile('The attack (.*) missed!')
     miss_pat_avoid = re.compile('(.*) avoided the attack!')
@@ -397,7 +399,7 @@ def analyze_line(line: str) -> str:
         move, use_player, target_player, use_mon, target_mon = moves_buffer
         converted = f'|-supereffective|p{target_player+1}a: {target_mon.nick}'
 
-    elif immune_pat.match(line) or immune_no_info_pat in line:
+    elif immune_pat.match(line) or immune_doesnot_pat.match(line) or immune_no_info_pat in line:
         move, use_player, target_player, use_mon, target_mon = moves_buffer
         converted = f'|-immune|p{target_player+1}a: {target_mon.nick}'
 
@@ -716,6 +718,11 @@ def analyze_line(line: str) -> str:
         player = identify_player(line, substitute_hit_pat)
         mon = players[player].currentmon
         converted = f'|-activate|p{player+1}a: {mon.nick}|move: Substitute|[damage]'
+    elif substitute_hit_inverted_pat.match(line):
+        player = identify_player(line, substitute_hit_inverted_pat)
+        mon = players[player].currentmon
+        converted = f'|-activate|p{player+1}a: {mon.nick}|move: Substitute|[damage]'
+
     elif substitute_end_pat.match(line):
         player = identify_player(line, substitute_end_pat)
         mon = players[player].currentmon
