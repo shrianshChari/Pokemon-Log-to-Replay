@@ -366,6 +366,7 @@ def analyze_line(line: str) -> str:
         converted = f"|-singleturn|p{target_player+1}a: {target_mon.nick}|move: Roost"
 
     elif heal_pat.match(line):
+        # TODO: Recognize Leech Seed 
         target_player = identify_player(line, heal_pat)
         target_mon = players[target_player].currentmon
         target_mon.heal(50.0)
@@ -383,7 +384,7 @@ def analyze_line(line: str) -> str:
 
     elif wish_pat.match(line):
         if gen == 5:
-            raise Exception("Wish is not implemented for modern gen")
+            raise Exception("Wish is not implemented for gen 5 logs.")
         target = identify_player(line, wish_pat)
         target_mon = players[target].currentmon
         target_mon.heal(50)
