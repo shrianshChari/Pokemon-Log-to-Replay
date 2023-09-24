@@ -218,7 +218,7 @@ Bluewind called Salamence back!
 Bluewind sent out Celebi!
 
 Milotic used Toxic!
-The foe's Celebi was poisoned!
+The foe's Celebi was badly poisoned!
 
 The sandstorm rages!
 The foe's Celebi is buffeted by the sandstorm!
@@ -655,7 +655,7 @@ Celebi used Leech Seed!
 The foe's Milotic was seeded!
 
 The foe's Milotic used Toxic!
-Celebi was poisoned!
+Celebi was badly poisoned!
 
 The sandstorm rages!
 Celebi is buffeted by the sandstorm!
@@ -682,7 +682,7 @@ Kevin Garrett called Tyranitar back!
 Kevin Garrett sent out Blissey!
 
 The foe's Milotic used Toxic!
-Blissey was poisoned!
+Blissey was badly poisoned!
 
 The sandstorm rages!
 The foe's Milotic is buffeted by the sandstorm!
@@ -747,7 +747,7 @@ Kevin Garrett called Tyranitar back!
 Kevin Garrett sent out Blissey!
 
 The foe's Milotic used Toxic!
-Blissey was poisoned!
+Blissey was badly poisoned!
 
 The sandstorm rages!
 The foe's Milotic is buffeted by the sandstorm!
@@ -773,7 +773,7 @@ The foe's Milotic restored a little HP using its Leftovers!
 
 Start of turn 41
 Milotic used Toxic!
-The foe's Milotic was poisoned!
+The foe's Milotic was badly poisoned!
 
 The foe's Milotic used Toxic!
 The attack of the foe's Milotic missed!
