@@ -381,7 +381,6 @@ def analyze_line(line: str) -> str:
         else:
             converted = f"|-end|p{target + 1}a: {target_mon.nick}|confusion"
 
-
     elif wish_pat.match(line):
         if gen == 5:
             raise Exception("Wish is not implemented for gen 5 logs.")
@@ -468,6 +467,24 @@ def analyze_line(line: str) -> str:
     elif intim_pat.match(line):
         user = identify_player(line, intim_pat)
         converted = f'|-ability|p{user+1}a: {players[user].currentmon.nick}|Intimidate|boost'
+        # this has to be awful code but it works
+        l = line_num + 1
+        while 1:
+            next_line = analyze_line(log_arr[l])
+            # we might encounter a message unrelated to the game (only chat?) and we have to skip it
+            if "|c|" in next_line:
+                l += 1
+            # or a drop message in which case its not clear body
+            elif "-unboost" in next_line:
+                break
+            #otherwise assume it's clear body?
+            else: 
+                opponent = not user 
+                opposing_mon = players[opponent].currentmon
+                converted += "\n" + f'|-fail|p{opponent+1}a: {opposing_mon.nick}|unboost|[from] ability: Clear Body|[of] p{opponent+1}a: {opposing_mon.nick}'
+                break
+
+
 
     elif flash_fire_pat.match(line):
         user = identify_player(line, flash_fire_pat)

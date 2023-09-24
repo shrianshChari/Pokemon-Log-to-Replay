@@ -12,7 +12,6 @@ Convert from logs from Pokemon Online and Shoddy to replays from Pokemon Showdow
 
 ### Patterns to be implemented:
 
-highimpulse-ciele-gen3ou - Clear Body<br>
 
 
 ### Things to Solve
