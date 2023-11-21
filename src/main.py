@@ -19,7 +19,9 @@ is_phased = False
 phase_hazard_list = []
 moves_buffer = []
 wishers = {0:'',1:''}
-
+seeders = {0:'',1:''}
+# behaviour: False implies this state should be WRITE-only, true implies state should be READ-only
+oddities_state = {0:[], 1:[],'behaviour':False}
 
 # Function that defines how I output each line
 # As of now I just output to standard output
@@ -102,6 +104,7 @@ def analyze_line(line: str) -> str:
     global is_phased
     global phase_hazard_list
     global moves_buffer
+    
 
     # Compiling regex patterns for efficiency
 
@@ -141,6 +144,7 @@ def analyze_line(line: str) -> str:
     sleep_pat = re.compile("(.*) fell asleep!")
     freeze_pat = re.compile("(.*) was frozen solid!")
     paralysis_pat = re.compile("(.*) is paralyzed! It may be unable to move!")
+    leech_start_pat = re.compile("(.*) was seeded!")
 
     encore_pat = re.compile("(.*) received an encore!")
     substitute_start_pat = re.compile("(.*) made a substitute!")
@@ -162,11 +166,13 @@ def analyze_line(line: str) -> str:
     status_cleared_lum_pat = re.compile("(.*) status cleared!")
 
 
+
     stealth_rock_dmg_pat = re.compile(r'Pointed stones dug into (.*)!')
     spikes_dmg_pat = re.compile("(.*) (was|is) hurt by spikes!")
     burn_dmg_pat = re.compile("(.*) (was|is) hurt by its burn!")
     poison_dmg_pat = re.compile("(.*) (was|is) hurt by poison!")
     sandstorm_dmg_pat = re.compile("(.*) (was|is) buffeted by the sandstorm!")
+    leech_seed_damage_pat = re.compile("(.*) health is sapped by [lL]eech seed.")
     leftovers_pat = re.compile("(.*) restored a little HP using its Leftovers!")
     black_sludge_pat = re.compile("(.*) restored a little HP using its Black Sludge!")
 
@@ -324,6 +330,9 @@ def analyze_line(line: str) -> str:
                 player.add_pokemon(sent_out_data[1], sent_out_data[2])
             mon = player.get_pokemon(sent_out_data[1], sent_out_data[2])
             if mon:
+                # clear leech seed on previous mon
+                if player.currentmon:
+                    player.currentmon.is_seeded = False
                 player.currentmon = mon
                 status = mon.space_status()
                 mon.toxic_turns = 0
@@ -366,11 +375,53 @@ def analyze_line(line: str) -> str:
         converted = f"|-singleturn|p{target_player+1}a: {target_mon.nick}|move: Roost"
 
     elif heal_pat.match(line):
-        # TODO: Recognize Leech Seed 
         target_player = identify_player(line, heal_pat)
         target_mon = players[target_player].currentmon
-        target_mon.heal(50.0)
+        # theres some replays that have regained health on leech seed and some that do not so we ignore it?
+        if not players[not target_player].currentmon.is_seeded: 
+            target_mon.heal(50.0)
+
         converted = f"|-heal|p{target_player+1}a: {target_mon.nick}|{target_mon.approx_hp()}\/100{target_mon.space_status()}"
+
+    elif leech_start_pat.match(line):
+        target_player = identify_player(line, leech_start_pat)
+        target_mon = players[target_player].currentmon
+        target_mon.is_seeded = True
+        opponent = not target_player
+        seeders[opponent] = players[opponent].currentmon.nick
+        converted = f'|-start|p{target_player + 1}a: {target_mon.nick}|Leech Seed'
+    elif leech_seed_damage_pat.match(line):
+        target_player = identify_player(line, leech_seed_damage_pat)
+        target_mon = players[target_player].currentmon
+        
+        target_mon.damage(12.5)
+        # this doesnt work on mbounce leech seed, god please no
+        converted = f"|-damage|p{target_player+1}a: {target_mon.nick}|{target_mon.approx_hp()}\/100{target_mon.space_status()}|[from] move: Leech Seed|[of] p{(not target_player) +1}a: {seeders[(not target_player)]}"
+        # healing the opponent
+        if players[target_player].currentmon.is_seeded and oddities_state['behaviour'] == False:
+            healing_player = not target_player
+            healing_mon = players[healing_player].currentmon
+            if not oddities_state[healing_player]:
+                oddities_state[healing_player].append(utils.LeechSeedOddity(healing_mon.nick))
+                oddities_state[healing_player][-1].turns_healed = 1
+            for oddity in oddities_state[healing_player]: 
+                if isinstance(oddity, utils.LeechSeedOddity) and oddity.nick == healing_mon.nick:
+                    oddity.turns_healed += 1
+                    break
+            # yes for else!
+            else:
+                oddities_state[healing_player].append(utils.LeechSeedOddity(healing_mon.nick))
+                oddities_state[healing_player][-1].turns_healed = 1
+
+        elif players[target_player].currentmon.is_seeded:
+            healing_player = not target_player
+            healing_mon = players[healing_player].currentmon
+            for oddity in oddities_state[healing_player]: 
+                if isinstance(oddity, utils.LeechSeedOddity) and oddity.nick == healing_mon.nick:
+                    healing_mon.heal(oddity.get_approximate_health())
+                    converted += '\n' + \
+                    f"|-heal|p{healing_player+1}a: {healing_mon.nick}|{healing_mon.approx_hp()}\/100{healing_mon.space_status()} |[silent]"
+                    break
 
     elif status_cleared_lum_pat.match(line):
         target = identify_player(line, status_cleared_lum_pat)
@@ -380,7 +431,6 @@ def analyze_line(line: str) -> str:
             converted = f'|-curestatus|p{target + 1}a: {target_mon.nick}|{target_mon.status_string()}|[msg]'
         else:
             converted = f"|-end|p{target + 1}a: {target_mon.nick}|confusion"
-
 
     elif wish_pat.match(line):
         if gen == 5:
@@ -441,6 +491,15 @@ def analyze_line(line: str) -> str:
         damage_done = damage_dealt_pat.search(line).group(0)
         target_mon.damage(float(damage_done[:-4]))
         converted = f"|-damage|p{target_player+1}a: {target_mon.nick}|{target_mon.approx_hp()}\/100{target_mon.space_status()}"
+        if oddities_state['behaviour'] == True:
+            for oddity in oddities_state[use_player]:
+                if isinstance(oddity, utils.LifeOrbOddity) and oddity.nick == use_mon.nick and oddity.turns_damaged:
+                    use_mon.damage(10)
+                    converted += '\n' + \
+                    f'|-damage|p{use_player+1}a: {use_mon.nick}|{use_mon.approx_hp()}\/100{use_mon.space_status()}|[from] item: Life Orb'
+
+
+        
 
     elif protect_pat.match(line):
         move, use_player, target_player, use_mon, target_mon = moves_buffer
@@ -468,6 +527,24 @@ def analyze_line(line: str) -> str:
     elif intim_pat.match(line):
         user = identify_player(line, intim_pat)
         converted = f'|-ability|p{user+1}a: {players[user].currentmon.nick}|Intimidate|boost'
+        # this has to be awful code but it works
+        l = line_num + 1
+        while 1:
+            next_line = analyze_line(log_arr[l])
+            # we might encounter a message unrelated to the game (only chat?) and we have to skip it
+            if "|c|" in next_line:
+                l += 1
+            # or a drop message in which case its not clear body
+            elif "-unboost" in next_line:
+                break
+            #otherwise assume it's clear body?
+            else: 
+                opponent = not user 
+                opposing_mon = players[opponent].currentmon
+                converted += "\n" + f'|-fail|p{opponent+1}a: {opposing_mon.nick}|unboost|[from] ability: Clear Body|[of] p{opponent+1}a: {opposing_mon.nick}'
+                break
+
+
 
     elif flash_fire_pat.match(line):
         user = identify_player(line, flash_fire_pat)
@@ -541,6 +618,17 @@ def analyze_line(line: str) -> str:
     elif fainted_pat.match(line):
         player = identify_player(line, fainted_pat)
         currentmon = players[player].currentmon
+        move, *_ = moves_buffer
+        # arbitrary amount of hp that should be above the rounding error adding up
+        # TODO: RECOIL 
+        if currentmon.hp > 5 and gen >= 4 and move not in ["Explosion","Self-Destruct","Memento","Healing Wish","Lunar Dance","Final Gambit"]:
+            oddities_state[player].append(utils.LifeOrbOddity(currentmon.nick))
+            oddities_state[player][-1].turns_damaged = currentmon.hp//10
+        # we super exploded due to leech seed
+        if currentmon.hp < 0:
+            for oddity in oddities_state[player]: 
+                if isinstance(oddity, utils.LeechSeedOddity) and oddity.nick == currentmon.nick:
+                    oddity.amount_healed = currentmon.hp * -1 
         if currentmon:
             converted = (
                 f'|faint|p{player + 1}a: {currentmon.nick}'
@@ -907,7 +995,13 @@ def analyze_line(line: str) -> str:
             )
     return converted
 
-
+# first pass
+for line_num, line in enumerate(log_arr):
+    converted = analyze_line(line)
+oddities_state['behaviour'] = True
+# i kinda dont like it but we need a way so leech seed mons can die 10 times and a way so mons dont die at -5%
+utils.SimplePokemon.damage = utils.SimplePokemon.damage_safe 
+# second pass  
 for line_num, line in enumerate(log_arr):
     converted = analyze_line(line)
     output(converted)
