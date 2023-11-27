@@ -506,7 +506,7 @@ def analyze_line(line: str) -> str:
         currentmon = players[player].currentmon
         if currentmon:
             converted = (
-                f'|faint|p{player + 1}a: {currentmon.nick}'
+                f'|faint|p{player + 1}a: {currentmon.nick}\n|'
             )
 
     elif is_watching_pat.match(line):
