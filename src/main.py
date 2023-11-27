@@ -1,6 +1,7 @@
 import re
 import sys
 import utils
+import math
 
 if (len(sys.argv) < 2):
     print("Please supply a log to turn into a replay", file=sys.stderr)
@@ -657,14 +658,14 @@ def analyze_line(line: str) -> str:
                 damage = 0
                 match spikes:
                     case 1:
-                        damage = 12.5
+                        damage = 13
                     case 2:
-                        damage = 16.6
+                        damage = 17
                     case 3:
                         damage = 25
                 # TODO: this is a band aid fix, rapid spin might not remove internal hazards?
                 if gen == 2:
-                    damage = 12.5
+                    damage = 13
                 mon.damage(damage)
                 status = mon.space_status()
                 converted = (
@@ -679,7 +680,7 @@ def analyze_line(line: str) -> str:
             player = identify_player(line, stealth_rock_dmg_pat)
             mon = players[player].currentmon
             if mon:
-                mon.damage(utils.stealth_rock_damage(mon, gen))
+                mon.damage(math.ceil(utils.stealth_rock_damage(mon, gen)))
                 status = mon.space_status()
                 converted = (
                     rf'|-damage|p{player + 1}a: {mon.nick}|'
@@ -690,7 +691,7 @@ def analyze_line(line: str) -> str:
         player = identify_player(line, sandstorm_dmg_pat)
         mon = players[player].currentmon
         if mon:
-            mon.damage(6.25)
+            mon.damage(7)
             status = mon.space_status()
             converted = (
                 rf'|-damage|p{player + 1}a: {mon.nick}|'
@@ -896,11 +897,11 @@ def analyze_line(line: str) -> str:
         if mon:
             if mon.status == utils.Status.TOXIC:
                 mon.toxic_turns += 1
-                mon.damage(mon.toxic_turns / 16 * 100)
+                mon.damage(math.ceil(mon.toxic_turns / 16 * 100))
             elif gen == 1:
-                mon.damage(6.25)
+                mon.damage(7)
             else:
-                mon.damage(12.5)
+                mon.damage(13)
             status = mon.space_status()
             converted = (
                 f'|-damage|p{player + 1}a: {mon.nick}|'
@@ -912,9 +913,9 @@ def analyze_line(line: str) -> str:
         mon = players[player].currentmon
         if mon:
             if gen == 1:
-                mon.damage(6.25)
+                mon.damage(7)
             else:
-                mon.damage(12.5)
+                mon.damage(13)
             status = mon.space_status()
             converted = (
                 f'|-damage|p{player + 1}a: {mon.nick}|'
@@ -925,7 +926,7 @@ def analyze_line(line: str) -> str:
         player = identify_player(line, leftovers_pat)
         mon = players[player].currentmon
         if mon:
-            mon.heal(6.25)
+            mon.heal(6)
             status = mon.space_status()
             converted = (
                 f'|-heal|p{player + 1}a: {mon.nick}|'
@@ -936,7 +937,7 @@ def analyze_line(line: str) -> str:
         player = identify_player(line, black_sludge_pat)
         mon = players[player].currentmon
         if mon:
-            mon.heal(6.25)
+            mon.heal(6)
             status = mon.space_status()
             converted = (
                 f'|-heal|p{player + 1}a: {mon.nick}|'

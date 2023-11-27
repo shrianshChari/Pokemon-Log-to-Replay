@@ -141,7 +141,7 @@ class SimplePokemon():
             return " " + self.status_string()
 
     def approx_hp(self) -> float:
-        return round(self.hp, 1)
+        return round(self.hp, 0)
 
     def parse_species(self, species: str) -> str:
         # Handling Rotom formes
