@@ -294,6 +294,13 @@ def analyze_line(line: str) -> str:
             if (full_msg[0] == players[0].name or
                     full_msg[0] == players[1].name):
                 full_msg[0] = '☆' + full_msg[0]
+            # This is for clan tags, which used to be a thing on Smogon
+            elif (re.match(r'^\[.*\]', full_msg[0])):
+                full_msg[0] = ' ' + full_msg[0]
+
+            # This is to remove pipes from player names
+            full_msg[0] = full_msg[0].replace('|', '/')
+            # TODO: Install a package to censor the gamer language used on old Smogon
             converted = f"|c|{full_msg[0]}|{full_msg[1]}"
 
     elif turn_start_pat.match(line):
