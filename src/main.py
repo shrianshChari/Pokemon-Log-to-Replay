@@ -886,7 +886,10 @@ def analyze_line(line: str) -> str:
         converted = f'|-end|p{player + 1}a: {mon.nick}|Substitute'
     elif reflect_start_pat.match(line):
         player = identify_player(line, reflect_start_pat)
-        converted = f'|-sidestart|p{player+1}: {players[player].name}|Reflect'
+        if gen == 1:
+            converted = f'|-start|p{player+1}a: {players[player].currentmon.nick}|Reflect'
+        else:
+            converted = f'|-sidestart|p{player+1}: {players[player].name}|Reflect'
     elif reflect_end_pat.match(line):
         player = identify_player(line, reflect_end_pat)
         converted = f'|-sideend|p{player+1}: {players[player].name}|Reflect'
