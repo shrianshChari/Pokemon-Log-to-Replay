@@ -2,6 +2,7 @@ from enum import Enum
 import pandas as pd
 import re
 from typing import Union
+from dataclasses import dataclass
 
 
 def match_big_stat_to_small(s: str) -> str:
@@ -64,6 +65,26 @@ class Status(Enum):
     FREEZE = 6
     FAINT = 7
 
+# Data classes for holding the types of things we might need to change during the second pass 
+@dataclass 
+class LeechSeedOddity():
+    def __init__(self, nick):
+        self.nick = nick
+        self.amount_healed = 0
+        self.turns_healed = 0
+    def __repr__(self):
+        return f'{self.nick=},{self.amount_healed=},{self.turns_healed=}'
+    def get_approximate_health(self):
+        return self.amount_healed / self.turns_healed
+
+class LifeOrbOddity():
+    def __init__(self, nick):
+        self.nick = nick
+        self.turns_damaged = 0
+
+
+
+
 
 class SimplePokemon():
     '''Basic representation of Pokemon\'s HP and status'''
@@ -74,17 +95,26 @@ class SimplePokemon():
         self.hp = 100
         self.status = Status.NONE
         self.toxic_turns = 0
+        self.is_seeded = False
 
     def damage(self, amt: float) -> None:
         self.hp -= amt
-        if self.hp <= 0:
-            self.status = Status.FAINT
-            self.hp = 0
+
+        # we dont need flooring because we actually want to go into negatives for leech / modern wish 
+        #if self.hp <= 0:
+            #self.status = Status.FAINT
+            #self.hp = 0
 
     def heal(self, amt: float) -> None:
         self.hp += amt
         if self.hp >= 100:
             self.hp = 100
+
+    def damage_safe(self, amt: float) -> None:
+        self.hp -= amt
+        if self.hp <= 0:
+            self.status = Status.FAINT
+            self.hp = 0
 
     def status_string(self) -> str:
         match self.status:
