@@ -65,9 +65,9 @@ pidgeot: ignore specs duh
 davidness: ohhh mis bross
 dekzeh: sir, click the IGNORE SPECTATORS button
 
-DracoMalfoy sent out Tyranitar!
-DracoMalfoy's Tyranitar's Sand Stream whipped up a sandstorm!
 #pkmn cup champ sir sent out bastard 2.0! (Snorlax)
+DracoMalfoy sent out Tyranitar!
+Tyranitar's Sand Stream whipped up a sandstorm!
 
 Start of turn 1
 DracoMalfoy's Tyranitar is tightening its focus!
