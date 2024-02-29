@@ -62,4 +62,9 @@ Battle logs effected: boudouche-absurd-gen5ou, negritobanana-sweepage-gen5ou, ni
 Errors
 ardorin-boudouche-gen5ou and boudouche-absurd-gen4ou have whirlwind broken, `Cannot tell who the mon is.`
 
+Pinch Berries
+```
+The Salac Berry raised #pkmn cup champ sir's Rascals's Speed!
+```
+
 Better Build system for building working html files with replays
