@@ -19,7 +19,7 @@ players = []
 is_phased = False
 phase_hazard_list = []
 moves_buffer = []
-wishers = {0:'',1:''}
+wishers = {}
 seeders = {0:'',1:''}
 # behaviour: False implies this state should be WRITE-only, true implies state should be READ-only
 oddities_state = {0:[], 1:[],'behaviour':False}
@@ -443,10 +443,14 @@ def analyze_line(line: str) -> str:
     elif wish_pat.match(line):
         if gen == 5:
             raise Exception("Wish is not implemented for gen 5 logs.")
-        target = identify_player(line, wish_pat)
+        match = wish_pat.match(line)
+        first_group = ''
+        if match:
+            first_group = match.group(1)
+        target = wishers.pop(first_group)
         target_mon = players[target].currentmon
         target_mon.heal(50)
-        converted = f"|-heal|p{target+1}a: {target_mon.nick}|{target_mon.approx_hp()}\/100{target_mon.space_status()}|[from] move: Wish|[wisher] {wishers[target]}"
+        converted = f"|-heal|p{target+1}a: {target_mon.nick}|{target_mon.approx_hp()}\/100{target_mon.space_status()}|[from] move: Wish|[wisher] {first_group}"
 
     elif not_very_effective_pat == line:
         move, use_player, target_player, use_mon, target_mon = moves_buffer
@@ -618,7 +622,7 @@ def analyze_line(line: str) -> str:
             if move in {'Whirlwind', 'Roar', 'Dragon Tail', 'Circle Throw'}:
                 is_phased = True
             if move == "Wish":
-                wishers[use_player] = use_mon.nick
+                wishers[use_mon.nick] = use_player
 
         # TODO: Implement damage, secondary effects, etc. of moves
         moves_buffer = (move, use_player, target_player, use_mon, target_mon)
