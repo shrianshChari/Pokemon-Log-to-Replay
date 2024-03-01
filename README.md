@@ -68,3 +68,5 @@ The Salac Berry raised #pkmn cup champ sir's Rascals's Speed!
 ```
 
 Better Build system for building working html files with replays
+
+Censoring curse words with [better-profanity](https://pypi.org/project/better-profanity/)
