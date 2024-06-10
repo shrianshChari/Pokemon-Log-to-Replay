@@ -105,7 +105,6 @@ def analyze_line(line: str) -> str:
     global is_phased
     global phase_hazard_list
     global moves_buffer
-    
 
     # Compiling regex patterns for efficiency
 
@@ -165,8 +164,7 @@ def analyze_line(line: str) -> str:
     status_berry_pat = re.compile("(.*) ate its (.*)!")
     bounced_pat = re.compile("(.*) sprang up!")
     status_cleared_lum_pat = re.compile("(.*) status cleared!")
-
-
+    quick_claw_pat = re.compile("(.*) Quick Claw activated!")
 
     stealth_rock_dmg_pat = re.compile(r'Pointed stones dug into (.*)!')
     spikes_dmg_pat = re.compile("(.*) (was|is) hurt by spikes!")
@@ -220,13 +218,10 @@ def analyze_line(line: str) -> str:
     rain_start_pat = "It started to rain!"
     rain_stop_pat = "The rain stopped."
 
-
-
-
     converted = '|'
     if battle_started_pat.match(line):
         match = battle_started_pat.match(line)
-        
+
         if match:
             names = [match.group(1), match.group(2)]
             players = [utils.SimpleTrainer(name) for name in names]
@@ -272,7 +267,6 @@ def analyze_line(line: str) -> str:
         match = mode_pat.search(line)
         if match:
             converted = f"|gametype|{match.group(1).lower()}"
-
 
     elif tier_pat.match(line):
         tier_log = line
@@ -1008,7 +1002,13 @@ def analyze_line(line: str) -> str:
             converted = (
                 f'|-activate|p{player + 1}a: {mon.nick}|move: Pursuit'
             )
+    elif quick_claw_pat.match(line):
+        player = identify_player(line, quick_claw_pat)
+        mon = players[player].currentmon
+        if mon:
+            converted = f'|-activate|p{player + 1}a: {mon.nick}|item: Quick Claw'
     return converted
+
 
 # first pass
 for line_num, line in enumerate(log_arr):
