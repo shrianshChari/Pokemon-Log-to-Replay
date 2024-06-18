@@ -7,7 +7,7 @@ if (len(sys.argv) < 2):
     print("Please supply a log to turn into a replay", file=sys.stderr)
     sys.exit(1)
 
-log = open(sys.argv[1],encoding="utf-8")
+log = open(sys.argv[1], encoding="utf-8")
 log_data = log.read()
 log_arr = log_data.split('\n')
 
@@ -20,9 +20,10 @@ is_phased = False
 phase_hazard_list = []
 moves_buffer = []
 wishers = {}
-seeders = {0:'',1:''}
+seeders = {0: '', 1: ''}
 # behaviour: False implies this state should be WRITE-only, true implies state should be READ-only
-oddities_state = {0:[], 1:[],'behaviour':False}
+oddities_state = {0: [], 1: [], 'behaviour': False}
+
 
 # Function that defines how I output each line
 # As of now I just output to standard output
@@ -185,7 +186,6 @@ def analyze_line(line: str) -> str:
     is_poisoned_pat = re.compile("(.*) is already poisoned.")
     is_parad_pat = re.compile("(.*) is already paralyzed.")
     # Don't have a replay where a Pokemon thaws out
-
 
     damage_dealt_pat = re.compile("[0-9.]+\% of")
 
