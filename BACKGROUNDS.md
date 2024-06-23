@@ -55,7 +55,25 @@ All the images of the backgrounds are available [here](https://play.pokemonshowd
 | 14      | bg-route.png           |
 | 15      | bg-beach.png           |
 
+### Smogon Premier League Backgrounds
+
+Ordinarily, the log will insert the following line into the log:
+
+```
+|rule|Unrated|
+```
+
+If you replace this line with the following line:
+```
+|rated|Smogon Premier League
+```
+then the replay will use SPL backgrounds (which look absolutely sick) and will put a message in the replay chat that indicates that the replay is for Smogon Premier League. You may also include additional text after "Smogon Premier League", so for example:
+```
+|rated|Smogon Premier League IV
+```
+will still give the SPL background and will have a message in the chat saying "Smogon Premier League IV".
+
 ##### Extra notes
 
 - Changing the `replayid` will also change the background music that plays. I turn music off regardless when watching replays.
-- I wish I could somehow put the SPL backgrounds or the space background, but I'm not sure how to make that happen.
+- Because none of the lists use the background `bg-space.jpg`, we cannot use the space background for any replay.
