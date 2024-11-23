@@ -2,6 +2,7 @@ import re
 import sys
 import utils
 import math
+from better_profanity import profanity
 
 if (len(sys.argv) < 2):
     print("Please supply a log to turn into a replay", file=sys.stderr)
@@ -294,7 +295,11 @@ def analyze_line(line: str) -> str:
 
             # This is to remove pipes from player names
             full_msg[0] = full_msg[0].replace('|', '/')
-            # TODO: Install a package to censor the gamer language used on old Smogon
+
+            # Removing profanity
+            full_msg[0] = profanity.censor(full_msg[0])
+            full_msg[1] = profanity.censor(full_msg[1])
+
             converted = f"|c|{full_msg[0]}|{full_msg[1]}"
 
     elif turn_start_pat.match(line):
@@ -644,12 +649,20 @@ def analyze_line(line: str) -> str:
         match = is_watching_pat.search(line)
         if match:
             remove_brackets = re.sub('\\[.*\\]', '', match.group(1))
+
+            # Remove profane language from usernames
+            remove_brackets = profanity.censor(remove_brackets)
+
             converted = f"|j|{remove_brackets}"
 
     elif stopped_watching_pat.match(line):
         match = stopped_watching_pat.search(line)
         if match:
             remove_brackets = re.sub('\\[.*\\]', '', match.group(1))
+
+            # Remove profane language from usernames
+            remove_brackets = profanity.censor(remove_brackets)
+
             converted = f"|l|{remove_brackets}"
 
     elif spikes_dmg_pat.match(line):
