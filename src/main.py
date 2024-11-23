@@ -188,7 +188,7 @@ def analyze_line(line: str) -> str:
     is_parad_pat = re.compile("(.*) is already paralyzed.")
     # Don't have a replay where a Pokemon thaws out
 
-    damage_dealt_pat = re.compile("[0-9.]+\% of")
+    damage_dealt_pat = re.compile("[0-9.]+% of")
 
     landed_pat = re.compile("(.*) landed on the ground!")
     heal_pat = re.compile("(.*) regained health!")
@@ -348,8 +348,8 @@ def analyze_line(line: str) -> str:
                     if moves_buffer[0] == "Baton Pass":
                         source = '|[from] Baton Pass'
                 converted += (
-                    rf'|switch|p{playernum + 1}a: {mon.nick}|'
-                    rf'{mon.species}|{mon.approx_hp()}\/100{status}{source}'
+                    f'|switch|p{playernum + 1}a: {mon.nick}|'
+                    f'{mon.species}|{mon.approx_hp()}/100{status}{source}'
                 )
                 if gen <= 2 and mon.status == utils.Status.TOXIC:
                     mon.status = utils.Status.POISON
@@ -366,8 +366,8 @@ def analyze_line(line: str) -> str:
                 status = mon.space_status()
                 mon.toxic_turns = 0
                 converted = (
-                    rf'|drag|p{player + 1}a: {mon.nick}|'
-                    rf'{mon.species}|{mon.approx_hp()}\/100{status}'
+                    f'|drag|p{player + 1}a: {mon.nick}|'
+                    f'{mon.species}|{mon.approx_hp()}/100{status}'
                 )
             else:
                 print('Cannot tell who the mon is.', file=sys.stderr)
@@ -388,7 +388,7 @@ def analyze_line(line: str) -> str:
         if not players[not target_player].currentmon.is_seeded: 
             target_mon.heal(50.0)
 
-        converted = f"|-heal|p{target_player+1}a: {target_mon.nick}|{target_mon.approx_hp()}\/100{target_mon.space_status()}"
+        converted = f"|-heal|p{target_player+1}a: {target_mon.nick}|{target_mon.approx_hp()}/100{target_mon.space_status()}"
 
     elif leech_start_pat.match(line):
         target_player = identify_player(line, leech_start_pat)
@@ -403,7 +403,7 @@ def analyze_line(line: str) -> str:
         
         target_mon.damage(12.5)
         # this doesnt work on mbounce leech seed, god please no
-        converted = f"|-damage|p{target_player+1}a: {target_mon.nick}|{target_mon.approx_hp()}\/100{target_mon.space_status()}|[from] move: Leech Seed|[of] p{(not target_player) +1}a: {seeders[(not target_player)]}"
+        converted = f"|-damage|p{target_player+1}a: {target_mon.nick}|{target_mon.approx_hp()}/100{target_mon.space_status()}|[from] move: Leech Seed|[of] p{(not target_player) +1}a: {seeders[(not target_player)]}"
         # healing the opponent
         if players[target_player].currentmon.is_seeded and oddities_state['behaviour'] == False:
             healing_player = not target_player
@@ -427,7 +427,7 @@ def analyze_line(line: str) -> str:
                 if isinstance(oddity, utils.LeechSeedOddity) and oddity.nick == healing_mon.nick:
                     healing_mon.heal(oddity.get_approximate_health())
                     converted += '\n' + \
-                    f"|-heal|p{healing_player+1}a: {healing_mon.nick}|{healing_mon.approx_hp()}\/100{healing_mon.space_status()} |[silent]"
+                    f"|-heal|p{healing_player+1}a: {healing_mon.nick}|{healing_mon.approx_hp()}/100{healing_mon.space_status()} |[silent]"
                     break
 
     elif status_cleared_lum_pat.match(line):
@@ -449,7 +449,7 @@ def analyze_line(line: str) -> str:
         target = wishers.pop(first_group)
         target_mon = players[target].currentmon
         target_mon.heal(50)
-        converted = f"|-heal|p{target+1}a: {target_mon.nick}|{target_mon.approx_hp()}\/100{target_mon.space_status()}|[from] move: Wish|[wisher] {first_group}"
+        converted = f"|-heal|p{target+1}a: {target_mon.nick}|{target_mon.approx_hp()}/100{target_mon.space_status()}|[from] move: Wish|[wisher] {first_group}"
 
     elif not_very_effective_pat == line:
         move, use_player, target_player, use_mon, target_mon = moves_buffer
@@ -501,13 +501,13 @@ def analyze_line(line: str) -> str:
         opposing_player = int(not target_player)
         damage_done = damage_dealt_pat.search(line).group(0)
         target_mon.damage(float(damage_done[:-4]))
-        converted = f"|-damage|p{target_player+1}a: {target_mon.nick}|{target_mon.approx_hp()}\/100{target_mon.space_status()}"
+        converted = f"|-damage|p{target_player+1}a: {target_mon.nick}|{target_mon.approx_hp()}/100{target_mon.space_status()}"
         if oddities_state['behaviour'] == True:
             for oddity in oddities_state[use_player]:
                 if isinstance(oddity, utils.LifeOrbOddity) and oddity.nick == use_mon.nick and oddity.turns_damaged:
                     use_mon.damage(10)
                     converted += '\n' + \
-                    f'|-damage|p{use_player+1}a: {use_mon.nick}|{use_mon.approx_hp()}\/100{use_mon.space_status()}|[from] item: Life Orb'
+                    r'|-damage|p{use_player+1}a: {use_mon.nick}|{use_mon.approx_hp()}/100{use_mon.space_status()}|[from] item: Life Orb'
 
 
         
@@ -687,8 +687,8 @@ def analyze_line(line: str) -> str:
                 mon.damage(damage)
                 status = mon.space_status()
                 converted = (
-                    rf'|-damage|p{player + 1}a: {mon.nick}|'
-                    rf'{mon.approx_hp()}\/100{status}|[from] Spikes'
+                    f'|-damage|p{player + 1}a: {mon.nick}|'
+                    f'{mon.approx_hp()}/100{status}|[from] Spikes'
                 )
 
     elif stealth_rock_dmg_pat.match(line):
@@ -698,22 +698,22 @@ def analyze_line(line: str) -> str:
             player = identify_player(line, stealth_rock_dmg_pat)
             mon = players[player].currentmon
             if mon:
-                mon.damage(math.ceil(utils.stealth_rock_damage(mon, gen)))
+                mon.damage(utils.stealth_rock_damage(mon, gen))
                 status = mon.space_status()
                 converted = (
-                    rf'|-damage|p{player + 1}a: {mon.nick}|'
-                    rf'{mon.approx_hp()}\/100{status}|[from] Stealth Rock'
+                    f'|-damage|p{player + 1}a: {mon.nick}|'
+                    f'{mon.approx_hp()}/100{status}|[from] Stealth Rock'
                 )
 
     elif sandstorm_dmg_pat.match(line):
         player = identify_player(line, sandstorm_dmg_pat)
         mon = players[player].currentmon
         if mon:
-            mon.damage(7)
+            mon.damage(6.25)
             status = mon.space_status()
             converted = (
-                rf'|-damage|p{player + 1}a: {mon.nick}|'
-                rf'{mon.approx_hp()}\/100{status}|[from] Sandstorm'
+                f'|-damage|p{player + 1}a: {mon.nick}|'
+                f'{mon.approx_hp()}/100{status}|[from] Sandstorm'
             )
 
     elif drought_pat.match(line):
@@ -721,8 +721,8 @@ def analyze_line(line: str) -> str:
         mon = players[player].currentmon
         if mon:
             converted = (
-                rf'|-weather|SunnyDay|[from] ability: Drought|'
-                rf'[of] p{player + 1}a: {mon.nick}'
+                f'|-weather|SunnyDay|[from] ability: Drought|'
+                f'[of] p{player + 1}a: {mon.nick}'
             )
 
     elif drizzle_pat.match(line):
@@ -730,8 +730,8 @@ def analyze_line(line: str) -> str:
         mon = players[player].currentmon
         if mon:
             converted = (
-                rf'|-weather|RainDance|[from] ability: Drizzle|'
-                rf'[of] p{player + 1}a: {mon.nick}'
+                f'|-weather|RainDance|[from] ability: Drizzle|'
+                f'[of] p{player + 1}a: {mon.nick}'
             )
 
     elif sandstream_pat.match(line):
@@ -739,8 +739,8 @@ def analyze_line(line: str) -> str:
         mon = players[player].currentmon
         if mon:
             converted = (
-                rf'|-weather|Sandstorm|[from] ability: Sand Stream|'
-                rf'[of] p{player + 1}a: {mon.nick}'
+                f'|-weather|Sandstorm|[from] ability: Sand Stream|'
+                f'[of] p{player + 1}a: {mon.nick}'
             )
     elif line == rain_start_pat:
         converted = '|-weather|Rain Dance'
@@ -887,7 +887,7 @@ def analyze_line(line: str) -> str:
             mon.damage(25)
             converted = (
                 f'|-start|p{player + 1}a: {mon.nick}|Substitute\n'
-                f'|-damage|p{player + 1}a: {mon.nick}|{mon.approx_hp()}\/100{mon.space_status()}'
+                f'|-damage|p{player + 1}a: {mon.nick}|{mon.approx_hp()}/100{mon.space_status()}'
             )
     elif substitute_hit_pat.match(line):
         player = identify_player(line, substitute_hit_pat)
@@ -926,7 +926,7 @@ def analyze_line(line: str) -> str:
             status = mon.space_status()
             converted = (
                 f'|-damage|p{player + 1}a: {mon.nick}|'
-                rf'{mon.approx_hp()}\/100{status}|[from] psn'
+                f'{mon.approx_hp()}/100{status}|[from] psn'
             )
 
     elif burn_dmg_pat.match(line):
@@ -940,7 +940,7 @@ def analyze_line(line: str) -> str:
             status = mon.space_status()
             converted = (
                 f'|-damage|p{player + 1}a: {mon.nick}|'
-                rf'{mon.approx_hp()}\/100{status}|[from] brn'
+                f'{mon.approx_hp()}/100{status}|[from] brn'
             )
 
     elif leftovers_pat.match(line):
@@ -951,7 +951,7 @@ def analyze_line(line: str) -> str:
             status = mon.space_status()
             converted = (
                 f'|-heal|p{player + 1}a: {mon.nick}|'
-                rf'{mon.approx_hp()}\/100{status}|[from] item: Leftovers'
+                f'{mon.approx_hp()}/100{status}|[from] item: Leftovers'
             )
 
     elif black_sludge_pat.match(line):
@@ -962,7 +962,7 @@ def analyze_line(line: str) -> str:
             status = mon.space_status()
             converted = (
                 f'|-heal|p{player + 1}a: {mon.nick}|'
-                rf'{mon.approx_hp()}\/100{status}|[from] item: Black Sludge'
+                f'{mon.approx_hp()}/100{status}|[from] item: Black Sludge'
             )
 
     elif stealth_rock_set_pat.match(line):
