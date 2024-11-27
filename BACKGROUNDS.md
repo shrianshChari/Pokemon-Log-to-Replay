@@ -18,27 +18,28 @@ All the images of the backgrounds are available [here](https://play.pokemonshowd
 
 | Value   | Background             |
 |-------- | ---------------------- |
+| 0       | bg-gen3.png            |
 | 1       | bg-gen3-cave.png       |
 | 2       | bg-gen3-ocean.png      |
 | 3       | bg-gen3-sand.png       |
 | 4       | bg-gen3-forest.png     |
 | 5       | bg-gen3-arena.png      |
-| 6       | bg-gen3.png            |
 
 ### Gen 4
 
 | Value   | Background             |
 |-------- | ---------------------- |
+| 0       | bg-gen4.png            |
 | 1       | bg-gen4-cave.png       |
 | 2       | bg-gen4-snow.png       |
 | 3       | bg-gen4-indoors.png    |
 | 4       | bg-gen4-water.png      |
-| 5       | bg-gen4.png            |
 
 ### Gen 5
 
 | Value   | Background             |
 |-------- | ---------------------- |
+| 0       | bg-beach.png           |
 | 1       | bg-beachshore.png      |
 | 2       | bg-desert.png          |
 | 3       | bg-meadow.png          |
@@ -53,7 +54,6 @@ All the images of the backgrounds are available [here](https://play.pokemonshowd
 | 12      | bg-deepsea.png         |
 | 13      | bg-icecave.png         |
 | 14      | bg-route.png           |
-| 15      | bg-beach.png           |
 
 ### Smogon Premier League Backgrounds
 
