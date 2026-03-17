@@ -209,6 +209,7 @@ def analyze_line(line: str) -> str:
 
     intim_pat = re.compile("(.*) intimidates (.*)")
     download_pat = re.compile("(.*) Download activates!")
+    mold_breaker_pat = re.compile("(.*) has Mold Breaker!")
 
     immune_no_info_pat = "It had no effect!"
     crit_pat = "A critical hit!"
@@ -559,6 +560,10 @@ def analyze_line(line: str) -> str:
     elif download_pat.match(line):
         user = identify_player(line, download_pat)
         converted = f'|-ability|p{user+1}a: {players[user].currentmon.nick}|Download|boost'
+
+    elif mold_breaker_pat.match(line):
+        user = identify_player(line, mold_breaker_pat)
+        converted = f'|-ability|p{user+1}a: {players[user].currentmon.nick}|Mold Breaker'
 
     elif flash_fire_pat.match(line):
         user = identify_player(line, flash_fire_pat)
