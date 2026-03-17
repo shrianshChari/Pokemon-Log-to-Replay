@@ -208,6 +208,7 @@ def analyze_line(line: str) -> str:
     flinch_pat = re.compile('(.*) flinched and couldn\'t move!')
 
     intim_pat = re.compile("(.*) intimidates (.*)")
+    download_pat = re.compile("(.*) Download activates!")
 
     immune_no_info_pat = "It had no effect!"
     crit_pat = "A critical hit!"
@@ -555,7 +556,9 @@ def analyze_line(line: str) -> str:
                 converted += "\n" + f'|-fail|p{opponent+1}a: {opposing_mon.nick}|unboost|[from] ability: Clear Body|[of] p{opponent+1}a: {opposing_mon.nick}'
                 break
 
-
+    elif download_pat.match(line):
+        user = identify_player(line, download_pat)
+        converted = f'|-ability|p{user+1}a: {players[user].currentmon.nick}|Download|boost'
 
     elif flash_fire_pat.match(line):
         user = identify_player(line, flash_fire_pat)
