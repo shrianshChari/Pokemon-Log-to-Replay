@@ -1,5 +1,5 @@
 # Pokemon-Log-to-Replay
-Convert from logs from Pokemon Online and Shoddy to replays from Pokemon Showdown
+Convert logs from Pokemon Online and Shoddy to replays from Pokemon Showdown
 
 ### Resources:
 - [Showdown Replay Encoding](https://github.com/smogon/pokemon-showdown/blob/master/sim/SIM-PROTOCOL.md)

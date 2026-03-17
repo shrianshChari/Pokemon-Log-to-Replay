@@ -1,0 +1,10 @@
+[project]
+name = "pokemon-log-to-replay"
+version = "0.1.0"
+description = "Convert logs from Pokemon Online and Shoddy Battle to replays from Pokemon Showdown"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "better-profanity>=0.7.0",
+    "pandas>=3.0.1",
+]
