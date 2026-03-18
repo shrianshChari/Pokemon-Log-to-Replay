@@ -2,7 +2,7 @@ import re
 import sys
 import utils
 import math
-from better_profanity import profanity
+from profanityfilter import ProfanityFilter
 
 if (len(sys.argv) < 2):
     print("Please supply a log to turn into a replay", file=sys.stderr)
@@ -24,6 +24,8 @@ wishers = {}
 seeders = {0: '', 1: ''}
 # behaviour: False implies this state should be WRITE-only, true implies state should be READ-only
 oddities_state = {0: [], 1: [], 'behaviour': False}
+
+pf = ProfanityFilter()
 
 
 # Function that defines how I output each line
@@ -299,8 +301,8 @@ def analyze_line(line: str) -> str:
             full_msg[0] = full_msg[0].replace('|', '/')
 
             # Removing profanity
-            full_msg[0] = profanity.censor(full_msg[0])
-            full_msg[1] = profanity.censor(full_msg[1])
+            full_msg[0] = pf.censor(full_msg[0])
+            full_msg[1] = pf.censor(full_msg[1])
 
             converted = f"|c|{full_msg[0]}|{full_msg[1]}"
 
@@ -659,7 +661,7 @@ def analyze_line(line: str) -> str:
             remove_brackets = re.sub('\\[.*\\]', '', match.group(1))
 
             # Remove profane language from usernames
-            remove_brackets = profanity.censor(remove_brackets)
+            remove_brackets = pf.censor(remove_brackets)
 
             converted = f"|j|{remove_brackets}"
 
@@ -669,7 +671,7 @@ def analyze_line(line: str) -> str:
             remove_brackets = re.sub('\\[.*\\]', '', match.group(1))
 
             # Remove profane language from usernames
-            remove_brackets = profanity.censor(remove_brackets)
+            remove_brackets = pf.censor(remove_brackets)
 
             converted = f"|l|{remove_brackets}"
 
