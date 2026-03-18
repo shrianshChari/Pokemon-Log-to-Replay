@@ -173,7 +173,7 @@ def analyze_line(line: str) -> str:
     burn_dmg_pat = re.compile("(.*) (was|is) hurt by its burn!")
     poison_dmg_pat = re.compile("(.*) (was|is) hurt by poison!")
     sandstorm_dmg_pat = re.compile("(.*) (was|is) buffeted by the sandstorm!")
-    leech_seed_damage_pat = re.compile("(.*) health is sapped by [lL]eech seed.")
+    leech_seed_dmg_pat = re.compile("(.*) health is sapped by [lL]eech seed.")
     leftovers_pat = re.compile("(.*) restored a little HP using its Leftovers!")
     black_sludge_pat = re.compile("(.*) restored a little HP using its Black Sludge!")
 
@@ -399,8 +399,8 @@ def analyze_line(line: str) -> str:
         opponent = not target_player
         seeders[opponent] = players[opponent].currentmon.nick
         converted = f'|-start|p{target_player + 1}a: {target_mon.nick}|Leech Seed'
-    elif leech_seed_damage_pat.match(line):
-        target_player = identify_player(line, leech_seed_damage_pat)
+    elif leech_seed_dmg_pat.match(line):
+        target_player = identify_player(line, leech_seed_dmg_pat)
         target_mon = players[target_player].currentmon
         
         target_mon.damage(12.5)
